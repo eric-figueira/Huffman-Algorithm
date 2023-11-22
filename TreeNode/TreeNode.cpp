@@ -14,7 +14,7 @@ TreeNode<Data>::TreeNode(Data d, TreeNode* l, TreeNode * r) : data(d), left(l), 
 template <typename Data>
 TreeNode<Data>::TreeNode(Data d) : data(d), left(NULL), right(NULL) {
   if (d == NULL) {
-    cerr << "[TreeNode]: Data should not be null";
+    cerr << "[TreeNode]: Data should not be NULL";
     exit(-1);
   }
 }

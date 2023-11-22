@@ -18,6 +18,6 @@ class ByteFrequency
   
     ByteFrequency(int f, char c);
     ByteFrequency();
-}
+};
 
 #endif
