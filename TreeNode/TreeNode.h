@@ -18,6 +18,6 @@ class TreeNode
     TreeNode(Data d, TreeNode* l, TreeNode* r);   
     TreeNode(Data d);
     TreeNode();
-}
+};
 
 #endif
