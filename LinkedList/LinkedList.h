@@ -3,6 +3,8 @@
 
 #include "ListNode.h"
 
+using namespace system;
+
 template <typename Data>
 class LinkedList 
 {
@@ -24,6 +26,7 @@ class LinkedList
     bool exists(Data data) const;
     void add(Data data);
     void remove(Data data);
+    void pop();
 };
 
 #endif

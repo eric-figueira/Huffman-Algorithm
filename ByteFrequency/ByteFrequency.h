@@ -18,6 +18,7 @@ class ByteFrequency
   
     ByteFrequency(int f, char c);
     ByteFrequency();
+    // TODO: implement operators ==, < and > for this class (so we can use it as a compareTo -> code it in a way that consider priorities as a and b, and when you compare a < b, a is smaller than b)
 };
 
 #endif

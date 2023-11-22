@@ -45,9 +45,10 @@ template <typename Data>
 bool LinkedList<Data>::exists(Data data) const 
 {
   for (current = begin; current != NULL; previous = current, current = current -> next) {
-    if (current.data == data) {
+    if (current.data == data)
       return true;
-    }
+    else if (current.data > data)
+      return false;
   }
   return false;
 }
@@ -97,4 +98,10 @@ void LinkedList<Data>::remove(Data data)
         end = previous;
     current -> next = NULL;
   }
+}
+
+template <typename Data>
+void LinkedList<Data>::pop() 
+{
+  remove(*end);
 }
