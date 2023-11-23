@@ -17,6 +17,7 @@ class PriorityQueue {
 
     void enqueue(Data data);
     Data dequeue();
+    bool exists(Data data) const;
 
     Data get_first() const;
     Data get_last()  const;
