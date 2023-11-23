@@ -35,9 +35,9 @@ Data PriorityQueue<Data>::get_last() const
 }
 
 template <typename Data>
-bool LinkedList<Data>::exists(Data data) const 
+bool PriorityQueue<Data>::exists(Data data) const 
 {
-  for (current = begin; current != NULL; previous = current, current = current -> next) {
+  for (current = first, previous = NULL; current != NULL; previous = current, current = current -> next) {
     if (current.data == data)
       return true;
     else if (current.data > data)
@@ -51,44 +51,46 @@ void PriorityQueue<Data>::enqueue(Data data)
 {
   if (exists(data))
   {
-    cerr << "[LinkedList]: Data already exists";
+    cerr << "[PriorityQueue]: Data already exists";
     exit(-1);
   }
   else {
-    if (begin == NULL)
-    {
-      begin -> data = data;
-      end = begin;
+    QueueNode<Data> newNode = new QueueNode<Data>(data);
+
+    current = first;
+    previous = NULL;
+
+    while (current != NULL) {
+      if (data < current -> data)
+        break;
+  
+      previous = current;
+      current = current -> data;
     }
-    else {
-      ListNode<Data>* new_data;
-      *(new_data) = ListNode<Data>(data);
-      
-      if (previous == NULL)
-        begin = new_data;
-      else 
-        previous -> next = new_data;
-      *(new_data) -> next = current;
-      if (current == NULL)
-        end = new_data;
-    }
+
+    if (previous == NULL)
+      first = &newNode;
+    else 
+      previous -> next = &newNode;
+
+    newNode -> next = current;
+
+    if (current == NULL)
+      last = &newNode;
   }
 }
 
 template <typename Data>
 Data PriorityQueue<Data>::dequeue()
 {
-  if (!exists(data)) {
-    cerr << "[LinkedList]: Data does not exist";
-    exit(-1);
+  if (!is_empty()) {
+    Data d = first -> data;
+    first = first -> next;
+    if (first == NULL)
+      last = NULL;
+
+    return d;
   }
-  else {
-    if (previous == NULL)
-      begin = current -> next;
-    else
-      previous -> next = current -> next;
-      if (current == end)
-        end = previous;
-    current -> next = NULL;
-  }
+  cerr << "[PriorityQueue]: Tried to deque from empty queue";
+  exit(-1);
 }
