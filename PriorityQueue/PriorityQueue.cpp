@@ -35,13 +35,60 @@ Data PriorityQueue<Data>::get_last() const
 }
 
 template <typename Data>
+bool LinkedList<Data>::exists(Data data) const 
+{
+  for (current = begin; current != NULL; previous = current, current = current -> next) {
+    if (current.data == data)
+      return true;
+    else if (current.data > data)
+      return false;
+  }
+  return false;
+}
+
+template <typename Data>
 void PriorityQueue<Data>::enqueue(Data data) 
 {
-  // TODO: Use compare to in order to add as the priority
+  if (exists(data))
+  {
+    cerr << "[LinkedList]: Data already exists";
+    exit(-1);
+  }
+  else {
+    if (begin == NULL)
+    {
+      begin -> data = data;
+      end = begin;
+    }
+    else {
+      ListNode<Data>* new_data;
+      *(new_data) = ListNode<Data>(data);
+      
+      if (previous == NULL)
+        begin = new_data;
+      else 
+        previous -> next = new_data;
+      *(new_data) -> next = current;
+      if (current == NULL)
+        end = new_data;
+    }
+  }
 }
 
 template <typename Data>
 Data PriorityQueue<Data>::dequeue()
 {
-  priorityQueue.pop();
+  if (!exists(data)) {
+    cerr << "[LinkedList]: Data does not exist";
+    exit(-1);
+  }
+  else {
+    if (previous == NULL)
+      begin = current -> next;
+    else
+      previous -> next = current -> next;
+      if (current == end)
+        end = previous;
+    current -> next = NULL;
+  }
 }
