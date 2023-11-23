@@ -1,24 +1,25 @@
 #ifndef PRIORITYQUEUE
 #define PRIORITYQUEUE
 
-#include "LinkedList.h"
+#include "QueueNode.h"
 
 template <typename Data>
 class PriorityQueue {
   private:
-    LinkedList<Data> priorityQueue;
+    QueueNode<Data> *first, *last, *current, *previous;
     unsigned int size;
 
   public:
     PriorityQueue();
 
-    LinkedList<Data> get_priorityQueue() const;
     unsigned int get_size() const;
-    ListNode<Data> get_begin() const;
-    ListNode<Data> get_end() const;
+    bool is_empty() const;
 
     void enqueue(Data data);
-    void dequeue();
+    Data dequeue();
+
+    Data get_first() const;
+    Data get_last()  const;
 };
 
 #endif 

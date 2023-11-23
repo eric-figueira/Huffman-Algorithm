@@ -4,40 +4,44 @@
 using namespace std;
 
 template <typename Data>
-PriorityQueue<Data>::PriorityQueue(): priorityQueue() {}
+PriorityQueue<Data>::PriorityQueue(): first(NULL), last(NULL), current(NULL), previous(NULL), size(0) {}
 
 template <typename Data>
-LinkedList<Data> PriorityQueue<Data>::get_priorityQueue() const
+unsigned int PriorityQueue<Data>::get_size() const { return size; }
+
+template <typename Data>
+bool PriorityQueue<Data>::is_empty() const { return first == NULL; }
+
+template <typename Data>
+Data PriorityQueue<Data>::get_first() const
 {
-  return priorityQueue;
+  if (is_empty()) {
+    cerr << "[PriorityQueue]: Queue is empty";
+    exit(-1);
+  }
+ 
+  return first -> data;
 }
 
 template <typename Data>
-unsigned int PriorityQueue<Data>::get_size() const
+Data PriorityQueue<Data>::get_last() const
 {
-  return size;
-}
-
-template <typename Data>
-ListNode<Data> PriorityQueue<Data>::get_begin() const
-{
-  return priorityQueue.get_end();
-}
-
-template <typename Data>
-ListNode<Data> PriorityQueue<Data>::get_end() const
-{
-  return priorityQueue.get_begin();
+  if (is_empty()) {
+    cerr << "[PriorityQueue]: Queue is empty";
+    exit(-1);
+  }
+ 
+  return last -> data;
 }
 
 template <typename Data>
 void PriorityQueue<Data>::enqueue(Data data) 
 {
-  priorityQueue.add(data);
+  // TODO: Use compare to in order to add as the priority
 }
 
 template <typename Data>
-void PriorityQueue<Data>::dequeue()
+Data PriorityQueue<Data>::dequeue()
 {
   priorityQueue.pop();
 }
