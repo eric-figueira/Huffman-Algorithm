@@ -13,6 +13,11 @@ PriorityQueue::PriorityQueue(): used_size(0), vector(new TreeNode<ByteFrequency>
 
 unsigned int PriorityQueue::get_used_size() const { return used_size; }
 
+bool PriorityQueue::is_empty() const
+{
+  return used_size == 0;
+}
+
 void PriorityQueue::add_in_pos(char pos, TreeNode<ByteFrequency> data) 
 {
   if (pos >= 0 && data != NULL) {
