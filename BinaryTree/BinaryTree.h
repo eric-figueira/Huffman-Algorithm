@@ -9,7 +9,7 @@
 class BinaryTree
 {
   private:
-    TreeNode<ByteFrequency> *first, *current, *previous;
+    TreeNode<ByteFrequency> *root, *current, *previous;
     unsigned int n_nodes;
 
   public:
@@ -18,7 +18,9 @@ class BinaryTree
     unsigned int get_n_nodes() const;
 
     void create_tree_from_priority_queue(PriorityQueue queue);
+
     CharCode* visit_and_generate_codes();
+    void visit_and_generate_codes_helper();
 };
 
 
