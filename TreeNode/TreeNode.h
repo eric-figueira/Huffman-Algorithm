@@ -14,6 +14,8 @@ class TreeNode
     TreeNode* get_left()  const;
     TreeNode* get_right() const;
     Data      get_data()  const;
+
+    void set_data(Data d);
     
     TreeNode(Data d, TreeNode* l, TreeNode* r);   
     TreeNode(Data d);

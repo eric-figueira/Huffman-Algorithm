@@ -36,3 +36,8 @@ template <typename Data>
 Data TreeNode<Data>::get_data() const {
   return data;
 }
+
+template <typename Data>
+void TreeNode<Data>::set_data(Data d) {
+  data = d;
+}
