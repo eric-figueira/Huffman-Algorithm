@@ -6,17 +6,17 @@ class ByteFrequency
 {
   private:
     int  frequency;
-    // TODO: char must be changed to generic byte
-    char character; 
+    char byte_code; 
 
   public:
     int  get_frequency() const;
-    char get_character() const;
+    char get_byte_code() const;
 
     void set_frequency(int f);
-    void set_character(char c);
+    void set_byte_code(char b);
+    void increment_frequency();
   
-    ByteFrequency(int f, char c);
+    ByteFrequency(int f, char b);
     ByteFrequency();
     // TODO: implement operators ==, < and > for this class (so we can use it as a compareTo -> code it in a way that consider priorities as a and b, and when you compare a < b, a is smaller than b)
 };

@@ -8,7 +8,7 @@ class PriorityQueue {
   private:
     unsigned int SIZE = 256;
     TreeNode<ByteFrequency>* vector;
-    unsigned int used_size;
+    char used_size; // char because the max is 256 -> 1 byte
 
   public:
     PriorityQueue();
@@ -17,7 +17,7 @@ class PriorityQueue {
     TreeNode<ByteFrequency>* get_vector() const;
     bool is_empty() const;
 
-    void add_in_pos(char pos);
+    void add(char pos);
     Data dequeue();
     void order_vector();
 };

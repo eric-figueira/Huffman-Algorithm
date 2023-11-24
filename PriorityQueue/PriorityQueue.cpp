@@ -15,22 +15,16 @@ char PriorityQueue::get_used_size() const { return used_size; }
 
 TreeNode<ByteFrequency>* PriorityQueue::get_vector() const { return vector; }
 
-bool PriorityQueue::is_empty() const
-{
-  return used_size == 0;
-}
+bool PriorityQueue::is_empty() const { return used_size == 0; }
 
-void PriorityQueue::add_in_pos(char pos) 
+void PriorityQueue::add(char byte_code) 
 {
-  TreeNode<ByteFrequency> node = vector[pos];
+  TreeNode<ByteFrequency> node = vector[byte_code];
+
   if (node == NULL) 
-  {
-    TreeNode<ByteFrequency> data(ByteFrequency(1, pos));
-  }
+    vector[byte_code] = TreeNode<ByteFrequency> data(ByteFrequency(1, byte_code));
   else 
-  {
-    node.set_data(ByteFrequency(node.get_data().get_frequency() + 1, pos));
-  }
+    node.get_data().increment_frequency();
 }
 
 TreeNode<ByteFrequency> PriorityQueue::dequeue()
