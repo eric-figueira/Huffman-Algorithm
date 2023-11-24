@@ -1,96 +1,63 @@
 #include <iostream>
+
 #include "PriorityQueue.h"
+#include "ByteFrequency.h"
+#include "TreeNode.h"
 
 using namespace std;
 
-template <typename Data>
-PriorityQueue<Data>::PriorityQueue(): first(NULL), last(NULL), current(NULL), previous(NULL), size(0) {}
+PriorityQueue::PriorityQueue(): used_size(0), vector(new TreeNode<ByteFrequency>[SIZE]) {
+  for (unsigned short int i = 0; i < SIZE; i++)
+    vector[i] = NULL;
+} 
 
-template <typename Data>
-unsigned int PriorityQueue<Data>::get_size() const { return size; }
+unsigned int PriorityQueue::get_used_size() const { return used_size; }
 
-template <typename Data>
-bool PriorityQueue<Data>::is_empty() const { return first == NULL; }
-
-template <typename Data>
-Data PriorityQueue<Data>::get_first() const
+void PriorityQueue::add_in_pos(char pos, TreeNode<ByteFrequency> data) 
 {
-  if (is_empty()) {
-    cerr << "[PriorityQueue]: Queue is empty";
-    exit(-1);
-  }
- 
-  return first -> data;
-}
-
-template <typename Data>
-Data PriorityQueue<Data>::get_last() const
-{
-  if (is_empty()) {
-    cerr << "[PriorityQueue]: Queue is empty";
-    exit(-1);
-  }
- 
-  return last -> data;
-}
-
-template <typename Data>
-bool PriorityQueue<Data>::exists(Data data) const 
-{
-  for (current = first, previous = NULL; current != NULL; previous = current, current = current -> next) {
-    if (current.data == data)
-      return true;
-    else if (current.data > data)
-      return false;
-  }
-  return false;
-}
-
-template <typename Data>
-void PriorityQueue<Data>::enqueue(Data data) 
-{
-  if (exists(data))
-  {
-    cerr << "[PriorityQueue]: Data already exists";
-    exit(-1);
-  }
-  else {
-    QueueNode<Data> newNode = new QueueNode<Data>(data);
-
-    current = first;
-    previous = NULL;
-
-    while (current != NULL) {
-      if (data < current -> data)
-        break;
-  
-      previous = current;
-      current = current -> data;
-    }
-
-    if (previous == NULL)
-      first = &newNode;
-    else 
-      previous -> next = &newNode;
-
-    newNode -> next = current;
-
-    if (current == NULL)
-      last = &newNode;
+  if (pos >= 0 && data != NULL) {
+    vector[pos] = data;
   }
 }
 
-template <typename Data>
-Data PriorityQueue<Data>::dequeue()
+TreeNode<ByteFrequency> PriorityQueue::dequeue()
 {
   if (!is_empty()) {
-    Data d = first -> data;
-    first = first -> next;
-    if (first == NULL)
-      last = NULL;
+    TreeNode<ByteFrequency> info = vector[0];
 
-    return d;
+    for (unsigned short int i = 0, i < used_size; i++)
+      vector[i] = vector[i+1];
+
+    vector[used_size] = NULL;
+    used_size--;
+
+    return info;
   }
   cerr << "[PriorityQueue]: Tried to deque from empty queue";
   exit(-1);
+}
+
+void PriorityQueue::order_vector() 
+{
+  // Keep the non-null data on the left of vector
+  unsigned short int i = 0;
+  for (unsigned short int j = 0; j < SIZE; j++) {
+    if (vector[j] != NULL) {
+      vector[i] = vector[j];
+      if (i != j)
+        vector[j] = NULL;
+      i++;
+    }
+  }
+
+  // Order non-null data by frequency
+  for (unsigned short int a = 0; a < used_size - 1; a++) {
+    for (unsigned short int b = 0; b < used_size - a - 1; b++) {
+      if (vector[b].get_data().get_frequency < vector[b + 1].get_data().get_frequency()) {
+        TreeNode<ByteFrequency> temp = vector[b];
+        vector[b] = vector[b + 1];
+        vector[b + 1] = temp;
+      }
+    }
+  }
 }

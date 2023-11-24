@@ -1,26 +1,24 @@
 #ifndef PRIORITYQUEUE
 #define PRIORITYQUEUE
 
-#include "QueueNode.h"
+#include "TreeNode.h"
+#include "ByteFrequency.h"
 
-template <typename Data>
 class PriorityQueue {
   private:
-    QueueNode<Data> *first, *last, *current, *previous;
-    unsigned int size;
+    unsigned int SIZE = 256;
+    TreeNode<ByteFrequency>* vector;
+    unsigned int used_size;
 
   public:
     PriorityQueue();
 
-    unsigned int get_size() const;
+    unsigned int get_used_size() const;
     bool is_empty() const;
 
-    void enqueue(Data data);
+    void add_in_pos(char pos, TreeNode<ByteFrequency> data);
     Data dequeue();
-    bool exists(Data data) const;
-
-    Data get_first() const;
-    Data get_last()  const;
+    void order_vector();
 };
 
 #endif 
