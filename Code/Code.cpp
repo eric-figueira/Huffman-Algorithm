@@ -10,9 +10,8 @@ void Code::clear_bit(unsigned int pos, char n)
   bytes[pos] = bytes[pos] & ~(1 << n);
 }
 
-Code::Code(): bytes(NULL) {};
-
-Code::Code(unsigned int number_of_used_bits): bytes(char[number_of_used_bits / 8 + (number_of_used_bits % 8 != 0 ? 8 : 0)]), number_of_used_bits(number_of_used_bits) {};
+// aqui uma lista ligada seria útil
+Code::Code(): bytes(bool[10000]), number_of_used_bits(0) {};
 
 char* Code::get_bytes()
 {
@@ -33,6 +32,8 @@ void Code::add_bit(bool bit)
     set_bit(pos, (char)(7 - mod));
   else
     clear_bit(pos, (char)(7 - mod));
+
+  number_of_used_bits++;
 }
 
 bool Code::get_bit(unsigned int n) 

@@ -11,17 +11,25 @@ PriorityQueue::PriorityQueue(): used_size(0), vector(new TreeNode<ByteFrequency>
     vector[i] = NULL;
 } 
 
-unsigned int PriorityQueue::get_used_size() const { return used_size; }
+char PriorityQueue::get_used_size() const { return used_size; }
+
+TreeNode<ByteFrequency>* PriorityQueue::get_vector() const { return vector; }
 
 bool PriorityQueue::is_empty() const
 {
   return used_size == 0;
 }
 
-void PriorityQueue::add_in_pos(char pos, TreeNode<ByteFrequency> data) 
+void PriorityQueue::add_in_pos(char pos) 
 {
-  if (pos >= 0 && data != NULL) {
-    vector[pos] = data;
+  TreeNode<ByteFrequency> node = vector[pos];
+  if (node == NULL) 
+  {
+    TreeNode<ByteFrequency> data(ByteFrequency(1, pos));
+  }
+  else 
+  {
+    node.set_data(ByteFrequency(node.get_data().get_frequency() + 1, pos));
   }
 }
 

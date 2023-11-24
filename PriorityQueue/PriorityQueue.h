@@ -13,10 +13,11 @@ class PriorityQueue {
   public:
     PriorityQueue();
 
-    unsigned int get_used_size() const;
+    char get_used_size() const;
+    TreeNode<ByteFrequency>* get_vector() const;
     bool is_empty() const;
 
-    void add_in_pos(char pos, TreeNode<ByteFrequency> data);
+    void add_in_pos(char pos);
     Data dequeue();
     void order_vector();
 };
