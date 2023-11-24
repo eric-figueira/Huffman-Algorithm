@@ -18,6 +18,7 @@ class PriorityQueue {
     bool is_empty() const;
 
     void add(char pos);
+    void add_by_priority(TreeNode<ByteFrequency> node);
     Data dequeue();
     void order_vector();
 };
