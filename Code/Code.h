@@ -22,7 +22,7 @@ class Code
     void add_bit(bool bit);
     bool get_bit(unsigned int n);
 
-    // adiciona bit a bit a variável passada no parêmtro, e, sempre que chegar em 8, grava no arquivo esse byte gerado
+    // adiciona bit a bit a variável passada no parâmetro, e, sempre que chegar em 8, grava no arquivo esse byte gerado
     ofstream& operator<< (ostream& os, const Code& cd);
 };
 

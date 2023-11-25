@@ -41,27 +41,34 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
 
 unsigned int BinaryTree::get_n_nodes() const { return n_nodes; }
 
+CharCode *codes;
+
 CharCode* BinaryTree::visit_and_generate_codes() 
 {
-  CharCode *codes = new CharCode[n_nodes];
-  
-  visit_and_generate_codes_helper(root, codes, 0, new bool[n_nodes]);
+  codes = CharCode[n_nodes];
+
+  visit_and_generate_codes_helper(root, bool[n_nodes], 0);
 
   return codes;
 }
 
-void BinaryTree::visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, CharCode* codesArray, unsigned int index, bool* currentCode)
+int index = 0;
+
+void BinaryTree::visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, bool** currentCode, unsigned int size)
 {
   if (node -> get_left() == NULL && node -> get_right() == NULL) {
     // Um código está pronto quando uma folha for atingida
-    codesArray[index] = CharCode(node -> get_data().get_byte_code(), *currentCode, );
+    // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
+    codes[index] = CharCode(node -> get_data().get_byte_code(), *currentCode, size);
+    index++;
   }
+
   // Percorrer a árvore para obter os códigos 
+  // Acrescentar 0 (false) ao código, toda vez que for para a esquerda, ou 1 (true), toda vez que for para a direita
+  bool* new_current_code = *currentCode;
+  new_current_code[size] = false;
+  visit_and_generate_codes_helper(node -> get_left(), &new_current_code[size], size++);
 
-  
-  // Acrescentar 0 (false) ao código, toda vez que for para a esquerda, ou 1 (true), toda vez que for para a direita 
-
-  
-
-  // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
+  new_current_code[size] = true;
+  visit_and_generate_codes_helper(node -> get_right(), &new_current_code[size], size++);
 }
