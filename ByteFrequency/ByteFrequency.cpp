@@ -43,3 +43,8 @@ void ByteFrequency::set_byte_code(char b) {
 void ByteFrequency::increment_frequency() {
   frequency += 1;
 }
+
+ostream& operator<< (ostream& os, const ByteFrequency& bf) {
+  os << bf.byte_code << bf.frequency;
+  return os;
+}
