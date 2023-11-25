@@ -43,3 +43,11 @@ bool Code::get_bit(unsigned int n)
 
   return bytes[pos] & (1 << (7 - mod));
 }
+
+ofstream &Code::operator<<(ostream &os, const Code &cd)
+{
+  // TODO: insert return statement here (não sei como fazer esse método)
+  char* bytes = get_bytes();
+  os << bytes;
+  return bytes;
+}
