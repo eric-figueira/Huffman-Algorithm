@@ -1,6 +1,10 @@
 #ifndef BYTEFREQUENCY
 #define BYTEFREQUENCY
 
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class ByteFrequency
 {
@@ -18,7 +22,8 @@ class ByteFrequency
   
     ByteFrequency(int f, char b);
     ByteFrequency();
-    // TODO: implement operators ==, < and > for this class (so we can use it as a compareTo -> code it in a way that consider priorities as a and b, and when you compare a < b, a is smaller than b)
+    
+    friend ostream& operator<< (ostream& os, const ByteFrequency& bf);
 };
 
 #endif

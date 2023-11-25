@@ -56,7 +56,23 @@ void handle_compress_file()
 
 void handle_unzip_file()
 {
-  cout << "To unzip a file, provide the full path to the compress file. Example: C:\\Downloads\\MyFolder\\myfile.txt.me\n";
+  cout << "To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.txt.me\n";
+  cout << "File Path: ";
+  char path_to_file[150];
+  cin >> path_to_file;
+
+  cout << "Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
+  cout << "Folder Path: ";
+  char output_folder_path[150];
+  cin >> output_folder_path;
+
+  cout << path_to_file;
+  cout << output_folder_path;
+
+  Decoder decoder(path_to_file);
+  decoder.decode(output_folder_path);
+
+  cout << "\n" << "Success! The file was successfully unzipped!";
 }
 
 int main()
@@ -79,6 +95,7 @@ int main()
         break;
 
       case '2':
+        handle_unzip_file();
         break;
       
       default:
