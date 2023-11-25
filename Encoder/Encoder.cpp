@@ -1,9 +1,11 @@
-#include "Encoder.h"
-#include "PriorityQueue.h"
-#include "BinaryTree.h"
-#include "Code.h"
 #include <iostream>
 #include <fstream.h>
+
+#include "BinaryTree.h"
+#include "Code.h"
+#include "Encoder.h"
+#include "PriorityQueue.h"
+
 
 using namespace std;
 
