@@ -48,8 +48,7 @@ void handle_compress_file()
   cout << path_to_file;
   cout << output_folder_path;
 
-  Encoder encoder(path_to_file);
-  encoder.encode(output_folder_path);
+  Encoder::encode(path_to_file, output_folder_path);
 
   cout << "\n\n[INFO]: Success! The file was successfully compressed!\n";
 }
@@ -69,8 +68,7 @@ void handle_unzip_file()
   cout << path_to_file;
   cout << output_folder_path;
 
-  Decoder decoder(path_to_file);
-  decoder.decode(output_folder_path);
+  Decoder::decode(path_to_file, output_folder_path);
 
   cout << "\n\n[INFO]: Success! The file was successfully unzipped!\n";
 }

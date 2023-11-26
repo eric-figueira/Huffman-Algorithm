@@ -3,14 +3,8 @@
 
 class Decoder 
 {
-  private:
-    char* input_directory;
-
   public:
-    Decoder();
-    Decoder(char* input_directory);
-
-    void decode(char* output_directory) const;
+    static void decode(char* input_directory, char* output_directory);
 };
 
 #endif 
