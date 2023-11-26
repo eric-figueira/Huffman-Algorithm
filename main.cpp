@@ -35,13 +35,13 @@ void welcome_message_correct()
 
 void handle_compress_file()
 {
-  cout << "To compress a file, provide the full path to that file. Example: C:\\Downloads\\MyFolder\\myfile.txt\n";
-  cout << "File Path: ";
+  cout << "[RUN]: To compress a file, provide the full path to that file. Example: C:\\Downloads\\MyFolder\\myfile.txt\n";
+  cout << "[RUN]: File Path: ";
   char path_to_file[150];
   cin >> path_to_file;
 
-  cout << "Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
-  cout << "Folder Path: ";
+  cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
+  cout << "[RUN]: Folder Path: ";
   char output_folder_path[150];
   cin >> output_folder_path;
 
@@ -51,18 +51,18 @@ void handle_compress_file()
   Encoder encoder(path_to_file);
   encoder.encode(output_folder_path);
 
-  cout << "\n" << "Success! The file was successfully compressed!";
+  cout << "\n\n[INFO]: Success! The file was successfully compressed!\n";
 }
 
 void handle_unzip_file()
 {
-  cout << "To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.txt.me\n";
-  cout << "File Path: ";
+  cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.txt.me\n";
+  cout << "[RUN]: File Path: ";
   char path_to_file[150];
   cin >> path_to_file;
 
-  cout << "Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
-  cout << "Folder Path: ";
+  cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
+  cout << "[RUN]: Folder Path: ";
   char output_folder_path[150];
   cin >> output_folder_path;
 
@@ -72,36 +72,45 @@ void handle_unzip_file()
   Decoder decoder(path_to_file);
   decoder.decode(output_folder_path);
 
-  cout << "\n" << "Success! The file was successfully unzipped!";
+  cout << "\n\n[INFO]: Success! The file was successfully unzipped!\n";
 }
 
 int main()
 {
     welcome_message_correct();
 
-    cout << "1 - COMPRESS a file." << "\n";
-    cout << "2 - UNZIP a compressed file." << "\n";
-    cout << "--------------------------------" << "\n";
-    cout << "Option: ";
-
     unsigned char selected_option;
-    cin >> selected_option;
-    cout << "--------------------------------" << "\n";
-
-    switch (selected_option)
-    {
-      case '1':
-        handle_compress_file();
-        break;
-
-      case '2':
-        handle_unzip_file();
-        break;
+   do {
+      cout << "\n------------------------------------------------------\n";
+      cout << "1 - COMPRESS a file.\n";
+      cout << "2 - UNZIP a compressed file.\n";
+      cout << "3 - CLOSE the program.\n";
+      cout << "------------------------------------------------------\n";
       
-      default:
-        cout << "[ERROR]: Sorry, that is not a valid option!";
-        break;
+      cout << "Option: ";
+      cin >> selected_option;
+      cout << "------------------------------------------------------\n";
+  
+      switch (selected_option)
+      {
+        case '1':
+          handle_compress_file();
+          break;
+  
+        case '2':
+          handle_unzip_file();
+          break;
+      
+      case '3':
+          cout << "[INFO]: Closing program...\n";
+          break;
+        
+        default:
+          cout << "[ERROR]: Sorry, that is not a valid option!\n";
+          break;
+      }
     }
+    while (selected_option != '3');
 
     return 0;
 }
