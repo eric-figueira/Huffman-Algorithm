@@ -9,11 +9,7 @@
 
 using namespace std;
 
-Encoder::Encoder(): input_directory("C:\\input.dat") {}
-
-Encoder::Encoder(char* input_directory): input_directory(input_directory) {}
-
-void Encoder::encode(char* output_directory) const 
+void Encoder::encode(char* input_directory, char* output_directory)
 {
   ifstream input(input_directory);
   if (!input) 

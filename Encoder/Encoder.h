@@ -3,14 +3,8 @@
 
 class Encoder 
 {
-  private:
-    char* input_directory;
-
   public:
-    Encoder();
-    Encoder(char* input_directory);
-
-    void encode(char* output_directory) const;
+    static void encode(char* input_directory, char* output_directory);
 };
 
 #endif 

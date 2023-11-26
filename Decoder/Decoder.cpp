@@ -6,13 +6,10 @@
 #include "Decoder.h"
 #include "PriorityQueue.h"
 
+
 using namespace std;
 
-Decoder::Decoder(): input_directory("C:\\input.dat") {}
-
-Decoder::Decoder(char* input_directory): input_directory(input_directory) {}
-
-void Decoder::decode(char* output_directory) const 
+void Decoder::decode(char* input_directory, char* output_directory)
 {
   ifstream input(input_directory);
   if (!input)
