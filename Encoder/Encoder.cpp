@@ -74,10 +74,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
       }
     }
     bool* cd = val.get_code();
-    for (unsigned int j = 0; j < val.get_code_size(); i ++) 
-    {
-      code.add_bit([j]);
-    }
+    code.add_bits(cd);
   }
 
   output << code;

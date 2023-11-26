@@ -72,3 +72,25 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, 
   new_current_code[size] = true;
   visit_and_generate_codes_helper(node -> get_right(), &new_current_code[size], size++);
 }
+
+LinkedList<char> BinaryTree::generate_bytes_from_code(Code code)
+{
+  LinkedList<char> list = LinkedList<char>();
+
+  current = root;
+  for (unsigned int i = 0; i < code.get_number_of_used_bits(); i++) 
+  {
+    if (current -> get_right() == NULL && current -> get_left() == NULL)
+    {
+      list.push(current -> get_data().get_byte_code());
+      current = root;
+    }
+    bool val = code.get_bit(i);
+    if (val)
+      current = current -> get_right();
+    else
+      current = current -> get_left();
+  }
+
+  return list;
+}
