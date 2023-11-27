@@ -1,35 +1,26 @@
 #ifndef TREENODE
 #define TREENODE
 
-#include "ByteFrequency.h"
 
-
-using namespace std;
-
+template <typename Data>
 class TreeNode
 {
-    private:
-        TreeNode* left;
-        TreeNode* right;
-        ByteFrequency data;
-        byte* under;
-        unsigned short int size;
+private:
+    TreeNode* left;
+    TreeNode* right;
+    Data data;
 
-    public:
-        TreeNode* get_left()  const;
-        TreeNode* get_right() const;
-        ByteFrequency get_data() const;
-        byte* get_under() const;
-        unsigned short int get_size() const;
+public:
+    TreeNode* get_left()  const;
+    TreeNode* get_right() const;
+    Data      get_data()  const;
 
-        void set_data(ByteFrequency d);
-        void append_under(byte* under, unsigned short int size);
-        void append_under(byte under);
-        bool is_empty();
+    void set_data(Data d);
+    bool is_empty();
 
-        TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r);
-        TreeNode(ByteFrequency d);
-        TreeNode();
+    TreeNode(Data d, TreeNode* l, TreeNode* r);
+    TreeNode(Data d);
+    TreeNode();
 };
 
 #endif

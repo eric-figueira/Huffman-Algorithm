@@ -1,29 +1,43 @@
 #include <iostream>
-
 #include "ListNode.h"
-#include "Types.h"
 
-ListNode::ListNode() : data(0), next(nullptr) {}
+using namespace std;
 
-ListNode::ListNode(byte data) : data(data), next(nullptr) {}
+template <typename Data>
+ListNode<Data>::ListNode() : data(NULL), next(NULL) {}
 
-ListNode::ListNode(byte data, ListNode* next) : data(data), next(next) {
-    if (next == nullptr)
+template <typename Data>
+ListNode<Data>::ListNode(Data data) : data(data), next(NULL) {
+    if (data == NULL)
     {
-        cerr << "[ListNode]: Missing Paramerers";
-        exit(-5);
+        cerr << "[ListNode]: Data should not be NULL";
+        exit(-1);
     }
 }
 
-ListNode::~ListNode()
-{
-    delete next;
+template <typename Data>
+ListNode<Data>::ListNode(Data data, ListNode<Data>* next) : data(data), next(next) {
+    if (data == NULL || next == NULL)
+    {
+        cerr << "[ListNode]: Missing Paramerers";
+        exit(-1);
+    }
 }
 
-byte ListNode::get_data() const { return data; }
+template <typename Data>
+Data ListNode<Data>::get_data() const
+{
+    return data;
+}
 
-void ListNode::set_data(byte new_data) { data = new_data; }
+template <typename Data>
+void ListNode<Data>::set_data(Data data)
+{
+    this->data = data;
+}
 
-void ListNode::set_next(ListNode* n)  { next = n; }
-
-ListNode* ListNode::get_next() const { return next; }
+template <typename Data>
+ListNode<Data>* ListNode<Data>::get_next() const
+{
+    return next;
+}

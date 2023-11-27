@@ -8,6 +8,20 @@ using namespace std;
 void welcome_message()
 {
     cout << "  _    _   _    _   ______   ______   _____    _____     ____        __  __   ______ " << "\n";
+    cout << " | |  | | | |  | | |  ____| |  ____| |  __ \  |  __ \   / __ \      |  \/  | |  ____|" << "\n";
+    cout << " | |__| | | |  | | | |__    | |__    | |__) | | |__) | | |  | |     | \  / | | |__   " << "\n";
+    cout << " |  __  | | |  | | |  __|   |  __|   |  ___/  |  _  /  | |  | |     | |\/| | |  __|  " << "\n";
+    cout << " | |  | | | |__| | | |      | |      | |      | | \ \  | |__| |  _  | |  | | | |____ " << "\n";
+    cout << " |_|  |_|  \____/  |_|      |_|      |_|      |_|  \_\  \____/  (_) |_|  |_| |______|" << "\n";
+    cout << "                                                                                     " << "\n";
+
+    cout << "-------------------------------------------------------------------------------------" << "\n";
+    cout << "Welcome! To start, please select the option of your desire";
+}
+
+void welcome_message_correct()
+{
+    cout << "  _    _   _    _   ______   ______   _____    _____     ____        __  __   ______ " << "\n";
     cout << " | |  | | | |  | | |  ____| |  ____| |  __ \\  |  __  \\  / __ \\      |  \\/  | |  ____|" << "\n";
     cout << " | |__| | | |  | | | |__    | |__    | |__) | | |__) | | |  | |     | \\  / | | |__   " << "\n";
     cout << " |  __  | | |  | | |  __|   |  __|   |  ___/  |  _  /  | |  | |     | |\\/| | |  __|  " << "\n";
@@ -26,10 +40,13 @@ void handle_compress_file()
     char path_to_file[150];
     cin >> path_to_file;
 
-    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged, as well as the name of the compressed file. Example: C:\\Downloads\\MyOtherFolder\\compressed.me\n";
+    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
     cout << "[RUN]: Folder Path: ";
     char output_folder_path[150];
     cin >> output_folder_path;
+
+    cout << path_to_file;
+    cout << output_folder_path;
 
     Encoder::encode(path_to_file, output_folder_path);
 
@@ -38,15 +55,18 @@ void handle_compress_file()
 
 void handle_unzip_file()
 {
-    cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.me\n";
+    cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.txt.me\n";
     cout << "[RUN]: File Path: ";
     char path_to_file[150];
     cin >> path_to_file;
 
-    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged, as well as the name of the unzipped file. Example: C:\\Downloads\\MyOtherFolder\\unzziped.txt\n";
+    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
     cout << "[RUN]: Folder Path: ";
     char output_folder_path[150];
     cin >> output_folder_path;
+
+    cout << path_to_file;
+    cout << output_folder_path;
 
     Decoder::decode(path_to_file, output_folder_path);
 
@@ -55,7 +75,7 @@ void handle_unzip_file()
 
 int main()
 {
-    welcome_message();
+    welcome_message_correct();
 
     unsigned char selected_option;
     do {

@@ -1,47 +1,44 @@
 #ifndef LINKEDLIST
 #define LINKEDLIST
 
+
 #include "ListNode.h"
-#include "Types.h"
 
-
-using namespace std;
-
+template <typename Data>
 class LinkedList
 {
-    private:
-        ListNode* begin;
-        ListNode* end;
-        ListNode* current;
-        ListNode* previous;
+private:
+    ListNode<Data>* begin;
+    ListNode<Data>* end;
+    ListNode<Data>* current;
+    ListNode<Data>* previous;
 
-        unsigned int size;
+    unsigned int size;
 
-    public:
-        LinkedList();
-        LinkedList(ListNode* begin, ListNode* end);
-        ~LinkedList();
+public:
+    LinkedList();
+    LinkedList(ListNode<Data>* begin, ListNode<Data>* end);
 
-        ListNode* get_begin() const;
-        ListNode* get_end() const;
-        ListNode* get_current() const;
-        ListNode* get_previous() const;
+    ListNode<Data>* get_begin() const;
+    ListNode<Data>* get_end() const;
+    ListNode<Data>* get_current() const;
+    ListNode<Data>* get_previous() const;
 
-        unsigned int get_size() const;
+    unsigned int get_size() const;
 
-        void set_begin(ListNode* data);
-        void set_end(ListNode* data);
-        void set_current(ListNode* data);
-        void set_previous(ListNode* data);
+    void set_begin(ListNode<Data>* data);
+    void set_end(ListNode<Data>* data);
+    void set_current(ListNode<Data>* data);
+    void set_previous(ListNode<Data>* data);
 
-        bool exists(byte data);
-        byte get(unsigned int pos);
-        void set(unsigned int pos, byte data);
-        void add(byte data);
-        void push(byte data);
-        void remove(byte data);
+    bool exists(Data data) const;
+    Data get(unsigned int pos) const;
+    void set(unsigned int pos, Data data);
+    void add(Data data);
+    void push(Data data);
+    void remove(Data data);
 
-        friend ofstream& operator<< (ofstream& os, const LinkedList& list);
+    friend ofstream& operator<< (ofstream& os, const LinkedList<Data> list);
 };
 
 #endif

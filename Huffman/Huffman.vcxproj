@@ -150,7 +150,6 @@
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="TreeNode.h" />
-    <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

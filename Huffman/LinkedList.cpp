@@ -1,151 +1,187 @@
 #include <iostream>
-#include <fstream>
-
 #include "LinkedList.h"
 #include "ListNode.h"
-#include "Types.h"
 
+using namespace std;
 
-LinkedList::LinkedList() : begin(nullptr), end(nullptr), current(nullptr), previous(nullptr), size(0) {}
+template <typename Data>
+LinkedList<Data>::LinkedList() : begin(NULL), end(NULL), current(NULL), previous(NULL) {}
 
-LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end), current(begin), previous(nullptr), size(0)
+template <typename Data>
+LinkedList<Data>::LinkedList(ListNode<Data>* begin, ListNode<Data>* end) : begin(begin), end(end), current(begin), previous(NULL)
 {
-    if (begin == nullptr || end == nullptr)
+    if (begin == NULL || end == NULL)
     {
         cerr << "[LinkedList]: Missing arguments";
-        exit(-4);
+        exit(-1);
     }
 }
 
-LinkedList::~LinkedList()
-{
-    delete begin;
-    delete end;
-    delete current;
-    delete previous;
-}
-
-ListNode* LinkedList::get_begin() const
+template <typename Data>
+ListNode<Data>* LinkedList<Data>::get_begin() const
 {
     return begin;
 }
 
-ListNode* LinkedList::get_end() const { return end; }
-
-ListNode* LinkedList::get_current() const { return current; }
-
-ListNode* LinkedList::get_previous() const { return previous; }
-
-unsigned int LinkedList::get_size() const { return size; }
-
-void LinkedList::set_begin(ListNode* data) { begin = data; }
-
-void LinkedList::set_end(ListNode* data) { end = data; }
-
-void LinkedList::set_current(ListNode* data) { current = data; }
-
-void LinkedList::set_previous(ListNode* data) { previous = data; }
-
-bool LinkedList::exists(byte data)
+template <typename Data>
+ListNode<Data>* LinkedList<Data>::get_end() const
 {
-    for (current = begin; current != nullptr; previous = current, current = current->get_next()) {
-        if (current->get_data() == data) {
+    return end;
+}
+
+template <typename Data>
+ListNode<Data>* LinkedList<Data>::get_current() const
+{
+    return current;
+}
+
+template <typename Data>
+ListNode<Data>* LinkedList<Data>::get_previous() const
+{
+    return previous;
+}
+
+template <typename Data>
+unsigned int LinkedList<Data>::get_size() const
+{
+    return size;
+}
+
+template <typename Data>
+void LinkedList<Data>::set_begin(ListNode<Data>* data)
+{
+    begin = data;
+}
+
+template <typename Data>
+void LinkedList<Data>::set_end(ListNode<Data>* data)
+{
+    end = data;
+}
+
+template <typename Data>
+void LinkedList<Data>::set_current(ListNode<Data>* data)
+{
+    current = data;
+}
+
+template <typename Data>
+void LinkedList<Data>::set_previous(ListNode<Data>* data)
+{
+    previous = data;
+}
+
+template <typename Data>
+bool LinkedList<Data>::exists(Data data) const
+{
+    for (current = begin; current != NULL; previous = current, current = current->next) {
+        if (current.data == data) {
             return true;
         }
     }
     return false;
 }
 
-byte LinkedList::get(unsigned int pos)
+template <typename Data>
+Data LinkedList<Data>::get(unsigned int pos) const
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
-        current = current->get_next();
+        current = current->next;
     return current->get_data();
 }
 
-void LinkedList::set(unsigned int pos, byte data)
+template <typename Data>
+void LinkedList<Data>::set(unsigned int pos, Data data)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
     {
-        current = current->get_next();
+        if (current == NULL)
+            push(data);
+        current = current->next;
     }
     current->set_data(data);
 }
 
-void LinkedList::add(byte data)
+template <typename Data>
+void LinkedList<Data>::add(Data data)
 {
     if (exists(data))
     {
-        cerr << "[LinkedList]: byte already exists";
-        exit(-4);
+        cerr << "[LinkedList]: Data already exists";
+        exit(-1);
     }
     else {
-        ListNode* p_new_data = new ListNode(data);
-        if (begin == nullptr)
+        if (begin == NULL)
         {
-            begin = p_new_data;
+            begin->data = data;
             end = begin;
         }
         else {
-            if (previous == nullptr)
-                begin = p_new_data;
+            ListNode<Data>* new_data;
+            *(new_data) = ListNode<Data>(data);
+
+            if (previous == NULL)
+                begin = new_data;
             else
-                previous->set_next(p_new_data);
-            p_new_data->set_next(current);
-            if (current == nullptr)
-                end = p_new_data;
+                previous->next = new_data;
+            *(new_data)->next = current;
+            if (current == NULL)
+                end = new_data;
         }
 
         size += 1;
     }
 }
 
-void LinkedList::push(byte data)
+template <typename Data>
+void LinkedList<Data>::push(Data data)
 {
-    ListNode* p_new_data = new ListNode(data);
-    if (begin == nullptr)
+    if (begin == NULL)
     {
-        begin = p_new_data;
+        begin->data = data;
         end = begin;
     }
     else {
-        end->set_next(p_new_data);
-        end = p_new_data;
+        ListNode<Data>* new_data;
+        *(new_data) = ListNode<Data>(data);
+
+        end->next = new_data;
+        end = new_data;
     }
 
     size += 1;
 }
 
-void LinkedList::remove(byte data)
+template <typename Data>
+void LinkedList<Data>::remove(Data data)
 {
     if (!exists(data)) {
-        cerr << "[LinkedList]: byte does not exist";
-        exit(-4);
+        cerr << "[LinkedList]: Data does not exist";
+        exit(-1);
     }
     else {
-        if (previous == nullptr)
-            begin = current->get_next();
+        if (previous == NULL)
+            begin = current->next;
         else
-            previous->set_next(current->get_next());
+            previous->next = current->next;
         if (current == end)
             end = previous;
-        current->set_next(nullptr);
+        current->next = NULL;
 
         size -= 1;
     }
 }
 
-ofstream& operator<<(ofstream& os, const LinkedList& list)
+template <typename Data>
+ofstream& operator<< (ofstream& os, const LinkedList<Data> list)
 {
-    ListNode* current = list.get_begin();
-
-    while (current != nullptr)
+    list.set_current(list.get_begin());
+    while (list.get_current() != NULL)
     {
-        os << current->get_data();
-        current = current->get_next();
+        list.set_current(list.get_current()->get_next());
+        os << list.get_current()->get_data();
     }
-
     return os;
 }

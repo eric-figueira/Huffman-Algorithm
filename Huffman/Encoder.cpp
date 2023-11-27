@@ -6,75 +6,66 @@
 #include "Encoder.h"
 #include "PriorityQueue.h"
 #include "LinkedList.h"
-#include "Types.h"
 
+
+using namespace std;
 
 void Encoder::encode(char* input_directory, char* output_directory)
 {
-    ifstream input(input_directory, ios::binary|ios::in);
+    ifstream input(input_directory);
     if (!input)
     {
         cerr << "[Encoder]: Input file not found!";
-        exit(-3);
+        exit(-1);
     }
 
     PriorityQueue priorityQueue;
-    LinkedList input_sequence;
-    char c;
-
-    while (!input.eof())
+    LinkedList<char> input_sequence;
+    while (input.eof() == 0)
     {
+        char c;
         input.get(c);
-        priorityQueue.add((byte) c);
-        input_sequence.push((byte) c);
+        priorityQueue.add(c);
+        input_sequence.push(c);
     }
+
+    input.close();
 
     priorityQueue.order_vector();
 
-    ofstream output(output_directory, ios::binary|ios::out);
+    ofstream output(output_directory);
     if (!output)
     {
         cerr << "[Encoder]: Output file could not be created!";
-        exit(-3);
     }
 
     // quantos caracteres distintos existem no arquivo
-    unsigned short n = priorityQueue.get_used_size();
-    output << (byte)(n - 1);
-    // output.write(reinterpret_cast<const char*>(&n), sizeof(n));
+    char n = priorityQueue.get_used_size();
+    output << n;
 
-    // caracteres e suas respectivas frequï¿½ncias
-    TreeNode* vector = priorityQueue.get_vector();
-    for (unsigned short int i = 0; i < n; i++)
+    // caracteres e suas respectivas frequências
+    TreeNode<ByteFrequency>* vector = priorityQueue.get_vector();
+    for (char i = 0; i < n; i++)
     {
         output << vector[i].get_data();
     }
 
-    // bits da ï¿½rvore (0 para esc, 1 para dir)
-    CharCode* codes = new CharCode[n];
-
     BinaryTree binaryTree;
-    binaryTree.create_tree_from_priority_queue(priorityQueue, codes);
+    binaryTree.create_tree_from_priority_queue(priorityQueue);
 
-    //for (int i = 0; i < n; i++) 
-    //{
-    //    cout << codes[i].get_char() << " ";
-    //    for (int j = 0; j < codes[i].get_code_size(); j++)
-    //    {
-    //        if (codes[i].get_code()[j])
-    //            cout << "1";
-    //        else
-    //            cout << "0";
-    //    }
-    //    cout << "\n";
-    //}
+    // quantos bits da árvore existem
+    unsigned int n_nodes = binaryTree.get_n_nodes();
+    output << n_nodes;
+
+    // bits da árvore (0 para esc, 1 para dir)
+    CharCode* codes = binaryTree.visit_and_generate_codes();
 
     Code code;
 
-    for (ListNode* current = input_sequence.get_begin(); current != nullptr; current = current->get_next()) {
-        byte c = current->get_data();
+    for (int i = 0; i < input_sequence.get_size(); i++) {
+        char c = input_sequence.get(i);
         CharCode val;
-        for (unsigned short int j = 0; j < n; j++)
+        for (unsigned int j = 0; j < n; j++)
         {
             if (codes[j].get_char() == c)
             {
@@ -86,11 +77,9 @@ void Encoder::encode(char* input_directory, char* output_directory)
         code.add_bits(cd, val.get_code_size());
     }
 
-    // quantos bits da ï¿½rvore existem
-    unsigned int u = code.get_number_of_used_bits();
-    output.write(reinterpret_cast<const char*>(&u), sizeof(u));
-
     output << code;
 
-    delete[] codes;
+    delete codes;
+
+    output.close();
 }

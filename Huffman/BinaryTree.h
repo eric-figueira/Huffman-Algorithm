@@ -7,26 +7,24 @@
 #include "CharCode.h"
 #include "Code.h"
 
-
-using namespace std;
-
 class BinaryTree
 {
-    private:
-        TreeNode* root, *current, *previous;
-        unsigned int n_nodes;
+private:
+    TreeNode<ByteFrequency>* root, * current, * previous;
+    unsigned int n_nodes;
 
-    public:
-        BinaryTree();
-        ~BinaryTree();
+    int count_nodes(TreeNode<ByteFrequency>* node);
 
-        unsigned int get_n_nodes() const;
+public:
+    BinaryTree();
 
-        void create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes);
+    unsigned int get_n_nodes() const;
 
-        CharCode* visit_and_generate_codes();
-        void visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size);
-        LinkedList generate_bytes_from_code(Code code);
+    void create_tree_from_priority_queue(PriorityQueue queue);
+
+    CharCode* visit_and_generate_codes();
+    void visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, bool** currentCode, unsigned int size);
+    LinkedList<char> generate_bytes_from_code(Code code);
 };
 
 

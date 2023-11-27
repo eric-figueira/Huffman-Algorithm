@@ -1,25 +1,18 @@
 #include "Code.h"
-#include "Types.h"
 
-void Code::set_bit(unsigned short int n)
+void Code::set_bit(unsigned int pos, char n)
 {
-    if (n == 0)
-        bytes.push(unsigned char(0));
-    ListNode* end = bytes.get_end();
-    end->set_data(end->get_data() | (unsigned char(1) << (7 - n)));
+    bytes.set(pos, bytes.get(pos) | (1 << n));
 }
 
-void Code::clear_bit(unsigned short int n)
+void Code::clear_bit(unsigned int pos, char n)
 {
-    if (n == 0)
-        bytes.push(unsigned char(0));
-    ListNode* end = bytes.get_end();
-    end->set_data(end->get_data() & ~(unsigned char(1) << (7 - n)));
+    bytes.set(pos, bytes.get(pos) & ~(1 << n));
 }
 
-Code::Code() : bytes(LinkedList()), number_of_used_bits(0) {};
+Code::Code() : bytes(), number_of_used_bits(0) {};
 
-LinkedList Code::get_bytes() const
+LinkedList<char> Code::get_bytes() const
 {
     return bytes;
 }
@@ -31,51 +24,53 @@ unsigned int Code::get_number_of_used_bits() const
 
 void Code::add_bit(bool bit)
 {
+    unsigned int pos = (unsigned int)(number_of_used_bits / 8);
     unsigned int mod = number_of_used_bits % 8;
 
     if (bit)
-        set_bit(mod);
+        set_bit(pos, (char)(7 - mod));
     else
-        clear_bit(mod);
+        clear_bit(pos, (char)(7 - mod));
 
     number_of_used_bits++;
 }
 
-bool Code::get_bit(unsigned int n)
+bool Code::get_bit(unsigned int n) const
 {
-    ListNode* current = bytes.get_current();
+    unsigned int pos = (unsigned int)(n / 8);
     unsigned int mod = n % 8;
-    if (current == nullptr)
-        current = bytes.get_begin();
-    else if (mod == 0)
-        current = current->get_next();
-    bytes.set_current(current);
-    bool ret = current->get_data() & (unsigned char(1) << (7 - mod));
-    return ret;
+
+    return bytes.get(pos) & (1 << (7 - mod));
 }
 
 void Code::add_bits(bool* bits, unsigned int num_bits)
 {
-    for (unsigned int i = num_bits; i > 0; i--)
+    for (unsigned int i = 0; i < num_bits; i++)
     {
-        add_bit(bits[i - 1]);
+        add_bit(bits[i]);
     }
 }
 
-void Code::add_byte(byte byte, unsigned int num_bits)
+void Code::add_byte(char byte, unsigned int num_bits)
 {
-    bytes.push(byte);
+    unsigned int n = (unsigned int)(number_of_used_bits / 8);
+    bytes.set(n, byte);
     number_of_used_bits += num_bits;
 }
 
-byte Code::get_byte(unsigned int n)
+char Code::get_byte(unsigned int n) const
 {
     return bytes.get(n);
 }
 
 ofstream& operator<<(ofstream& os, const Code& code)
 {
-    LinkedList list = code.get_bytes();
-    os << list;
+    LinkedList<char> list = code.get_bytes();
+    list.set_current(list.get_begin());
+    while (list.get_current() != nullptr)
+    {
+        list.set_current(list.get_current()->get_next());
+        os << list.get_current()->get_data();
+    }
     return os;
 }

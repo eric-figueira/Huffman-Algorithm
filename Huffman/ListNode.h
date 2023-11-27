@@ -1,27 +1,23 @@
 #ifndef LISTNODE
 #define LISTNODE
 
-#include "Types.h"
 
-using namespace std;
-
+template <typename Data>
 class ListNode
 {
-    private:
-        byte data;
-        ListNode* next;
+private:
+    Data data;
+    ListNode<Data>* next;
 
-    public:
-        byte get_data() const;
-        void set_data(byte data);
-        void set_next(ListNode* n);
+public:
+    Data get_data() const;
+    void set_data(Data data);
 
-        ListNode* get_next() const;
+    ListNode<Data>* get_next() const;
 
-        ListNode();
-        ListNode(byte data);
-        ListNode(byte data, ListNode* next);
-        ~ListNode();
+    ListNode();
+    ListNode(Data data);
+    ListNode(Data data, ListNode* next);
 };
 
 #endif

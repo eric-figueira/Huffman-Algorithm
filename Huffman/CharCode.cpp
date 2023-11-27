@@ -1,18 +1,13 @@
+#include "CharCode.h"
 #include <iostream>
 
-#include "CharCode.h"
-#include "Types.h"
+using namespace std;
 
-CharCode::CharCode() : character(0), code(nullptr), code_size(0) {}
+CharCode::CharCode() : character(NULL), code(NULL) {}
 
-CharCode::CharCode(byte character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
+CharCode::CharCode(char character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 
-CharCode::~CharCode()
-{
-	delete[] code;
-}
-
-byte CharCode::get_char() const { return character; }
+char CharCode::get_char() const { return character; }
 
 bool* CharCode::get_code() const { return code; }
 
@@ -23,6 +18,6 @@ void CharCode::push_to_code(bool v) {
 }
 
 void CharCode::pop_from_code() {
-	code[code_size - 1];
+	code[code_size - 1] = NULL;
 	code_size--;
 }
