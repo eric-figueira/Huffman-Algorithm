@@ -9,11 +9,13 @@
 
 class BinaryTree
 {
-  private:
-    TreeNode<ByteFrequency> *root, *current, *previous;
+private:
+    TreeNode<ByteFrequency>* root, * current, * previous;
     unsigned int n_nodes;
 
-  public:
+    int count_nodes(TreeNode<ByteFrequency>* node);
+
+public:
     BinaryTree();
 
     unsigned int get_n_nodes() const;

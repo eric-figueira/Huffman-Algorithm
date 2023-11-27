@@ -2,14 +2,14 @@
 #define LISTNODE
 
 
-template <typename Data> 
-class ListNode 
+template <typename Data>
+class ListNode
 {
-  private:
+private:
     Data data;
-    ListNode<Data> *next;
+    ListNode<Data>* next;
 
-  public:
+public:
     Data get_data() const;
     void set_data(Data data);
 
@@ -17,7 +17,7 @@ class ListNode
 
     ListNode();
     ListNode(Data data);
-    ListNode(Data data, ListNode *next);
+    ListNode(Data data, ListNode* next);
 };
 
 #endif

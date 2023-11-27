@@ -2,12 +2,12 @@
 #define CHARCODE
 
 class CharCode {
-  private:
+private:
     char character;
     bool* code;
     unsigned int code_size;
 
-  public:
+public:
     CharCode();
     CharCode(char character, bool* code, unsigned int code_size);
 

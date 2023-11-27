@@ -5,12 +5,12 @@
 #include "ByteFrequency.h"
 
 class PriorityQueue {
-  private:
+private:
     unsigned int SIZE = 256;
     TreeNode<ByteFrequency>* vector;
     char used_size; // char because the max is 256 -> 1 byte
 
-  public:
+public:
     PriorityQueue();
 
     char get_used_size() const;
@@ -19,7 +19,7 @@ class PriorityQueue {
 
     void add(char pos);
     void add_by_priority(TreeNode<ByteFrequency> node);
-    Data dequeue();
+    TreeNode<ByteFrequency> dequeue();
     void order_vector();
 };
 

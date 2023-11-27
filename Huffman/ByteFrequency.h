@@ -8,22 +8,22 @@ using namespace std;
 
 class ByteFrequency
 {
-  private:
+private:
     int  frequency;
-    char byte_code; 
+    char byte_code;
 
-  public:
+public:
     int  get_frequency() const;
     char get_byte_code() const;
 
     void set_frequency(int f);
     void set_byte_code(char b);
     void increment_frequency();
-  
+
     ByteFrequency(int f, char b);
     ByteFrequency();
-    
-    friend ostream& operator<< (ostream& os, const ByteFrequency& bf);
+
+    friend ofstream& operator<< (ofstream& os, const ByteFrequency& bf);
 };
 
 #endif

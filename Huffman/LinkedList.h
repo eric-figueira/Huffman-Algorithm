@@ -5,9 +5,9 @@
 #include "ListNode.h"
 
 template <typename Data>
-class LinkedList 
+class LinkedList
 {
-  private:
+private:
     ListNode<Data>* begin;
     ListNode<Data>* end;
     ListNode<Data>* current;
@@ -15,10 +15,10 @@ class LinkedList
 
     unsigned int size;
 
-  public:
+public:
     LinkedList();
     LinkedList(ListNode<Data>* begin, ListNode<Data>* end);
-    
+
     ListNode<Data>* get_begin() const;
     ListNode<Data>* get_end() const;
     ListNode<Data>* get_current() const;
@@ -32,7 +32,7 @@ class LinkedList
     void set_previous(ListNode<Data>* data);
 
     bool exists(Data data) const;
-    Data get(unsigned int pos);
+    Data get(unsigned int pos) const;
     void set(unsigned int pos, Data data);
     void add(Data data);
     void push(Data data);
