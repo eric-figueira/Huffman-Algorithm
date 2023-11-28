@@ -1,26 +1,20 @@
 #include "TreeNode.h"
 #include <iostream>
 
-using namespace std;
 
 template <typename Data>
 TreeNode<Data>::TreeNode(Data d, TreeNode* l, TreeNode* r) : data(d), left(l), right(r) {
-    if (d == NULL || l == NULL || r == NULL) {
+    if (l == nullptr || r == nullptr) {
         cerr << "[TreeNode]: Missing Parameters";
         exit(-1);
     }
 }
 
 template <typename Data>
-TreeNode<Data>::TreeNode(Data d) : data(d), left(NULL), right(NULL) {
-    if (d == NULL) {
-        cerr << "[TreeNode]: Data should not be NULL";
-        exit(-1);
-    }
-}
+TreeNode<Data>::TreeNode(Data d) : data(d), left(nullptr), right(nullptr) {}
 
 template <typename Data>
-TreeNode<Data>::TreeNode() : data(NULL), left(NULL), right(NULL) {}
+TreeNode<Data>::TreeNode() :left(nullptr), right(nullptr) {}
 
 template <typename Data>
 TreeNode<Data>* TreeNode<Data>::get_left() const {
@@ -44,5 +38,5 @@ void TreeNode<Data>::set_data(Data d) {
 
 template <typename Data>
 bool TreeNode<Data>::is_empty() {
-    return data == NULL && left == NULL && right == NULL;
+    return left == nullptr && right == nullptr;
 }

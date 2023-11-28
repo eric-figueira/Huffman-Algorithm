@@ -1,9 +1,7 @@
 #include "CharCode.h"
 #include <iostream>
 
-using namespace std;
-
-CharCode::CharCode() : character(NULL), code(NULL) {}
+CharCode::CharCode() : character(NULL), code(NULL), code_size(0) {}
 
 CharCode::CharCode(char character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 

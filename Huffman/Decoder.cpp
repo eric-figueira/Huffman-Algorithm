@@ -7,8 +7,6 @@
 #include "PriorityQueue.h"
 
 
-using namespace std;
-
 void Decoder::decode(char* input_directory, char* output_directory)
 {
     ifstream input(input_directory);

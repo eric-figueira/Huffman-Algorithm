@@ -10,7 +10,6 @@ BinaryTree::BinaryTree() : root(NULL), current(NULL), previous(NULL), n_nodes(0)
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
     // enquanto a fila tiver dois ou mais nodos:
     while (queue.get_used_size() >= 2) {
-
         // Desenfileirar um nó para se tornar a subárvore esquerda
         TreeNode<ByteFrequency> l_node = queue.dequeue();
         // Desenfileirar um nó para se tornar a subárvore direita

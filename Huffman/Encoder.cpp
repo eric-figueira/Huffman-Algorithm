@@ -8,8 +8,6 @@
 #include "LinkedList.h"
 
 
-using namespace std;
-
 void Encoder::encode(char* input_directory, char* output_directory)
 {
     ifstream input(input_directory);

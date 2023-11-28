@@ -2,7 +2,6 @@
 #include "LinkedList.h"
 #include "ListNode.h"
 
-using namespace std;
 
 template <typename Data>
 LinkedList<Data>::LinkedList() : begin(NULL), end(NULL), current(NULL), previous(NULL) {}
@@ -140,7 +139,7 @@ void LinkedList<Data>::push(Data data)
 {
     if (begin == NULL)
     {
-        begin->data = data;
+        begin->set_data(data);
         end = begin;
     }
     else {
