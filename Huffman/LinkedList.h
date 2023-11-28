@@ -4,6 +4,8 @@
 
 #include "ListNode.h"
 
+using namespace std;
+
 template <typename Data>
 class LinkedList
 {

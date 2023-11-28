@@ -32,4 +32,4 @@ public:
     friend ofstream& operator<< (ofstream& os, const Code& code);
 };
 
-#endif 
+#endif

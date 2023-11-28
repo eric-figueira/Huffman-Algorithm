@@ -17,6 +17,6 @@ public:
 
     void push_to_code(bool v);
     void pop_from_code();
-}
+};
 
 #endif
