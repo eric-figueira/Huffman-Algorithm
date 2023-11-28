@@ -2,6 +2,8 @@
 #define TREENODE
 
 
+using namespace std;
+
 template <typename Data>
 class TreeNode
 {
@@ -22,5 +24,7 @@ public:
     TreeNode(Data d);
     TreeNode();
 };
+
+#include "TreeNode.cpp"
 
 #endif

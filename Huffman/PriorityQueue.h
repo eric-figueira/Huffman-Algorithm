@@ -1,8 +1,11 @@
 #ifndef PRIORITYQUEUE
 #define PRIORITYQUEUE
 
+
 #include "TreeNode.h"
 #include "ByteFrequency.h"
+
+using namespace std;
 
 class PriorityQueue {
 private:

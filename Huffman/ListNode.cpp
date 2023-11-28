@@ -1,7 +1,6 @@
 #include <iostream>
 #include "ListNode.h"
 
-using namespace std;
 
 template <typename Data>
 ListNode<Data>::ListNode() : data(NULL), next(NULL) {}

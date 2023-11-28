@@ -1,6 +1,9 @@
 #ifndef CHARCODE
 #define CHARCODE
 
+
+using namespace std;
+
 class CharCode {
 private:
     char character;

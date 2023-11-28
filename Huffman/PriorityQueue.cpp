@@ -4,7 +4,6 @@
 #include "ByteFrequency.h"
 #include "TreeNode.h"
 
-using namespace std;
 
 PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode<ByteFrequency>[SIZE]) {
     for (unsigned short int i = 0; i < SIZE; i++)

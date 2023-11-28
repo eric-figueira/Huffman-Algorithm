@@ -1,6 +1,9 @@
 #ifndef ENCODER
 #define ENCODER
 
+
+using namespace std;
+
 class Encoder
 {
 public:

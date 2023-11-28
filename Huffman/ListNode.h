@@ -2,6 +2,8 @@
 #define LISTNODE
 
 
+using namespace std;
+
 template <typename Data>
 class ListNode
 {
@@ -19,5 +21,7 @@ public:
     ListNode(Data data);
     ListNode(Data data, ListNode* next);
 };
+
+#include "ListNode.cpp"
 
 #endif

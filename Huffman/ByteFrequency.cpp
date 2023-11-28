@@ -1,8 +1,6 @@
 #include "ByteFrequency.h"
 #include <iostream>
 
-using namespace std;
-
 ByteFrequency::ByteFrequency(int f, char b) : frequency(f), byte_code(b) {
     if (f < 0) {
         cerr << "[ByteFrequency]: Invalid frequency";
@@ -44,7 +42,8 @@ void ByteFrequency::increment_frequency() {
     frequency += 1;
 }
 
-ostream& operator<< (ostream& os, const ByteFrequency& bf) {
+ofstream& operator<<(ofstream& os, const ByteFrequency& bf)
+{
     os << bf.get_byte_code() << bf.get_frequency();
     return os;
 }

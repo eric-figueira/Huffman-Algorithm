@@ -7,6 +7,8 @@
 #include "CharCode.h"
 #include "Code.h"
 
+using namespace std;
+
 class BinaryTree
 {
 private:

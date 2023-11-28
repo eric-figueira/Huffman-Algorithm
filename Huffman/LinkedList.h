@@ -43,4 +43,6 @@ public:
     friend ofstream& operator<< (ofstream& os, const LinkedList<Data> list);
 };
 
+#include "LinkedList.cpp"
+
 #endif
