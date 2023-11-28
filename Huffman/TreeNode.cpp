@@ -44,5 +44,5 @@ void TreeNode<Data>::set_data(Data d) {
 
 template <typename Data>
 bool TreeNode<Data>::is_empty() {
-    return d == NULL && l == NULL && r == NULL;
+    return data == NULL && left == NULL && right == NULL;
 }

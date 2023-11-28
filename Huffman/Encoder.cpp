@@ -62,10 +62,10 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     Code code;
 
-    for (int i = 0; i < input_sequence.get_size(); i++) {
+    for (unsigned int i = 0; i < input_sequence.get_size(); i++) {
         char c = input_sequence.get(i);
         CharCode val;
-        for (unsigned int j = 0; j < n; j++)
+        for (unsigned int j = 0; j < (unsigned int)n; j++)
         {
             if (codes[j].get_char() == c)
             {

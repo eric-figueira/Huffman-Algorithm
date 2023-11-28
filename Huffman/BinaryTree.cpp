@@ -5,8 +5,6 @@
 #include "TreeNode.h"
 #include "CharCode.h"
 
-using namespace std;
-
 BinaryTree::BinaryTree() : root(NULL), current(NULL), previous(NULL), n_nodes(0) {}
 
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
