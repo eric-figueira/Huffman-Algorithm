@@ -11,12 +11,12 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
     // enquanto a fila tiver dois ou mais nodos:
     while (queue.get_used_size() >= 2) {
         // Desenfileirar um nó para se tornar a subárvore esquerda
-        TreeNode<ByteFrequency> l_node = queue.dequeue();
+        TreeNode l_node = queue.dequeue();
         // Desenfileirar um nó para se tornar a subárvore direita
-        TreeNode<ByteFrequency> r_node = queue.dequeue();
+        TreeNode r_node = queue.dequeue();
 
         // Criar um novo nó, com as respectivas subárvores
-        TreeNode<ByteFrequency> newNode(TreeNode<ByteFrequency>(ByteFrequency(), &l_node, &r_node));
+        TreeNode newNode(TreeNode(ByteFrequency(), &l_node, &r_node));
 
         // Tornar a frequência do novo nó igual a soma das frequencias dos filhos esquerdo e direito
         newNode.get_data().set_frequency(
@@ -31,7 +31,7 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
     // Quando a fila só tiver um nó
     if (queue.get_used_size() == 1) {
         // Desenfileire esse nó
-        TreeNode<ByteFrequency> lastNode = queue.dequeue();
+        TreeNode lastNode = queue.dequeue();
 
         // Coloque esse nó como raiz da arvore
         root = &lastNode;
@@ -39,7 +39,7 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
     }
 }
 
-int BinaryTree::count_nodes(TreeNode<ByteFrequency>* node) {
+int BinaryTree::count_nodes(TreeNode* node) {
     if (node == NULL) {
         return 0;
     }
@@ -67,7 +67,7 @@ CharCode* BinaryTree::visit_and_generate_codes()
 
 int index = 0;
 
-void BinaryTree::visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, bool** currentCode, unsigned int size)
+void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool** currentCode, unsigned int size)
 {
     if (node->get_left() == NULL && node->get_right() == NULL) {
         // Um código está pronto quando uma folha for atingida
@@ -86,9 +86,9 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, 
     visit_and_generate_codes_helper(node->get_right(), &new_current_code, size++);
 }
 
-LinkedList<char> BinaryTree::generate_bytes_from_code(Code code)
+LinkedList BinaryTree::generate_bytes_from_code(Code code)
 {
-    LinkedList<char> list = LinkedList<char>();
+    LinkedList list = LinkedList();
 
     current = root;
     for (unsigned int i = 0; i < code.get_number_of_used_bits(); i++)

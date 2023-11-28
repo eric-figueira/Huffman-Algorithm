@@ -4,24 +4,22 @@
 
 using namespace std;
 
-template <typename Data>
 class ListNode
 {
 private:
-    Data data;
-    ListNode<Data>* next;
+    char data;
+    ListNode* next;
 
 public:
-    Data get_data() const;
-    void set_data(Data data);
+    char get_data() const;
+    void set_data(char data);
+    void set_next(ListNode* n);
 
-    ListNode<Data>* get_next() const;
+    ListNode* get_next() const;
 
     ListNode();
-    ListNode(Data data);
-    ListNode(Data data, ListNode* next);
+    ListNode(char data);
+    ListNode(char data, ListNode* next);
 };
-
-#include "ListNode.cpp"
 
 #endif

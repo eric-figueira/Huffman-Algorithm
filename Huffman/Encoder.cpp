@@ -18,7 +18,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     PriorityQueue priorityQueue;
-    LinkedList<char> input_sequence;
+    LinkedList input_sequence;
     while (input.eof() == 0)
     {
         char c;
@@ -42,7 +42,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     output << n;
 
     // caracteres e suas respectivas frequências
-    TreeNode<ByteFrequency>* vector = priorityQueue.get_vector();
+    TreeNode* vector = priorityQueue.get_vector();
     for (char i = 0; i < n; i++)
     {
         output << vector[i].get_data();

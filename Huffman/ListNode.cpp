@@ -2,20 +2,17 @@
 #include "ListNode.h"
 
 
-template <typename Data>
-ListNode<Data>::ListNode() : data(NULL), next(NULL) {}
+ListNode::ListNode() : data(NULL), next(NULL) {}
 
-template <typename Data>
-ListNode<Data>::ListNode(Data data) : data(data), next(NULL) {
+ListNode::ListNode(char data) : data(data), next(NULL) {
     if (data == NULL)
     {
-        cerr << "[ListNode]: Data should not be NULL";
+        cerr << "[ListNode]: char should not be NULL";
         exit(-1);
     }
 }
 
-template <typename Data>
-ListNode<Data>::ListNode(Data data, ListNode<Data>* next) : data(data), next(next) {
+ListNode::ListNode(char data, ListNode* next) : data(data), next(next) {
     if (data == NULL || next == NULL)
     {
         cerr << "[ListNode]: Missing Paramerers";
@@ -23,20 +20,22 @@ ListNode<Data>::ListNode(Data data, ListNode<Data>* next) : data(data), next(nex
     }
 }
 
-template <typename Data>
-Data ListNode<Data>::get_data() const
+char ListNode::get_data() const
 {
     return data;
 }
 
-template <typename Data>
-void ListNode<Data>::set_data(Data data)
+void ListNode::set_data(char data)
 {
     this->data = data;
 }
 
-template <typename Data>
-ListNode<Data>* ListNode<Data>::get_next() const
+void ListNode::set_next(ListNode* n) 
+{
+    this->next = n;
+}
+
+ListNode* ListNode::get_next() const
 {
     return next;
 }

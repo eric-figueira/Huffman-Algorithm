@@ -5,30 +5,30 @@
 #include "TreeNode.h"
 
 
-PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode<ByteFrequency>[SIZE]) {
+PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
     for (unsigned short int i = 0; i < SIZE; i++)
-        vector[i] = TreeNode<ByteFrequency>();
+        vector[i] = TreeNode();
 }
 
 char PriorityQueue::get_used_size() const { return used_size; }
 
-TreeNode<ByteFrequency>* PriorityQueue::get_vector() const { return vector; }
+TreeNode* PriorityQueue::get_vector() const { return vector; }
 
 bool PriorityQueue::is_empty() const { return used_size == 0; }
 
 void PriorityQueue::add(char byte_code)
 {
-    TreeNode<ByteFrequency> node = vector[byte_code];
+    TreeNode node = vector[byte_code];
 
     if (node.is_empty())
-        vector[byte_code] = TreeNode<ByteFrequency>(ByteFrequency(1, byte_code));
+        vector[byte_code] = TreeNode(ByteFrequency(1, byte_code));
     else
         node.get_data().increment_frequency();
 
     used_size++;
 }
 
-void PriorityQueue::add_by_priority(TreeNode<ByteFrequency> node)
+void PriorityQueue::add_by_priority(TreeNode node)
 {
     char i = used_size - 1;
     while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
@@ -42,15 +42,15 @@ void PriorityQueue::add_by_priority(TreeNode<ByteFrequency> node)
     used_size++;
 }
 
-TreeNode<ByteFrequency> PriorityQueue::dequeue()
+TreeNode PriorityQueue::dequeue()
 {
     if (!is_empty()) {
-        TreeNode<ByteFrequency> info = vector[0];
+        TreeNode info = vector[0];
 
         for (unsigned short int i = 0; i < used_size; i++)
             vector[i] = vector[i + 1];
 
-        vector[used_size] = TreeNode<ByteFrequency>();
+        vector[used_size] = TreeNode();
         used_size--;
 
         return info;
@@ -67,7 +67,7 @@ void PriorityQueue::order_vector()
         if (!vector[j].is_empty()) {
             vector[i] = vector[j];
             if (i != j)
-                vector[j] = TreeNode<ByteFrequency>();
+                vector[j] = TreeNode();
             i++;
         }
     }
@@ -76,7 +76,7 @@ void PriorityQueue::order_vector()
     for (unsigned short int a = 0; a < used_size - 1; a++) {
         for (unsigned short int b = 0; b < used_size - a - 1; b++) {
             if (vector[b].get_data().get_frequency() < vector[b + 1].get_data().get_frequency()) {
-                TreeNode<ByteFrequency> temp = vector[b];
+                TreeNode temp = vector[b];
                 vector[b] = vector[b + 1];
                 vector[b + 1] = temp;
             }

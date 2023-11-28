@@ -12,10 +12,10 @@ using namespace std;
 class BinaryTree
 {
 private:
-    TreeNode<ByteFrequency>* root, * current, * previous;
+    TreeNode* root, * current, * previous;
     unsigned int n_nodes;
 
-    int count_nodes(TreeNode<ByteFrequency>* node);
+    int count_nodes(TreeNode* node);
 
 public:
     BinaryTree();
@@ -25,8 +25,8 @@ public:
     void create_tree_from_priority_queue(PriorityQueue queue);
 
     CharCode* visit_and_generate_codes();
-    void visit_and_generate_codes_helper(TreeNode<ByteFrequency>* node, bool** currentCode, unsigned int size);
-    LinkedList<char> generate_bytes_from_code(Code code);
+    void visit_and_generate_codes_helper(TreeNode* node, bool** currentCode, unsigned int size);
+    LinkedList generate_bytes_from_code(Code code);
 };
 
 
