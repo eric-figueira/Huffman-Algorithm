@@ -3,11 +3,9 @@
 #include "ListNode.h"
 
 
-template <typename Data>
-LinkedList<Data>::LinkedList() : begin(NULL), end(NULL), current(NULL), previous(NULL) {}
+LinkedList::LinkedList() : begin(NULL), end(NULL), current(NULL), previous(NULL) {}
 
-template <typename Data>
-LinkedList<Data>::LinkedList(ListNode<Data>* begin, ListNode<Data>* end) : begin(begin), end(end), current(begin), previous(NULL)
+LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end), current(begin), previous(NULL)
 {
     if (begin == NULL || end == NULL)
     {
@@ -16,116 +14,103 @@ LinkedList<Data>::LinkedList(ListNode<Data>* begin, ListNode<Data>* end) : begin
     }
 }
 
-template <typename Data>
-ListNode<Data>* LinkedList<Data>::get_begin() const
+ListNode* LinkedList::get_begin() const
 {
     return begin;
 }
 
-template <typename Data>
-ListNode<Data>* LinkedList<Data>::get_end() const
+ListNode* LinkedList::get_end() const
 {
     return end;
 }
 
-template <typename Data>
-ListNode<Data>* LinkedList<Data>::get_current() const
+ListNode* LinkedList::get_current() const
 {
     return current;
 }
 
-template <typename Data>
-ListNode<Data>* LinkedList<Data>::get_previous() const
+ListNode* LinkedList::get_previous() const
 {
     return previous;
 }
 
-template <typename Data>
-unsigned int LinkedList<Data>::get_size() const
+unsigned int LinkedList::get_size() const
 {
     return size;
 }
 
-template <typename Data>
-void LinkedList<Data>::set_begin(ListNode<Data>* data)
+void LinkedList::set_begin(ListNode* data)
 {
     begin = data;
 }
 
-template <typename Data>
-void LinkedList<Data>::set_end(ListNode<Data>* data)
+void LinkedList::set_end(ListNode* data)
 {
     end = data;
 }
 
-template <typename Data>
-void LinkedList<Data>::set_current(ListNode<Data>* data)
+void LinkedList::set_current(ListNode* data)
 {
     current = data;
 }
 
-template <typename Data>
-void LinkedList<Data>::set_previous(ListNode<Data>* data)
+void LinkedList::set_previous(ListNode* data)
 {
     previous = data;
 }
 
-template <typename Data>
-bool LinkedList<Data>::exists(Data data) const
+bool LinkedList::exists(char data)
 {
-    for (current = begin; current != NULL; previous = current, current = current->next) {
-        if (current.data == data) {
+    for (current = begin; current != NULL; previous = current, current = current->get_next()) {
+        if (current->get_data() == data) {
             return true;
         }
     }
     return false;
 }
 
-template <typename Data>
-Data LinkedList<Data>::get(unsigned int pos) const
+char LinkedList::get(unsigned int pos)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
-        current = current->next;
+        current = current->get_next();
     return current->get_data();
 }
 
-template <typename Data>
-void LinkedList<Data>::set(unsigned int pos, Data data)
+void LinkedList::set(unsigned int pos, char data)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
     {
         if (current == NULL)
             push(data);
-        current = current->next;
+        current = current->get_next();
     }
     current->set_data(data);
 }
 
-template <typename Data>
-void LinkedList<Data>::add(Data data)
+void LinkedList::add(char data)
 {
     if (exists(data))
     {
-        cerr << "[LinkedList]: Data already exists";
+        cerr << "[LinkedList]: char already exists";
         exit(-1);
     }
     else {
         if (begin == NULL)
         {
-            begin->data = data;
+            begin->set_data(data);
             end = begin;
         }
         else {
-            ListNode<Data>* new_data;
-            *(new_data) = ListNode<Data>(data);
+            ListNode* new_data;
+            *(new_data) = ListNode(data);
 
             if (previous == NULL)
                 begin = new_data;
             else
-                previous->next = new_data;
-            *(new_data)->next = current;
+                previous->set_next(new_data);
+            new_data->set_next(current);
             if (current == NULL)
                 end = new_data;
         }
@@ -134,8 +119,7 @@ void LinkedList<Data>::add(Data data)
     }
 }
 
-template <typename Data>
-void LinkedList<Data>::push(Data data)
+void LinkedList::push(char data)
 {
     if (begin == NULL)
     {
@@ -143,38 +127,36 @@ void LinkedList<Data>::push(Data data)
         end = begin;
     }
     else {
-        ListNode<Data>* new_data;
-        *(new_data) = ListNode<Data>(data);
+        ListNode* new_data;
+        *(new_data) = ListNode(data);
 
-        end->next = new_data;
+        end->set_next(new_data);
         end = new_data;
     }
 
     size += 1;
 }
 
-template <typename Data>
-void LinkedList<Data>::remove(Data data)
+void LinkedList::remove(char data)
 {
     if (!exists(data)) {
-        cerr << "[LinkedList]: Data does not exist";
+        cerr << "[LinkedList]: char does not exist";
         exit(-1);
     }
     else {
         if (previous == NULL)
-            begin = current->next;
+            begin = current->get_next();
         else
-            previous->next = current->next;
+            previous->set_next(current->get_next());
         if (current == end)
             end = previous;
-        current->next = NULL;
+        current->set_next(NULL);
 
         size -= 1;
     }
 }
 
-template <typename Data>
-ofstream& operator<< (ofstream& os, const LinkedList<Data> list)
+ofstream& operator<< (ofstream& os, const LinkedList list)
 {
     list.set_current(list.get_begin());
     while (list.get_current() != NULL)

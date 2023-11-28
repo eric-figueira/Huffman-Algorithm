@@ -10,7 +10,7 @@ using namespace std;
 class Code
 {
 private:
-    LinkedList<char> bytes;
+    LinkedList bytes;
     unsigned int number_of_used_bits;
     void set_bit(unsigned int pos, char n);
     void clear_bit(unsigned int pos, char n);
@@ -18,7 +18,7 @@ private:
 public:
     Code();
 
-    LinkedList<char> get_bytes() const;
+    LinkedList get_bytes() const;
     unsigned int get_number_of_used_bits() const;
 
     void add_bit(bool bit);

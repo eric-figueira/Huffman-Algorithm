@@ -12,7 +12,7 @@ void Code::clear_bit(unsigned int pos, char n)
 
 Code::Code() : bytes(), number_of_used_bits(0) {};
 
-LinkedList<char> Code::get_bytes() const
+LinkedList Code::get_bytes() const
 {
     return bytes;
 }
@@ -65,7 +65,7 @@ char Code::get_byte(unsigned int n) const
 
 ofstream& operator<<(ofstream& os, const Code& code)
 {
-    LinkedList<char> list = code.get_bytes();
+    LinkedList list = code.get_bytes();
     list.set_current(list.get_begin());
     while (list.get_current() != nullptr)
     {

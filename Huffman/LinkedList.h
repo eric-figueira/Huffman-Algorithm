@@ -6,43 +6,40 @@
 
 using namespace std;
 
-template <typename Data>
 class LinkedList
 {
 private:
-    ListNode<Data>* begin;
-    ListNode<Data>* end;
-    ListNode<Data>* current;
-    ListNode<Data>* previous;
+    ListNode* begin;
+    ListNode* end;
+    ListNode* current;
+    ListNode* previous;
 
     unsigned int size;
 
 public:
     LinkedList();
-    LinkedList(ListNode<Data>* begin, ListNode<Data>* end);
+    LinkedList(ListNode* begin, ListNode* end);
 
-    ListNode<Data>* get_begin() const;
-    ListNode<Data>* get_end() const;
-    ListNode<Data>* get_current() const;
-    ListNode<Data>* get_previous() const;
+    ListNode* get_begin() const;
+    ListNode* get_end() const;
+    ListNode* get_current() const;
+    ListNode* get_previous() const;
 
     unsigned int get_size() const;
 
-    void set_begin(ListNode<Data>* data);
-    void set_end(ListNode<Data>* data);
-    void set_current(ListNode<Data>* data);
-    void set_previous(ListNode<Data>* data);
+    void set_begin(ListNode* data);
+    void set_end(ListNode* data);
+    void set_current(ListNode* data);
+    void set_previous(ListNode* data);
 
-    bool exists(Data data) const;
-    Data get(unsigned int pos) const;
-    void set(unsigned int pos, Data data);
-    void add(Data data);
-    void push(Data data);
-    void remove(Data data);
+    bool exists(char data);
+    char get(unsigned int pos);
+    void set(unsigned int pos, char data);
+    void add(char data);
+    void push(char data);
+    void remove(char data);
 
-    friend ofstream& operator<< (ofstream& os, const LinkedList<Data> list);
+    friend ofstream& operator<< (ofstream& os, const LinkedList list);
 };
-
-#include "LinkedList.cpp"
 
 #endif

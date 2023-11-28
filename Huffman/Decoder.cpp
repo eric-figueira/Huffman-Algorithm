@@ -31,7 +31,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
         unsigned int c_frequency;
         input.read(reinterpret_cast<char*>(&c_frequency), sizeof(c_frequency));
 
-        TreeNode<ByteFrequency> node(ByteFrequency(c_frequency, c));
+        TreeNode node(ByteFrequency(c_frequency, c));
 
         priorityQueue.add_by_priority(node);
     }
@@ -63,7 +63,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     }
 
     // percorrer a árvore e guardar no arquivo os códigos ao chegar nas folhas
-    LinkedList<char> chars = binaryTree.generate_bytes_from_code(code);
+    LinkedList chars = binaryTree.generate_bytes_from_code(code);
 
     output << chars;
 
