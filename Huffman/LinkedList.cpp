@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "LinkedList.h"
 #include "ListNode.h"
 
@@ -103,16 +104,17 @@ void LinkedList::add(char data)
             end = begin;
         }
         else {
-            ListNode* new_data;
-            *(new_data) = ListNode(data);
+            ListNode* p_new_data = new ListNode(data);
 
             if (previous == NULL)
-                begin = new_data;
+                begin = p_new_data;
             else
-                previous->set_next(new_data);
-            new_data->set_next(current);
+                previous->set_next(p_new_data);
+            p_new_data->set_next(current);
             if (current == NULL)
-                end = new_data;
+                end = p_new_data;
+
+            delete p_new_data;
         }
 
         size += 1;
@@ -127,11 +129,12 @@ void LinkedList::push(char data)
         end = begin;
     }
     else {
-        ListNode* new_data;
-        *(new_data) = ListNode(data);
+        ListNode* p_new_data = new ListNode(data);
 
-        end->set_next(new_data);
-        end = new_data;
+        end->set_next(p_new_data);
+        end = p_new_data;
+
+        delete p_new_data;
     }
 
     size += 1;
@@ -156,13 +159,15 @@ void LinkedList::remove(char data)
     }
 }
 
-ofstream& operator<< (ofstream& os, const LinkedList list)
+ofstream& operator<<(ofstream& os, const LinkedList& list)
 {
-    list.set_current(list.get_begin());
-    while (list.get_current() != NULL)
+    const ListNode* current = list.get_begin();
+
+    while (current != NULL)
     {
-        list.set_current(list.get_current()->get_next());
-        os << list.get_current()->get_data();
+        os << current->get_data();
+        current = current->get_next();
     }
+
     return os;
 }

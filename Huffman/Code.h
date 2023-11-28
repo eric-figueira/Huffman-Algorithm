@@ -22,12 +22,12 @@ public:
     unsigned int get_number_of_used_bits() const;
 
     void add_bit(bool bit);
-    bool get_bit(unsigned int n) const;
+    bool get_bit(unsigned int n);
 
     void add_bits(bool* bits, unsigned int num_bits);
 
     void add_byte(char byte, unsigned int num_bits);
-    char get_byte(unsigned int n) const;
+    char get_byte(unsigned int n);
 
     friend ofstream& operator<< (ofstream& os, const Code& code);
 };

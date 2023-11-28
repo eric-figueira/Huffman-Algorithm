@@ -35,7 +35,7 @@ void Code::add_bit(bool bit)
     number_of_used_bits++;
 }
 
-bool Code::get_bit(unsigned int n) const
+bool Code::get_bit(unsigned int n)
 {
     unsigned int pos = (unsigned int)(n / 8);
     unsigned int mod = n % 8;
@@ -58,7 +58,7 @@ void Code::add_byte(char byte, unsigned int num_bits)
     number_of_used_bits += num_bits;
 }
 
-char Code::get_byte(unsigned int n) const
+char Code::get_byte(unsigned int n)
 {
     return bytes.get(n);
 }
