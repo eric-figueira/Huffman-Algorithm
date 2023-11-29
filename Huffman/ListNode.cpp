@@ -16,7 +16,11 @@ ListNode::ListNode(char data, ListNode* next) : data(data), next(next) {
 
 ListNode::~ListNode()
 {
-    free(next);
+    for (ListNode* current = next; next != nullptr; current = next)
+    {
+        next = next->get_next();
+        free(current);
+    }
 }
 
 char ListNode::get_data() const
