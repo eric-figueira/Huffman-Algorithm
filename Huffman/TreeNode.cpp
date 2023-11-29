@@ -16,26 +16,16 @@ TreeNode::TreeNode() : data(ByteFrequency()), left(nullptr), right(nullptr) {}
 
 TreeNode::~TreeNode()
 {
-    free(left);
-    free(right);
+    delete left;
+    delete right;
 }
 
-TreeNode* TreeNode::get_left() const {  
-    return left;
-}
+TreeNode* TreeNode::get_left() const {   return left; }
 
-TreeNode* TreeNode::get_right() const {
-    return right;
-}
+TreeNode* TreeNode::get_right() const { return right; }
 
-ByteFrequency TreeNode::get_data() const {
-    return data;
-}
+ByteFrequency TreeNode::get_data() const { return data; }
 
-void TreeNode::set_data(ByteFrequency d) {
-    data = d;
-}
+void TreeNode::set_data(ByteFrequency d) { data = d; }
 
-bool TreeNode::is_empty() {
-    return data.is_empty() && left == nullptr && right == nullptr;
-}
+bool TreeNode::is_empty() { return data.is_empty() && left == nullptr && right == nullptr; }

@@ -9,9 +9,9 @@ BinaryTree::BinaryTree() : root(nullptr), current(nullptr), previous(nullptr), n
 
 BinaryTree::~BinaryTree()
 {
-    free(root);
-    free(current);
-    free(previous);
+    delete root;
+    delete current;
+    delete previous;
 }
 
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {

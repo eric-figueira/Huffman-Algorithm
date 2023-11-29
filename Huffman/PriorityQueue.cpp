@@ -12,7 +12,7 @@ PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
 
 PriorityQueue::~PriorityQueue()
 {
-    free(vector);
+    delete vector;
 }
 
 char PriorityQueue::get_used_size() const { return used_size; }
