@@ -4,7 +4,7 @@
 #include "ByteFrequency.h"
 
 TreeNode::TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r) : data(d), left(l), right(r) {
-    if (l == nullptr || r == nullptr) {
+    if (data.is_empty() || l == nullptr || r == nullptr) {
         cerr << "[TreeNode]: Missing Parameters";
         exit(-1);
     }
@@ -31,5 +31,5 @@ void TreeNode::set_data(ByteFrequency d) {
 }
 
 bool TreeNode::is_empty() {
-    return left == nullptr && right == nullptr;
+    return data.is_empty() && left == nullptr && right == nullptr;
 }

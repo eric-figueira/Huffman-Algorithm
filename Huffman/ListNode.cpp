@@ -2,22 +2,21 @@
 #include "ListNode.h"
 
 
-ListNode::ListNode() : data(NULL), next(NULL) {}
+ListNode::ListNode() : data(0), next(nullptr) {}
 
-ListNode::ListNode(char data) : data(data), next(NULL) {
-    if (data == NULL)
-    {
-        cerr << "[ListNode]: char should not be NULL";
-        exit(-1);
-    }
-}
+ListNode::ListNode(char data) : data(data), next(nullptr) {}
 
 ListNode::ListNode(char data, ListNode* next) : data(data), next(next) {
-    if (data == NULL || next == NULL)
+    if (next == nullptr)
     {
         cerr << "[ListNode]: Missing Paramerers";
         exit(-1);
     }
+}
+
+ListNode::~ListNode()
+{
+    free(next);
 }
 
 char ListNode::get_data() const
@@ -37,5 +36,5 @@ void ListNode::set_next(ListNode* n)
 
 ListNode* ListNode::get_next() const
 {
-    return next;
+    return next; 
 }

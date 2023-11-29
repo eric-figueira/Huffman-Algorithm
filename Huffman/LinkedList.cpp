@@ -4,15 +4,23 @@
 #include "ListNode.h"
 
 
-LinkedList::LinkedList() : begin(NULL), end(NULL), current(NULL), previous(NULL) {}
+LinkedList::LinkedList() : begin(nullptr), end(nullptr), current(nullptr), previous(nullptr), size(0) {}
 
-LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end), current(begin), previous(NULL)
+LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end), current(begin), previous(nullptr), size(0)
 {
-    if (begin == NULL || end == NULL)
+    if (begin == nullptr || end == nullptr)
     {
         cerr << "[LinkedList]: Missing arguments";
         exit(-1);
     }
+}
+
+LinkedList::~LinkedList()
+{
+    free(begin);
+    free(end);
+    free(current);
+    free(previous);
 }
 
 ListNode* LinkedList::get_begin() const
@@ -62,7 +70,7 @@ void LinkedList::set_previous(ListNode* data)
 
 bool LinkedList::exists(char data)
 {
-    for (current = begin; current != NULL; previous = current, current = current->get_next()) {
+    for (current = begin; current != nullptr; previous = current, current = current->get_next()) {
         if (current->get_data() == data) {
             return true;
         }
@@ -83,7 +91,7 @@ void LinkedList::set(unsigned int pos, char data)
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
     {
-        if (current == NULL)
+        if (current == nullptr)
             push(data);
         current = current->get_next();
     }
@@ -98,23 +106,20 @@ void LinkedList::add(char data)
         exit(-1);
     }
     else {
-        if (begin == NULL)
+        ListNode* p_new_data = new ListNode(data);
+        if (begin == nullptr)
         {
-            begin->set_data(data);
+            begin = p_new_data;
             end = begin;
         }
         else {
-            ListNode* p_new_data = new ListNode(data);
-
-            if (previous == NULL)
+            if (previous == nullptr)
                 begin = p_new_data;
             else
                 previous->set_next(p_new_data);
             p_new_data->set_next(current);
-            if (current == NULL)
+            if (current == nullptr)
                 end = p_new_data;
-
-            delete p_new_data;
         }
 
         size += 1;
@@ -123,18 +128,15 @@ void LinkedList::add(char data)
 
 void LinkedList::push(char data)
 {
-    if (begin == NULL)
+    ListNode* p_new_data = new ListNode(data);
+    if (begin == nullptr)
     {
-        begin->set_data(data);
+        begin = p_new_data;
         end = begin;
     }
     else {
-        ListNode* p_new_data = new ListNode(data);
-
         end->set_next(p_new_data);
         end = p_new_data;
-
-        delete p_new_data;
     }
 
     size += 1;
@@ -147,13 +149,13 @@ void LinkedList::remove(char data)
         exit(-1);
     }
     else {
-        if (previous == NULL)
+        if (previous == nullptr)
             begin = current->get_next();
         else
             previous->set_next(current->get_next());
         if (current == end)
             end = previous;
-        current->set_next(NULL);
+        current->set_next(nullptr);
 
         size -= 1;
     }
@@ -163,7 +165,7 @@ ofstream& operator<<(ofstream& os, const LinkedList& list)
 {
     const ListNode* current = list.get_begin();
 
-    while (current != NULL)
+    while (current != nullptr)
     {
         os << current->get_data();
         current = current->get_next();

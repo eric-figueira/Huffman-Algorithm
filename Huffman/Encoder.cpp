@@ -31,10 +31,15 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     priorityQueue.order_vector();
 
+    TreeNode* vect = priorityQueue.get_vector();
+    for (int i = 0; i < priorityQueue.get_used_size(); i++)
+        cout << vect[i].get_data().get_byte_code();
+
     ofstream output(output_directory);
     if (!output)
     {
         cerr << "[Encoder]: Output file could not be created!";
+        exit(-1);
     }
 
     // quantos caracteres distintos existem no arquivo

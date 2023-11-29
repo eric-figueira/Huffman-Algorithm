@@ -15,6 +15,7 @@ private:
 
 public:
     PriorityQueue();
+    ~PriorityQueue();
 
     char get_used_size() const;
     TreeNode* get_vector() const;

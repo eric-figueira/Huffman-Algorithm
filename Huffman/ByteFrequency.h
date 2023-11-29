@@ -20,6 +20,8 @@ public:
     void set_byte_code(char b);
     void increment_frequency();
 
+    bool is_empty();
+
     ByteFrequency(int f, char b);
     ByteFrequency();
 

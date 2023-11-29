@@ -12,13 +12,14 @@ using namespace std;
 class BinaryTree
 {
 private:
-    TreeNode* root, * current, * previous;
+    TreeNode* root, *current, *previous;
     unsigned int n_nodes;
 
     int count_nodes(TreeNode* node);
 
 public:
     BinaryTree();
+    ~BinaryTree();
 
     unsigned int get_n_nodes() const;
 

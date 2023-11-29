@@ -20,6 +20,7 @@ public:
     ListNode();
     ListNode(char data);
     ListNode(char data, ListNode* next);
+    ~ListNode();
 };
 
 #endif

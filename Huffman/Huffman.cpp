@@ -26,7 +26,7 @@ void handle_compress_file()
     char path_to_file[150];
     cin >> path_to_file;
 
-    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\n";
+    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged. Example: C:\\Downloads\\MyOtherFolder\myfile.me\n";
     cout << "[RUN]: Folder Path: ";
     char output_folder_path[150];
     cin >> output_folder_path;

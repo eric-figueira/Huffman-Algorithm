@@ -13,6 +13,7 @@ private:
 public:
     CharCode();
     CharCode(char character, bool* code, unsigned int code_size);
+    ~CharCode();
 
     char get_char() const;
     bool* get_code() const;
