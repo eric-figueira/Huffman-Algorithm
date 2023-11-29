@@ -27,12 +27,12 @@ char ListNode::get_data() const
 
 void ListNode::set_data(char data)
 {
-    this->data = data;
+    data = data;
 }
 
 void ListNode::set_next(ListNode* n) 
 {
-    this->next = n;
+    next = n;
 }
 
 ListNode* ListNode::get_next() const
