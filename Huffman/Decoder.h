@@ -6,8 +6,8 @@ using namespace std;
 
 class Decoder
 {
-public:
-    static void decode(char* input_directory, char* output_directory);
+    public:
+        static void decode(char* input_directory, char* output_directory);
 };
 
 #endif
