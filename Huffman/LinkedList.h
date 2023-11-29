@@ -39,7 +39,7 @@ public:
     void push(char data);
     void remove(char data);
 
-    friend ofstream& operator<< (ofstream& os, const LinkedList list);
+    friend ofstream& operator<< (ofstream& os, const LinkedList& list);
 };
 
 #endif
