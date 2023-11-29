@@ -14,7 +14,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     if (!input)
     {
         cerr << "[Encoder]: Input file not found!";
-        exit(-1);
+        exit(-3);
     }
 
     PriorityQueue priorityQueue;
@@ -34,7 +34,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     if (!output)
     {
         cerr << "[Encoder]: Output file could not be created!";
-        exit(-1);
+        exit(-3);
     }
 
     // quantos caracteres distintos existem no arquivo

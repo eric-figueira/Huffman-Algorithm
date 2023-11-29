@@ -66,7 +66,7 @@ TreeNode PriorityQueue::dequeue()
         return info;
     }
     cerr << "[PriorityQueue]: Tried to deque from empty queue";
-    exit(-1);
+    exit(-6);
 }
 
 void PriorityQueue::order_vector()

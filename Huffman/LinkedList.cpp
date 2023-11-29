@@ -11,7 +11,7 @@ LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end),
     if (begin == nullptr || end == nullptr)
     {
         cerr << "[LinkedList]: Missing arguments";
-        exit(-1);
+        exit(-4);
     }
 }
 
@@ -79,7 +79,7 @@ void LinkedList::add(char data)
     if (exists(data))
     {
         cerr << "[LinkedList]: char already exists";
-        exit(-1);
+        exit(-4);
     }
     else {
         ListNode* p_new_data = new ListNode(data);
@@ -122,7 +122,7 @@ void LinkedList::remove(char data)
 {
     if (!exists(data)) {
         cerr << "[LinkedList]: char does not exist";
-        exit(-1);
+        exit(-4);
     }
     else {
         if (previous == nullptr)
