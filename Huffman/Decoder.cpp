@@ -13,7 +13,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     if (!input)
     {
         cerr << "[Encoder]: Input file not found!";
-        exit(-1);
+        exit(-2);
     }
 
     PriorityQueue priorityQueue;
@@ -59,7 +59,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     if (!output)
     {
         cerr << "[Decoder]: Output file could not be created!";
-        exit(-1);
+        exit(-2);
     }
 
     // percorrer a árvore e guardar no arquivo os códigos ao chegar nas folhas

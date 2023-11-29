@@ -24,7 +24,7 @@ class TreeNode
         TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r);
         TreeNode(ByteFrequency d);
         TreeNode();
-        ~TreeNode();
+        //~TreeNode();
 };
 
 #endif

@@ -6,7 +6,7 @@
 TreeNode::TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r) : data(d), left(l), right(r) {
     if (data.is_empty() || l == nullptr || r == nullptr) {
         cerr << "[TreeNode]: Missing Parameters";
-        exit(-1);
+        exit(-7);
     }
 }
 
@@ -14,11 +14,11 @@ TreeNode::TreeNode(ByteFrequency d) : data(d), left(nullptr), right(nullptr) {}
 
 TreeNode::TreeNode() : data(ByteFrequency()), left(nullptr), right(nullptr) {}
 
-TreeNode::~TreeNode()
-{
-    delete left;
-    delete right;
-}
+//TreeNode::~TreeNode()
+//{
+//    free(left);
+//    free(right);
+//}
 
 TreeNode* TreeNode::get_left() const {   return left; }
 

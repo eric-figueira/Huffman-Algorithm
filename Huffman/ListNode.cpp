@@ -10,7 +10,7 @@ ListNode::ListNode(char data, ListNode* next) : data(data), next(next) {
     if (next == nullptr)
     {
         cerr << "[ListNode]: Missing Paramerers";
-        exit(-1);
+        exit(-5);
     }
 }
 
