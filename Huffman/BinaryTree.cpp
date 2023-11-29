@@ -5,7 +5,14 @@
 #include "TreeNode.h"
 #include "CharCode.h"
 
-BinaryTree::BinaryTree() : root(NULL), current(NULL), previous(NULL), n_nodes(0) {}
+BinaryTree::BinaryTree() : root(nullptr), current(nullptr), previous(nullptr), n_nodes(0) {}
+
+BinaryTree::~BinaryTree()
+{
+    free(root);
+    free(current);
+    free(previous);
+}
 
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
     // enquanto a fila tiver dois ou mais nodos:
@@ -40,7 +47,7 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
 }
 
 int BinaryTree::count_nodes(TreeNode* node) {
-    if (node == NULL) {
+    if (node == nullptr) {
         return 0;
     }
 
@@ -69,8 +76,8 @@ int index = 0;
 
 void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool** currentCode, unsigned int size)
 {
-    if (node != NULL) {
-        if (node->get_left() == NULL && node->get_right() == NULL) {
+    if (node != nullptr) {
+        if (node->get_left() == nullptr && node->get_right() == nullptr) {
             // Um código está pronto quando uma folha for atingida
             // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
             codes[index] = CharCode(node->get_data().get_byte_code(), *currentCode, size);
@@ -95,7 +102,7 @@ LinkedList BinaryTree::generate_bytes_from_code(Code code)
     current = root;
     for (unsigned int i = 0; i < code.get_number_of_used_bits(); i++)
     {
-        if (current->get_right() == NULL && current->get_left() == NULL)
+        if (current->get_right() == nullptr && current->get_left() == nullptr)
         {
             list.push(current->get_data().get_byte_code());
             current = root;

@@ -6,14 +6,9 @@ ByteFrequency::ByteFrequency(int f, char b) : frequency(f), byte_code(b) {
         cerr << "[ByteFrequency]: Invalid frequency";
         exit(-1);
     }
-
-    if (b == NULL) {
-        cerr << "[ByteFrequency]: Invalid byte code";
-        exit(-1);
-    }
 }
 
-ByteFrequency::ByteFrequency() : frequency(0), byte_code(NULL) {}
+ByteFrequency::ByteFrequency() : frequency(0), byte_code(0) {}
 
 int ByteFrequency::get_frequency() const {
     return frequency;
@@ -31,15 +26,16 @@ void ByteFrequency::set_frequency(int f) {
 }
 
 void ByteFrequency::set_byte_code(char b) {
-    if (b == NULL) {
-        cerr << "[ByteFrequency]: Invalid byte code";
-        exit(-1);
-    }
     byte_code = b;
 }
 
 void ByteFrequency::increment_frequency() {
     frequency += 1;
+}
+
+bool ByteFrequency::is_empty()
+{
+    return frequency == 0 && byte_code == 0;
 }
 
 ofstream& operator<<(ofstream& os, const ByteFrequency& bf)

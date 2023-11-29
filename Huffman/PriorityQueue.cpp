@@ -10,6 +10,11 @@ PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
         vector[i] = TreeNode();
 }
 
+PriorityQueue::~PriorityQueue()
+{
+    free(vector);
+}
+
 char PriorityQueue::get_used_size() const { return used_size; }
 
 TreeNode* PriorityQueue::get_vector() const { return vector; }
@@ -23,7 +28,7 @@ void PriorityQueue::add(char byte_code)
     if (node.is_empty())
         vector[byte_code] = TreeNode(ByteFrequency(1, byte_code));
     else
-        node.get_data().increment_frequency();
+        node.set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
 
     used_size++;
 }
@@ -35,7 +40,7 @@ void PriorityQueue::add_by_priority(TreeNode node)
         i++;
 
     char j;
-    for (j = used_size; j > i; j++)
+    for (j = used_size; j > i; j--)
         vector[j] = vector[j - 1];
 
     vector[(int)j] = node;
@@ -74,11 +79,12 @@ void PriorityQueue::order_vector()
 
     // Order non-null data by frequency
     for (unsigned short int a = 0; a < used_size - 1; a++) {
-        for (unsigned short int b = 0; b < used_size - a - 1; b++) {
-            if (vector[b].get_data().get_frequency() < vector[b + 1].get_data().get_frequency()) {
+        for (unsigned short int b = a + 1; b < used_size - 1; b++) {
+            if (vector[a].get_data().get_frequency() > vector[b].get_data().get_frequency())
+            {
                 TreeNode temp = vector[b];
-                vector[b] = vector[b + 1];
-                vector[b + 1] = temp;
+                vector[b] = vector[a];
+                vector[a] = temp;
             }
         }
     }
