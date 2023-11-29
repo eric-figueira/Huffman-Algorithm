@@ -1,6 +1,6 @@
-#include "TreeNode.h"
 #include <iostream>
 
+#include "TreeNode.h"
 #include "ByteFrequency.h"
 
 TreeNode::TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r) : data(d), left(l), right(r) {
