@@ -35,15 +35,19 @@ void PriorityQueue::add(char byte_code)
 
 void PriorityQueue::add_by_priority(TreeNode node)
 {
-    char i = 0;
-    while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
-        i++;
+    if (used_size != 0) {
+        char i = used_size - 1;
+        while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
+            i--;
 
-    char j;
-    for (j = used_size; j > i; j--)
-        vector[j] = vector[j - 1];
-    
-    vector[j] = node;
+        char j;
+        for (j = used_size; j > i; j--)
+            vector[j] = vector[j - 1];
+        vector[j] = node;
+    }
+    else {
+        vector[0] = node;
+    }
     used_size++;
 }
 

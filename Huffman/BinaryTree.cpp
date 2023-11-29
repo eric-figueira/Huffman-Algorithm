@@ -27,6 +27,9 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
         TreeNode newNode = TreeNode(ByteFrequency(l_node.get_data().get_frequency() + r_node.get_data().get_frequency(), 0),
             &l_node, &r_node);
 
+        cout << newNode.get_data().get_frequency() << " " << newNode.get_left()->get_data().get_frequency() << " "
+            << newNode.get_right()->get_data().get_frequency() << "\n";
+
         // Enfileirar o novo nó (de acordo com a prioridade)
         queue.add_by_priority(newNode);
     }
@@ -47,9 +50,9 @@ int BinaryTree::count_nodes(TreeNode* node) {
         return 0;
     }
 
-    cout << node->get_data().get_frequency() << "\n";
+    cout << node->get_data().get_frequency();
 
-    int leftCount = count_nodes (node->get_left());
+    int leftCount = count_nodes(node->get_left());
     int rightCount = count_nodes(node->get_right());
 
     return 1 + leftCount + rightCount;
