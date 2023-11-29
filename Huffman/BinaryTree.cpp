@@ -41,7 +41,7 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
         TreeNode lastNode = queue.dequeue();
 
         // Coloque esse nó como raiz da arvore
-        root = &lastNode;
+        root = new TreeNode(lastNode);
         n_nodes = count_nodes(root);
     }
 }
@@ -83,6 +83,11 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCo
             codes[index] = CharCode(node->get_data().get_byte_code(), currentCode, size);
             index++;
         }
+
+        cout << node->get_data().get_frequency() << " ";
+        cout << node->get_left()->get_data().get_frequency() << " ";
+        cout << node->get_right()->get_data().get_frequency();
+        cout << "\n";
 
         // Percorrer a árvore para obter os códigos 
         // Acrescentar 0 (false) ao código, toda vez que for para a esquerda, ou 1 (true), toda vez que for para a direita

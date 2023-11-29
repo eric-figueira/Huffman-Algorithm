@@ -44,8 +44,6 @@ void PriorityQueue::add_by_priority(TreeNode node)
         for (j = used_size; j > i + 1; j--)
             vector[j] = vector[j - 1];
 
-        cout << "\n" << (int)j;
-
         vector[i+1] = node;
     }
     else {
