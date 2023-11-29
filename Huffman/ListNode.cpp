@@ -19,26 +19,14 @@ ListNode::~ListNode()
     for (ListNode* current = next; next != nullptr; current = next)
     {
         next = next->get_next();
-        free(current);
+        delete current;
     }
 }
 
-char ListNode::get_data() const
-{
-    return data;
-}
+char ListNode::get_data() const { return data; }
 
-void ListNode::set_data(char data)
-{
-    data = data;
-}
+void ListNode::set_data(char data) { data = data; }
 
-void ListNode::set_next(ListNode* n) 
-{
-    next = n;
-}
+void ListNode::set_next(ListNode* n)  { next = n; }
 
-ListNode* ListNode::get_next() const
-{
-    return next; 
-}
+ListNode* ListNode::get_next() const { return next;  }

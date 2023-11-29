@@ -17,10 +17,10 @@ LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end),
 
 LinkedList::~LinkedList()
 {
-    free(begin);
-    free(end);
-    free(current);
-    free(previous);
+    delete begin;
+    delete end;
+    delete current;
+    delete previous;
 }
 
 ListNode* LinkedList::get_begin() const
@@ -28,45 +28,21 @@ ListNode* LinkedList::get_begin() const
     return begin;
 }
 
-ListNode* LinkedList::get_end() const
-{
-    return end;
-}
+ListNode* LinkedList::get_end() const { return end; }
 
-ListNode* LinkedList::get_current() const
-{
-    return current;
-}
+ListNode* LinkedList::get_current() const { return current; }
 
-ListNode* LinkedList::get_previous() const
-{
-    return previous;
-}
+ListNode* LinkedList::get_previous() const { return previous; }
 
-unsigned int LinkedList::get_size() const
-{
-    return size;
-}
+unsigned int LinkedList::get_size() const { return size; }
 
-void LinkedList::set_begin(ListNode* data)
-{
-    begin = data;
-}
+void LinkedList::set_begin(ListNode* data) { begin = data; }
 
-void LinkedList::set_end(ListNode* data)
-{
-    end = data;
-}
+void LinkedList::set_end(ListNode* data) { end = data; }
 
-void LinkedList::set_current(ListNode* data)
-{
-    current = data;
-}
+void LinkedList::set_current(ListNode* data) { current = data; }
 
-void LinkedList::set_previous(ListNode* data)
-{
-    previous = data;
-}
+void LinkedList::set_previous(ListNode* data) { previous = data; }
 
 bool LinkedList::exists(char data)
 {
