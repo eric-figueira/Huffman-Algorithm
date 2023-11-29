@@ -47,6 +47,8 @@ int BinaryTree::count_nodes(TreeNode* node) {
         return 0;
     }
 
+    cout << node->get_data().get_frequency() << "\n";
+
     int leftCount = count_nodes (node->get_left());
     int rightCount = count_nodes(node->get_right());
 

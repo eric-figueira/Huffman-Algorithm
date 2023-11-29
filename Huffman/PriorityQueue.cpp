@@ -25,24 +25,24 @@ void PriorityQueue::add(char byte_code)
 {
     TreeNode node = vector[byte_code];
 
-    if (node.is_empty())
+    if (node.is_empty()) {
         vector[byte_code] = TreeNode(ByteFrequency(1, byte_code));
+        used_size++;
+    }
     else
         vector[byte_code].set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
-
-    used_size++;
 }
 
 void PriorityQueue::add_by_priority(TreeNode node)
 {
-    char i = used_size - 1;
+    char i = 0;
     while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
         i++;
 
     char j;
     for (j = used_size; j > i; j--)
         vector[j] = vector[j - 1];
-
+    
     vector[j] = node;
     used_size++;
 }
@@ -78,8 +78,8 @@ void PriorityQueue::order_vector()
     }
 
     // Order non-null data by frequency
-    for (unsigned short int a = 0; a < used_size - 1; a++) {
-        for (unsigned short int b = a + 1; b < used_size - 1; b++) {
+    for (unsigned short int a = 0; a < used_size; a++) {
+        for (unsigned short int b = a + 1; b < used_size; b++) {
             if (vector[a].get_data().get_frequency() > vector[b].get_data().get_frequency())
             {
                 TreeNode temp = vector[b];

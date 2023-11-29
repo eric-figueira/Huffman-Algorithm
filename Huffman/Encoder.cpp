@@ -49,8 +49,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
         output << vector[i].get_data();
     }
 
-    cout << "here1";
-
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
