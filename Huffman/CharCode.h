@@ -5,22 +5,22 @@
 using namespace std;
 
 class CharCode {
-private:
-    char character;
-    bool* code;
-    unsigned int code_size;
+    private:
+        char character;
+        bool* code;
+        unsigned int code_size;
 
-public:
-    CharCode();
-    CharCode(char character, bool* code, unsigned int code_size);
-    ~CharCode();
+    public:
+        CharCode();
+        CharCode(char character, bool* code, unsigned int code_size);
+        ~CharCode();
 
-    char get_char() const;
-    bool* get_code() const;
-    unsigned int get_code_size() const;
+        char get_char() const;
+        bool* get_code() const;
+        unsigned int get_code_size() const;
 
-    void push_to_code(bool v);
-    void pop_from_code();
+        void push_to_code(bool v);
+        void pop_from_code();
 };
 
 #endif
