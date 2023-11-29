@@ -31,10 +31,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     priorityQueue.order_vector();
 
-    TreeNode* vect = priorityQueue.get_vector();
-    for (int i = 0; i < priorityQueue.get_used_size(); i++)
-        cout << vect[i].get_data().get_byte_code();
-
     ofstream output(output_directory);
     if (!output)
     {
@@ -53,8 +49,12 @@ void Encoder::encode(char* input_directory, char* output_directory)
         output << vector[i].get_data();
     }
 
+    cout << "here1";
+
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
+
+    cout << "here2";
 
     // quantos bits da árvore existem
     unsigned int n_nodes = binaryTree.get_n_nodes();
@@ -62,6 +62,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     // bits da árvore (0 para esc, 1 para dir)
     CharCode* codes = binaryTree.visit_and_generate_codes();
+
+    cout << "here3";
 
     Code code;
 
