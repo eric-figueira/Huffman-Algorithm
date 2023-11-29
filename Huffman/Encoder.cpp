@@ -19,10 +19,9 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     PriorityQueue priorityQueue;
     LinkedList input_sequence;
-    while (input.eof() == 0)
+    char c;
+    while (input.get(c))
     {
-        char c;
-        input.get(c);
         priorityQueue.add(c);
         input_sequence.push(c);
     }
@@ -47,12 +46,13 @@ void Encoder::encode(char* input_directory, char* output_directory)
     for (char i = 0; i < n; i++)
     {
         output << vector[i].get_data();
+        cout << (int)i << " ";
+        cout << vector[i].get_data().get_byte_code() << " ";
+        cout << vector[i].get_data().get_frequency() << "\n";
     }
 
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
-
-    cout << "here2";
 
     // quantos bits da árvore existem
     unsigned int n_nodes = binaryTree.get_n_nodes();
