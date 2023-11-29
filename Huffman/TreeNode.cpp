@@ -12,7 +12,7 @@ TreeNode::TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r) : data(d), left(l)
 
 TreeNode::TreeNode(ByteFrequency d) : data(d), left(nullptr), right(nullptr) {}
 
-TreeNode::TreeNode() :left(nullptr), right(nullptr) {}
+TreeNode::TreeNode() : data(ByteFrequency()), left(nullptr), right(nullptr) {}
 
 TreeNode* TreeNode::get_left() const {  
     return left;
