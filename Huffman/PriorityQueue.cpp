@@ -28,7 +28,7 @@ void PriorityQueue::add(char byte_code)
     if (node.is_empty())
         vector[byte_code] = TreeNode(ByteFrequency(1, byte_code));
     else
-        node.set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
+        vector[byte_code].set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
 
     used_size++;
 }
@@ -43,7 +43,7 @@ void PriorityQueue::add_by_priority(TreeNode node)
     for (j = used_size; j > i; j--)
         vector[j] = vector[j - 1];
 
-    vector[(int)j] = node;
+    vector[j] = node;
     used_size++;
 }
 

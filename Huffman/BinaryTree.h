@@ -27,7 +27,7 @@ class BinaryTree
         void create_tree_from_priority_queue(PriorityQueue queue);
 
         CharCode* visit_and_generate_codes();
-        void visit_and_generate_codes_helper(TreeNode* node, bool** currentCode, unsigned int size);
+        void visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size);
         LinkedList generate_bytes_from_code(Code code);
 };
 
