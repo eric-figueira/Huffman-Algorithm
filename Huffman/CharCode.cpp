@@ -7,7 +7,7 @@ CharCode::CharCode(char character, bool* code, unsigned int code_size) : charact
 
 CharCode::~CharCode()
 {
-	delete code;
+	delete[] code;
 }
 
 char CharCode::get_char() const { return character; }

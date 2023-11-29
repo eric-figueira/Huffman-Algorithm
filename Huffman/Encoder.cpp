@@ -82,7 +82,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     output << code;
 
-    delete codes;
+    //delete codes;
 
     output.close();
 }
