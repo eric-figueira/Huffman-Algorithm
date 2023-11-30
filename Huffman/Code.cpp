@@ -14,7 +14,7 @@ void Code::clear_bit(unsigned int pos, unsigned short int n)
     bytes.set(pos, bytes.get(pos) & ~(1 << n));
 }
 
-Code::Code() : bytes(), number_of_used_bits(0) {};
+Code::Code() : bytes(LinkedList()), number_of_used_bits(0) {};
 
 LinkedList Code::get_bytes() const
 {
@@ -58,6 +58,7 @@ void Code::add_bits(bool* bits, unsigned int num_bits)
 void Code::add_byte(char byte, unsigned int num_bits)
 {
     unsigned int n = (unsigned int)(number_of_used_bits / 8);
+    cout << "[Code]: " << n << " " << byte << "\n";
     bytes.set(n, byte);
     number_of_used_bits += num_bits;
 }
