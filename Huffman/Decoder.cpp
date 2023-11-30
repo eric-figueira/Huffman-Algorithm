@@ -54,8 +54,6 @@ void Decoder::decode(char* input_directory, char* output_directory)
 
     code.add_byte(input.get(), (unsigned int)(n_bits_from_tree % 8));
 
-    CharCode* codes = binaryTree.visit_and_generate_codes();
-
     // salvando o arquivo descompactado
     ofstream output(output_directory);
     if (!output)
@@ -68,8 +66,6 @@ void Decoder::decode(char* input_directory, char* output_directory)
     LinkedList chars = binaryTree.generate_bytes_from_code(code);
 
     output << chars;
-
-    delete codes;
 
     output.close();
 }
