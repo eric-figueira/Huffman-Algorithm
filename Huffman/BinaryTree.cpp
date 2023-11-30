@@ -77,16 +77,17 @@ int index = 0;
 void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size)
 {
     if (node != nullptr) {
+        cout << node->get_data().get_frequency() << " ";
         if (node->get_left() == nullptr && node->get_right() == nullptr) {
             // Um código está pronto quando uma folha for atingida
             // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
             codes[index] = CharCode(node->get_data().get_byte_code(), currentCode, size);
             index++;
         }
-
-        cout << node->get_data().get_frequency() << " ";
-        cout << node->get_left()->get_data().get_frequency() << " ";
-        cout << node->get_right()->get_data().get_frequency();
+        else {
+            cout << node->get_left()->get_data().get_frequency() << " ";
+            cout << node->get_right()->get_data().get_frequency();
+        }
         cout << "\n";
 
         // Percorrer a árvore para obter os códigos 
@@ -95,15 +96,13 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCo
         for (unsigned int i = 0; i < size; i++)
             new_current_code[i] = currentCode[i];
         new_current_code[size] = false;
-        visit_and_generate_codes_helper(node->get_left(), new_current_code, size++);
-        delete[] new_current_code;
+        visit_and_generate_codes_helper(node->get_left(), new_current_code, ++size);
 
         new_current_code = new bool[size];
         for (unsigned int i = 0; i < size; i++)
             new_current_code[i] = currentCode[i];
         new_current_code[size] = true;
-        visit_and_generate_codes_helper(node->get_right(), new_current_code, size++);
-        delete[] new_current_code;
+        visit_and_generate_codes_helper(node->get_right(), new_current_code, ++size);
     }
 }
 

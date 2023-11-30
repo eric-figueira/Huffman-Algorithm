@@ -15,21 +15,17 @@ LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end),
     }
 }
 
-LinkedList::~LinkedList()
-{
-    //delete begin;
-    //delete end;
-    //delete current;
-    //delete previous;
-    ListNode* current_node = begin;
-    ListNode* next_node = nullptr;
-
-    while (current_node != nullptr) {
-        next_node = current_node->get_next();
-        delete current_node;
-        current_node = next_node;
-    }
-}
+//LinkedList::~LinkedList()
+//{
+//    ListNode* current_node = begin;
+//    ListNode* next_node = nullptr;
+//
+//    while (current_node != nullptr) {
+//        next_node = current_node->get_next();
+//        delete current_node;
+//        current_node = next_node;
+//    }
+//}
 
 ListNode* LinkedList::get_begin() const
 {
@@ -75,8 +71,6 @@ void LinkedList::set(unsigned int pos, char data)
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
     {
-        if (current == nullptr)
-            push(data);
         current = current->get_next();
     }
     current->set_data(data);
@@ -147,7 +141,7 @@ void LinkedList::remove(char data)
 
 ofstream& operator<<(ofstream& os, const LinkedList& list)
 {
-    const ListNode* current = list.get_begin();
+    ListNode* current = list.get_begin();
 
     while (current != nullptr)
     {

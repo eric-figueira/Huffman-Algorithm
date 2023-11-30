@@ -5,11 +5,6 @@ CharCode::CharCode() : character(0), code(nullptr), code_size(0) {}
 
 CharCode::CharCode(char character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 
-CharCode::~CharCode()
-{
-	delete[] code;
-}
-
 char CharCode::get_char() const { return character; }
 
 bool* CharCode::get_code() const { return code; }

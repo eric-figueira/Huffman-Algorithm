@@ -1,12 +1,16 @@
 #include "Code.h"
 
-void Code::set_bit(unsigned int pos, char n)
+void Code::set_bit(unsigned int pos, unsigned short int n)
 {
+    if (n == 0)
+        bytes.push(0);
     bytes.set(pos, bytes.get(pos) | (1 << n));
 }
 
-void Code::clear_bit(unsigned int pos, char n)
+void Code::clear_bit(unsigned int pos, unsigned short int n)
 {
+    if (n == 0)
+        bytes.push(0);
     bytes.set(pos, bytes.get(pos) & ~(1 << n));
 }
 
@@ -28,9 +32,9 @@ void Code::add_bit(bool bit)
     unsigned int mod = number_of_used_bits % 8;
 
     if (bit)
-        set_bit(pos, (char)(7 - mod));
+        set_bit(pos, mod);
     else
-        clear_bit(pos, (char)(7 - mod));
+        clear_bit(pos, mod);
 
     number_of_used_bits++;
 }
@@ -40,7 +44,7 @@ bool Code::get_bit(unsigned int n)
     unsigned int pos = (unsigned int)(n / 8);
     unsigned int mod = n % 8;
 
-    return bytes.get(pos) & (1 << (7 - mod));
+    return bytes.get(pos) & (1 << mod);
 }
 
 void Code::add_bits(bool* bits, unsigned int num_bits)
@@ -66,11 +70,6 @@ char Code::get_byte(unsigned int n)
 ofstream& operator<<(ofstream& os, const Code& code)
 {
     LinkedList list = code.get_bytes();
-    list.set_current(list.get_begin());
-    while (list.get_current() != nullptr)
-    {
-        list.set_current(list.get_current()->get_next());
-        os << list.get_current()->get_data();
-    }
+    os << list;
     return os;
 }
