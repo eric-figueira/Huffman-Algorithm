@@ -9,7 +9,7 @@
 
 void Decoder::decode(char* input_directory, char* output_directory)
 {
-    ifstream input(input_directory);
+    ifstream input(input_directory, ios::binary);
     if (!input)
     {
         cerr << "[Encoder]: Input file not found!";
@@ -52,10 +52,11 @@ void Decoder::decode(char* input_directory, char* output_directory)
         code.add_byte(input.get(), 8);
     }
 
-    code.add_byte(input.get(), (unsigned int)(n_bits_from_tree % 8));
+    if (n_bits_from_tree % 8 != 0)
+        code.add_byte(input.get(), (unsigned int)(n_bits_from_tree % 8));
 
     // salvando o arquivo descompactado
-    ofstream output(output_directory);
+    ofstream output(output_directory, ios::binary);
     if (!output)
     {
         cerr << "[Decoder]: Output file could not be created!";

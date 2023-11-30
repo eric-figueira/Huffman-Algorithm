@@ -10,7 +10,7 @@
 
 void Encoder::encode(char* input_directory, char* output_directory)
 {
-    ifstream input(input_directory);
+    ifstream input(input_directory, ios::binary);
     if (!input)
     {
         cerr << "[Encoder]: Input file not found!";
@@ -30,7 +30,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     priorityQueue.order_vector();
 
-    ofstream output(output_directory);
+    ofstream output(output_directory, ios::binary);
     if (!output)
     {
         cerr << "[Encoder]: Output file could not be created!";
