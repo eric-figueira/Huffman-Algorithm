@@ -56,10 +56,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
-    // quantos bits da árvore existem
-    int n_nodes = binaryTree.get_n_nodes();
-    output << n_nodes;
-
     // bits da árvore (0 para esc, 1 para dir)
     CharCode* codes = binaryTree.visit_and_generate_codes();
 
@@ -77,12 +73,14 @@ void Encoder::encode(char* input_directory, char* output_directory)
             }
         }
         bool* cd = val.get_code();
+        cout << val.get_char() << " ";
         code.add_bits(cd, val.get_code_size());
     }
 
-    output << code;
+    // quantos bits da árvore existem
+    output << (int)code.get_number_of_used_bits();
 
-    //delete codes;
+    output << code;
 
     output.close();
 }

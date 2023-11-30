@@ -102,7 +102,7 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCo
         for (unsigned int i = 0; i < size; i++)
             new_current_code[i] = currentCode[i];
         new_current_code[size] = true;
-        visit_and_generate_codes_helper(node->get_right(), new_current_code, ++size);
+        visit_and_generate_codes_helper(node->get_right(), new_current_code, size);
     }
 }
 
