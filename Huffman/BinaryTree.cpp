@@ -77,7 +77,7 @@ int index = 0;
 void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size)
 {
     if (node != nullptr) {
-        cout << node->get_data().get_frequency() << " ";
+        //cout << node->get_data().get_frequency() << " ";
         if (node->get_left() == nullptr && node->get_right() == nullptr) {
             // Um código está pronto quando uma folha for atingida
             // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
@@ -85,10 +85,10 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCo
             index++;
         }
         else {
-            cout << node->get_left()->get_data().get_frequency() << " ";
-            cout << node->get_right()->get_data().get_frequency();
+            //cout << node->get_left()->get_data().get_frequency() << " ";
+            //cout << node->get_right()->get_data().get_frequency();
         }
-        cout << "\n";
+        //cout << "\n";
 
         // Percorrer a árvore para obter os códigos 
         // Acrescentar 0 (false) ao código, toda vez que for para a esquerda, ou 1 (true), toda vez que for para a direita
