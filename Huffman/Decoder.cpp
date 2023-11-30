@@ -28,20 +28,22 @@ void Decoder::decode(char* input_directory, char* output_directory)
         input.get(c);
 
         // frequency
-        unsigned int c_frequency;
-        input.read(reinterpret_cast<char*>(&c_frequency), sizeof(c_frequency));
+        int frequency_value;
+        input >> frequency_value;
 
-        TreeNode node(ByteFrequency(c_frequency, c));
+        TreeNode node(ByteFrequency(frequency_value, c));
 
         priorityQueue.add_by_priority(node);
     }
+
+    input.get(); // Ler a separação entre últma frequencia e numero de nos
 
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
     // quantos bits da árvore existem
-    unsigned int n_bits_from_tree;
-    input.read(reinterpret_cast<char*>(&n_bits_from_tree), sizeof(n_bits_from_tree));
+    int n_bits_from_tree;
+    input >> n_bits_from_tree;
 
     // bits da árvore (0 para esc, 1 para dir)
     Code code = Code();
