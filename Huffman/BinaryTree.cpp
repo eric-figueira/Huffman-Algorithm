@@ -111,7 +111,7 @@ LinkedList BinaryTree::generate_bytes_from_code(Code code)
     LinkedList list = LinkedList();
 
     current = root;
-    for (unsigned int i = 0; i < code.get_number_of_used_bits(); i++)
+    for (unsigned int i = 0; i < code.get_number_of_used_bits() + 1; i++)
     {
         if (current->get_right() == nullptr && current->get_left() == nullptr)
         {
