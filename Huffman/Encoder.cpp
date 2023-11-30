@@ -61,8 +61,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
     // bits da árvore (0 para esc, 1 para dir)
     CharCode* codes = binaryTree.visit_and_generate_codes();
 
-    cout << "here3";
-
     Code code;
 
     for (unsigned int i = 0; i < input_sequence.get_size(); i++) {

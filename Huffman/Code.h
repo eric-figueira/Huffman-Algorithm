@@ -13,8 +13,8 @@ class Code
     private:
         LinkedList bytes;
         unsigned int number_of_used_bits;
-        void set_bit(unsigned int pos, char n);
-        void clear_bit(unsigned int pos, char n);
+        void set_bit(unsigned int pos, unsigned short int n);
+        void clear_bit(unsigned int pos, unsigned short int n);
 
     public:
         Code();
