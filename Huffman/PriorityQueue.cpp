@@ -15,13 +15,13 @@ PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
 //    delete[] vector;
 //}
 
-char PriorityQueue::get_used_size() const { return used_size; }
+unsigned char PriorityQueue::get_used_size() const { return used_size; }
 
 TreeNode* PriorityQueue::get_vector() const { return vector; }
 
 bool PriorityQueue::is_empty() const { return used_size == 0; }
 
-void PriorityQueue::add(char byte_code)
+void PriorityQueue::add(unsigned char byte_code)
 {
     TreeNode node = vector[byte_code];
 
@@ -36,11 +36,11 @@ void PriorityQueue::add(char byte_code)
 void PriorityQueue::add_by_priority(TreeNode node)
 {
     if (used_size != 0) {
-        char i = used_size - 1;
+        unsigned char i = used_size - 1;
         while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
             i--;
 
-        char j;
+        unsigned char j;
         for (j = used_size; j > i + 1; j--)
             vector[j] = vector[j - 1];
 

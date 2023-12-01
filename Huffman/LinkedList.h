@@ -33,12 +33,12 @@ class LinkedList
         void set_current(ListNode* data);
         void set_previous(ListNode* data);
 
-        bool exists(char data);
-        char get(unsigned int pos);
-        void set(unsigned int pos, char data);
-        void add(char data);
-        void push(char data);
-        void remove(char data);
+        bool exists(unsigned char data);
+        unsigned char get(unsigned int pos);
+        void set(unsigned int pos, unsigned char data);
+        void add(unsigned char data);
+        void push(unsigned char data);
+        void remove(unsigned char data);
 
         friend ofstream& operator<< (ofstream& os, const LinkedList& list);
 };

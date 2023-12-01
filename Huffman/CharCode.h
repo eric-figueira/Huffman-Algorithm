@@ -6,15 +6,15 @@ using namespace std;
 
 class CharCode {
     private:
-        char character;
+        unsigned char character;
         bool* code;
         unsigned int code_size;
 
     public:
         CharCode();
-        CharCode(char character, bool* code, unsigned int code_size);
+        CharCode(unsigned char character, bool* code, unsigned int code_size);
 
-        char get_char() const;
+        unsigned char get_char() const;
         bool* get_code() const;
         unsigned int get_code_size() const;
 

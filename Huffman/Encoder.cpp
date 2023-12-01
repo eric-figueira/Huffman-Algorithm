@@ -38,12 +38,12 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     // quantos caracteres distintos existem no arquivo
-    char n = priorityQueue.get_used_size();
+    unsigned char n = priorityQueue.get_used_size();
     output << n;
 
     // caracteres e suas respectivas frequências
     TreeNode* vector = priorityQueue.get_vector();
-    for (char i = 0; i < n; i++)
+    for (unsigned char i = 0; i < n; i++)
     {
         output << vector[i].get_data();
         /*cout << (int)i << " ";
@@ -62,7 +62,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     Code code;
 
     for (unsigned int i = 0; i < input_sequence.get_size(); i++) {
-        char c = input_sequence.get(i);
+        unsigned char c = input_sequence.get(i);
         CharCode val;
         for (unsigned int j = 0; j < (unsigned int)n; j++)
         {

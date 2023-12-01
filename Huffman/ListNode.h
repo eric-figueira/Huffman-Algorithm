@@ -7,19 +7,19 @@ using namespace std;
 class ListNode
 {
     private:
-        char data;
+        unsigned char data;
         ListNode* next;
 
     public:
-        char get_data() const;
-        void set_data(char data);
+        unsigned char get_data() const;
+        void set_data(unsigned char data);
         void set_next(ListNode* n);
 
         ListNode* get_next() const;
 
         ListNode();
-        ListNode(char data);
-        ListNode(char data, ListNode* next);
+        ListNode(unsigned char data);
+        ListNode(unsigned char data, ListNode* next);
 };
 
 #endif

@@ -27,8 +27,8 @@ class Code
 
         void add_bits(bool* bits, unsigned int num_bits);
 
-        void add_byte(char byte, unsigned int num_bits);
-        char get_byte(unsigned int n);
+        void add_byte(unsigned char byte, unsigned int num_bits);
+        unsigned char get_byte(unsigned int n);
 
         friend ofstream& operator<< (ofstream& os, const Code& code);
 };
