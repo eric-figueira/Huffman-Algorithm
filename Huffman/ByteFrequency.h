@@ -11,19 +11,19 @@ class ByteFrequency
 {
     private:
         int  frequency;
-        char byte_code;
+        unsigned char byte_code;
 
     public:
         int  get_frequency() const;
-        char get_byte_code() const;
+        unsigned char get_byte_code() const;
 
         void set_frequency(int f);
-        void set_byte_code(char b);
+        void set_byte_code(unsigned char b);
         void increment_frequency();
 
         bool is_empty();
 
-        ByteFrequency(int f, char b);
+        ByteFrequency(int f, unsigned char b);
         ByteFrequency();
 
         friend ofstream& operator<< (ofstream& os, const ByteFrequency& bf);

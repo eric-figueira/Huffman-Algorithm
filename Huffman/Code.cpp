@@ -3,15 +3,15 @@
 void Code::set_bit(unsigned int pos, unsigned short int n)
 {
     if (n == 0)
-        bytes.push(char(0));
-    bytes.set(pos, bytes.get(pos) | (char(1) << (7 - n)));
+        bytes.push(unsigned char(0));
+    bytes.set(pos, bytes.get(pos) | (unsigned char(1) << (7 - n)));
 }
 
 void Code::clear_bit(unsigned int pos, unsigned short int n)
 {
     if (n == 0)
-        bytes.push(char(0));
-    bytes.set(pos, bytes.get(pos) & ~(char(1) << (7 - n)));
+        bytes.push(unsigned char(0));
+    bytes.set(pos, bytes.get(pos) & ~(unsigned char(1) << (7 - n)));
 }
 
 Code::Code() : bytes(LinkedList()), number_of_used_bits(0) {};
@@ -44,7 +44,7 @@ bool Code::get_bit(unsigned int n)
     unsigned int pos = (unsigned int)(n / 8);
     unsigned int mod = n % 8;
 
-    return bytes.get(pos) & (char(1) << (7 - mod));
+    return bytes.get(pos) & (unsigned char(1) << (7 - mod));
 }
 
 void Code::add_bits(bool* bits, unsigned int num_bits)
@@ -60,13 +60,13 @@ void Code::add_bits(bool* bits, unsigned int num_bits)
     cout << "\n";
 }
 
-void Code::add_byte(char byte, unsigned int num_bits)
+void Code::add_byte(unsigned char byte, unsigned int num_bits)
 {
     bytes.push(byte);
     number_of_used_bits += num_bits;
 }
 
-char Code::get_byte(unsigned int n)
+unsigned char Code::get_byte(unsigned int n)
 {
     return bytes.get(n);
 }

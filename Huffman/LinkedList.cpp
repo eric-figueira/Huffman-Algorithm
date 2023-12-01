@@ -48,7 +48,7 @@ void LinkedList::set_current(ListNode* data) { current = data; }
 
 void LinkedList::set_previous(ListNode* data) { previous = data; }
 
-bool LinkedList::exists(char data)
+bool LinkedList::exists(unsigned char data)
 {
     for (current = begin; current != nullptr; previous = current, current = current->get_next()) {
         if (current->get_data() == data) {
@@ -58,7 +58,7 @@ bool LinkedList::exists(char data)
     return false;
 }
 
-char LinkedList::get(unsigned int pos)
+unsigned char LinkedList::get(unsigned int pos)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
@@ -66,7 +66,7 @@ char LinkedList::get(unsigned int pos)
     return current->get_data();
 }
 
-void LinkedList::set(unsigned int pos, char data)
+void LinkedList::set(unsigned int pos, unsigned char data)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
@@ -76,11 +76,11 @@ void LinkedList::set(unsigned int pos, char data)
     current->set_data(data);
 }
 
-void LinkedList::add(char data)
+void LinkedList::add(unsigned char data)
 {
     if (exists(data))
     {
-        cerr << "[LinkedList]: char already exists";
+        cerr << "[LinkedList]: unsigned char already exists";
         exit(-4);
     }
     else {
@@ -104,7 +104,7 @@ void LinkedList::add(char data)
     }
 }
 
-void LinkedList::push(char data)
+void LinkedList::push(unsigned char data)
 {
     ListNode* p_new_data = new ListNode(data);
     if (begin == nullptr)
@@ -120,10 +120,10 @@ void LinkedList::push(char data)
     size += 1;
 }
 
-void LinkedList::remove(char data)
+void LinkedList::remove(unsigned char data)
 {
     if (!exists(data)) {
-        cerr << "[LinkedList]: char does not exist";
+        cerr << "[LinkedList]: unsigned char does not exist";
         exit(-4);
     }
     else {

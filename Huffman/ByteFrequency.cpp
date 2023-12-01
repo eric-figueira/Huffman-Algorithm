@@ -1,7 +1,7 @@
 #include "ByteFrequency.h"
 #include <iostream>
 
-ByteFrequency::ByteFrequency(int f, char b) : frequency(f), byte_code(b) {
+ByteFrequency::ByteFrequency(int f, unsigned char b) : frequency(f), byte_code(b) {
     if (f < 0) {
         cerr << "[ByteFrequency]: Invalid frequency";
         exit(-1);
@@ -14,7 +14,7 @@ int ByteFrequency::get_frequency() const {
     return frequency;
 }
 
-char ByteFrequency::get_byte_code() const {
+unsigned char ByteFrequency::get_byte_code() const {
     return byte_code;
 }
 
@@ -25,7 +25,7 @@ void ByteFrequency::set_frequency(int f) {
     }
 }
 
-void ByteFrequency::set_byte_code(char b) {
+void ByteFrequency::set_byte_code(unsigned char b) {
     byte_code = b;
 }
 
