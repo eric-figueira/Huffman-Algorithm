@@ -41,7 +41,7 @@ void PriorityQueue::add_by_priority(TreeNode node)
             i--;
 
         unsigned char j;
-        for (j = used_size; j > i + 1; j--)
+        for (j = used_size; j > i+1; j--)
             vector[j] = vector[j - 1];
 
         vector[i+1] = node;
