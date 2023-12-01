@@ -22,7 +22,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     input.get(n_distinct_chars);
 
     // caracteres e suas respectivas frequências
-    for (unsigned char i = 0; i < n_distinct_chars; i++) {
+    for (unsigned char i = 0; i < (unsigned char)n_distinct_chars; i++) {
         // char
         char c;
         input.get(c);
@@ -31,7 +31,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
         int frequency_value;
         input >> frequency_value;
 
-        TreeNode node(ByteFrequency(frequency_value, c));
+        TreeNode node(ByteFrequency(frequency_value, (unsigned char)c));
 
         priorityQueue.add_by_priority(node);
     }
