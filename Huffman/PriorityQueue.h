@@ -13,12 +13,12 @@ class PriorityQueue
     private:
         unsigned int SIZE = 256;
         TreeNode* vector;
-        byte used_size; // byte because the max is 256 -> 1 byte
+        unsigned short int used_size;
 
     public:
         PriorityQueue();
 
-        byte get_used_size() const;
+        unsigned short int get_used_size() const;
         TreeNode* get_vector() const;
         bool is_empty() const;
 
