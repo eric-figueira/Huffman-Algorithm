@@ -6,6 +6,7 @@
 #include "Encoder.h"
 #include "PriorityQueue.h"
 #include "LinkedList.h"
+#include "Types.h"
 
 
 void Encoder::encode(char* input_directory, char* output_directory)
@@ -38,12 +39,12 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     // quantos caracteres distintos existem no arquivo
-    unsigned char n = priorityQueue.get_used_size();
+    byte n = priorityQueue.get_used_size();
     output << n;
 
-    // caracteres e suas respectivas frequências
+    // caracteres e suas respectivas frequï¿½ncias
     TreeNode* vector = priorityQueue.get_vector();
-    for (unsigned char i = 0; i < n; i++)
+    for (byte i = 0; i < n; i++)
     {
         output << vector[i].get_data();
     }
@@ -51,7 +52,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
-    // bits da árvore (0 para esc, 1 para dir)
+    // bits da ï¿½rvore (0 para esc, 1 para dir)
     CharCode* codes = binaryTree.visit_and_generate_codes();
 
     Code code;
@@ -71,7 +72,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
         code.add_bits(cd, val.get_code_size());
     }
 
-    // quantos bits da árvore existem
+    // quantos bits da ï¿½rvore existem
     unsigned int u = code.get_number_of_used_bits();
     output.write(reinterpret_cast<const char*>(&u), sizeof(u));
 

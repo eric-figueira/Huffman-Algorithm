@@ -3,6 +3,7 @@
 #include "PriorityQueue.h"
 #include "ByteFrequency.h"
 #include "TreeNode.h"
+#include "Types.h"
 
 
 PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
@@ -10,13 +11,13 @@ PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode[SIZE]) {
         vector[i] = TreeNode();
 }
 
-unsigned char PriorityQueue::get_used_size() const { return used_size; }
+byte PriorityQueue::get_used_size() const { return used_size; }
 
 TreeNode* PriorityQueue::get_vector() const { return vector; }
 
 bool PriorityQueue::is_empty() const { return used_size == 0; }
 
-void PriorityQueue::add(unsigned char byte_code)
+void PriorityQueue::add(byte byte_code)
 {
     TreeNode node = vector[byte_code];
 

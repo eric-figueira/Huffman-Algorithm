@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
+
 #include "LinkedList.h"
 #include "ListNode.h"
+#include "Types.h"
 
 
 LinkedList::LinkedList() : begin(nullptr), end(nullptr), current(nullptr), previous(nullptr), size(0) {}
@@ -36,7 +38,7 @@ void LinkedList::set_current(ListNode* data) { current = data; }
 
 void LinkedList::set_previous(ListNode* data) { previous = data; }
 
-bool LinkedList::exists(unsigned char data)
+bool LinkedList::exists(byte data)
 {
     for (current = begin; current != nullptr; previous = current, current = current->get_next()) {
         if (current->get_data() == data) {
@@ -46,7 +48,7 @@ bool LinkedList::exists(unsigned char data)
     return false;
 }
 
-unsigned char LinkedList::get(unsigned int pos)
+byte LinkedList::get(unsigned int pos)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
@@ -54,7 +56,7 @@ unsigned char LinkedList::get(unsigned int pos)
     return current->get_data();
 }
 
-void LinkedList::set(unsigned int pos, unsigned char data)
+void LinkedList::set(unsigned int pos, byte data)
 {
     current = begin;
     for (unsigned int i = 0; i < pos; i++)
@@ -64,11 +66,11 @@ void LinkedList::set(unsigned int pos, unsigned char data)
     current->set_data(data);
 }
 
-void LinkedList::add(unsigned char data)
+void LinkedList::add(byte data)
 {
     if (exists(data))
     {
-        cerr << "[LinkedList]: unsigned char already exists";
+        cerr << "[LinkedList]: byte already exists";
         exit(-4);
     }
     else {
@@ -92,7 +94,7 @@ void LinkedList::add(unsigned char data)
     }
 }
 
-void LinkedList::push(unsigned char data)
+void LinkedList::push(byte data)
 {
     ListNode* p_new_data = new ListNode(data);
     if (begin == nullptr)
@@ -108,10 +110,10 @@ void LinkedList::push(unsigned char data)
     size += 1;
 }
 
-void LinkedList::remove(unsigned char data)
+void LinkedList::remove(byte data)
 {
     if (!exists(data)) {
-        cerr << "[LinkedList]: unsigned char does not exist";
+        cerr << "[LinkedList]: byte does not exist";
         exit(-4);
     }
     else {

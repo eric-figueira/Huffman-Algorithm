@@ -1,11 +1,13 @@
-#include "CharCode.h"
 #include <iostream>
+
+#include "CharCode.h"
+#include "Types.h"
 
 CharCode::CharCode() : character(0), code(nullptr), code_size(0) {}
 
-CharCode::CharCode(unsigned char character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
+CharCode::CharCode(byte character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 
-unsigned char CharCode::get_char() const { return character; }
+byte CharCode::get_char() const { return character; }
 
 bool* CharCode::get_code() const { return code; }
 

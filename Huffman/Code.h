@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "LinkedList.h"
+#include "Types.h"
 
 
 using namespace std;
@@ -27,7 +29,8 @@ class Code
 
         void add_bits(bool* bits, unsigned int num_bits);
 
-        void add_byte(unsigned char byte, unsigned int num_bits);
+        void add_byte(byte byte, unsigned int num_bits);
+        byte get_byte(unsigned int n);
 
         friend ofstream& operator<< (ofstream& os, const Code& code);
 };

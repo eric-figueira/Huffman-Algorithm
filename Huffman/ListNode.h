@@ -1,25 +1,26 @@
 #ifndef LISTNODE
 #define LISTNODE
 
+#include "Types.h"
 
 using namespace std;
 
 class ListNode
 {
     private:
-        unsigned char data;
+        byte data;
         ListNode* next;
 
     public:
-        unsigned char get_data() const;
-        void set_data(unsigned char data);
+        byte get_data() const;
+        void set_data(byte data);
         void set_next(ListNode* n);
 
         ListNode* get_next() const;
 
         ListNode();
-        ListNode(unsigned char data);
-        ListNode(unsigned char data, ListNode* next);
+        ListNode(byte data);
+        ListNode(byte data, ListNode* next);
 };
 
 #endif
