@@ -23,8 +23,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
     char c;
     while (input.get(c))
     {
-        priorityQueue.add((unsigned char)c);
-        input_sequence.push((unsigned char)c);
+        priorityQueue.add((byte) c);
+        input_sequence.push((byte) c);
     }
 
     input.close();
@@ -58,7 +58,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     Code code;
 
     for (ListNode* current = input_sequence.get_begin(); current != nullptr; current = current->get_next()) {
-        unsigned char c = current->get_data();
+        byte c = current->get_data();
         CharCode val;
         for (unsigned int j = 0; j < (unsigned int)n; j++)
         {
