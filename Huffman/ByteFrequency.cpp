@@ -10,7 +10,7 @@ ByteFrequency::ByteFrequency(int f, unsigned char b) : frequency(f), byte_code(b
 
 ByteFrequency::ByteFrequency() : frequency(0), byte_code(0) {}
 
-int ByteFrequency::get_frequency() const {
+short int ByteFrequency::get_frequency() const {
     return frequency;
 }
 
@@ -40,6 +40,8 @@ bool ByteFrequency::is_empty()
 
 ofstream& operator<<(ofstream& os, const ByteFrequency& bf)
 {
-    os << bf.get_byte_code() << bf.get_frequency();
+    os << bf.get_byte_code();
+    short int a = bf.get_frequency();
+    os.write(reinterpret_cast<const char*>(&a), sizeof(a));
     return os;
 }

@@ -18,6 +18,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
 
     PriorityQueue priorityQueue;
     // quantos caracteres distintos existem no arquivo
+    
     char n_distinct_chars;
     input.get(n_distinct_chars);
 
@@ -28,10 +29,10 @@ void Decoder::decode(char* input_directory, char* output_directory)
         input.get(c);
 
         // frequency
-        int frequency_value;
-        input >> frequency_value;
+        short int frequency_value;
+        input.read(reinterpret_cast<char*>(&frequency_value), sizeof(frequency_value));;
 
-        TreeNode node(ByteFrequency(frequency_value, (unsigned char)c));
+        TreeNode node(ByteFrequency(frequency_value, c));
 
         priorityQueue.add_by_priority(node);
     }

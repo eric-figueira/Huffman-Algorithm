@@ -15,18 +15,6 @@ LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end),
     }
 }
 
-//LinkedList::~LinkedList()
-//{
-//    ListNode* current_node = begin;
-//    ListNode* next_node = nullptr;
-//
-//    while (current_node != nullptr) {
-//        next_node = current_node->get_next();
-//        delete current_node;
-//        current_node = next_node;
-//    }
-//}
-
 ListNode* LinkedList::get_begin() const
 {
     return begin;

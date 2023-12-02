@@ -52,12 +52,7 @@ void Code::add_bits(bool* bits, unsigned int num_bits)
     for (unsigned int i = 0; i < num_bits; i++)
     {
         add_bit(bits[i]);
-        if (bits[i])
-            cout << "1";
-        else
-            cout << "0";
     }
-    cout << "\n";
 }
 
 void Code::add_byte(unsigned char byte, unsigned int num_bits)
