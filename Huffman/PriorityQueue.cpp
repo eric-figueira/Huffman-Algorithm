@@ -37,17 +37,9 @@ void PriorityQueue::add_by_priority(TreeNode node)
             i--;
         }
         
-        unsigned short int j;
-        if (i != 0) {
-            for (j = used_size; j > i + 1; j--)
-                vector[j] = vector[j - 1];
-            vector[i + 1] = node;
-        }
-        else {
-            for (j = used_size; j > i; j--)
-                vector[j] = vector[j - 1];
-            vector[i] = node;
-        }
+        for (unsigned short int j = used_size; j > i + 1; j--)
+            vector[j] = vector[j - 1];
+        vector[i + 1] = node;
     }
     else {
         vector[0] = node;
