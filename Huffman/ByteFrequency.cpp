@@ -3,7 +3,7 @@
 #include "ByteFrequency.h"
 #include "Types.h"
 
-ByteFrequency::ByteFrequency(int f, byte b) : frequency(f), byte_code(b) {
+ByteFrequency::ByteFrequency(unsigned short int f, byte b) : frequency(f), byte_code(b) {
     if (f < 0) {
         cerr << "[ByteFrequency]: Invalid frequency";
         exit(-1);
@@ -12,13 +12,13 @@ ByteFrequency::ByteFrequency(int f, byte b) : frequency(f), byte_code(b) {
 
 ByteFrequency::ByteFrequency() : frequency(0), byte_code(0) {}
 
-int ByteFrequency::get_frequency() const {
+unsigned short int ByteFrequency::get_frequency() const {
     return frequency;
 }
 
 byte ByteFrequency::get_byte_code() const { return byte_code; }
 
-void ByteFrequency::set_frequency(int f) {
+void ByteFrequency::set_frequency(unsigned short int f) {
     if (f < 0) {
         cerr << "[ByteFrequency]: Invalid frequency";
         exit(-1);
