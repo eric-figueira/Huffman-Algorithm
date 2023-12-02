@@ -1,12 +1,13 @@
 #include <iostream>
-#include "ListNode.h"
 
+#include "ListNode.h"
+#include "Types.h"
 
 ListNode::ListNode() : data(0), next(nullptr) {}
 
-ListNode::ListNode(unsigned char data) : data(data), next(nullptr) {}
+ListNode::ListNode(byte data) : data(data), next(nullptr) {}
 
-ListNode::ListNode(unsigned char data, ListNode* next) : data(data), next(next) {
+ListNode::ListNode(byte data, ListNode* next) : data(data), next(next) {
     if (next == nullptr)
     {
         cerr << "[ListNode]: Missing Paramerers";
@@ -14,9 +15,9 @@ ListNode::ListNode(unsigned char data, ListNode* next) : data(data), next(next) 
     }
 }
 
-unsigned char ListNode::get_data() const { return data; }
+byte ListNode::get_data() const { return data; }
 
-void ListNode::set_data(unsigned char new_data) { data = new_data; }
+void ListNode::set_data(byte new_data) { data = new_data; }
 
 void ListNode::set_next(ListNode* n)  { next = n; }
 

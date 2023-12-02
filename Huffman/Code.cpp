@@ -1,4 +1,5 @@
 #include "Code.h"
+#include "Types.h"
 
 void Code::set_bit(unsigned short int n)
 {
@@ -61,10 +62,15 @@ void Code::add_bits(bool* bits, unsigned int num_bits)
     }
 }
 
-void Code::add_byte(unsigned char byte, unsigned int num_bits)
+void Code::add_byte(byte byte, unsigned int num_bits)
 {
     bytes.push(byte);
     number_of_used_bits += num_bits;
+}
+
+byte Code::get_byte(unsigned int n)
+{
+    return bytes.get(n);
 }
 
 ofstream& operator<<(ofstream& os, const Code& code)

@@ -1,20 +1,21 @@
 #ifndef CHARCODE
 #define CHARCODE
 
+#include "Types.h"
 
 using namespace std;
 
 class CharCode {
     private:
-        unsigned char character;
+        byte character;
         bool* code;
         unsigned int code_size;
 
     public:
         CharCode();
-        CharCode(unsigned char character, bool* code, unsigned int code_size);
+        CharCode(byte character, bool* code, unsigned int code_size);
 
-        unsigned char get_char() const;
+        byte get_char() const;
         bool* get_code() const;
         unsigned int get_code_size() const;
 

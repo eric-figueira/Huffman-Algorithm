@@ -5,6 +5,7 @@
 #include "Code.h"
 #include "Decoder.h"
 #include "PriorityQueue.h"
+#include "Types.h"
 
 
 void Decoder::decode(char* input_directory, char* output_directory)
@@ -23,7 +24,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     input.get(n_distinct_chars);
 
     // caracteres e suas respectivas frequências
-    for (unsigned char i = 0; i < (unsigned char)n_distinct_chars; i++) {
+    for (byte i = 0; i < (byte)n_distinct_chars; i++) {
         // char
         char c;
         input.get(c);

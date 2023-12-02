@@ -2,6 +2,7 @@
 #define LINKEDLIST
 
 #include "ListNode.h"
+#include "Types.h"
 
 
 using namespace std;
@@ -32,12 +33,12 @@ class LinkedList
         void set_current(ListNode* data);
         void set_previous(ListNode* data);
 
-        bool exists(unsigned char data);
-        unsigned char get(unsigned int pos);
-        void set(unsigned int pos, unsigned char data);
-        void add(unsigned char data);
-        void push(unsigned char data);
-        void remove(unsigned char data);
+        bool exists(byte data);
+        byte get(unsigned int pos);
+        void set(unsigned int pos, byte data);
+        void add(byte data);
+        void push(byte data);
+        void remove(byte data);
 
         friend ofstream& operator<< (ofstream& os, const LinkedList& list);
 };
