@@ -34,7 +34,7 @@ bool ByteFrequency::is_empty() { return frequency == 0 && byte_code == 0; }
 ofstream& operator<<(ofstream& os, const ByteFrequency& bf)
 {
     os << bf.get_byte_code();
-    short int f = bf.get_frequency();
+    unsigned short int f = bf.get_frequency();
     os.write(reinterpret_cast<const char*>(&f), sizeof(f));
     return os;
 }

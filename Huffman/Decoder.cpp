@@ -31,8 +31,9 @@ void Decoder::decode(char* input_directory, char* output_directory)
         input.get(c);
 
         // frequency
-        short int frequency_value;
+        unsigned short int frequency_value;
         input.read(reinterpret_cast<char*>(&frequency_value), sizeof(frequency_value));
+        //input >> frequency_value;
 
         TreeNode node(ByteFrequency(frequency_value, c));
 
