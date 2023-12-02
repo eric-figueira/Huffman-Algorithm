@@ -22,8 +22,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
     char c;
     while (input.get(c))
     {
-        priorityQueue.add((unsigned int)c);
-        input_sequence.push((unsigned int)c);
+        priorityQueue.add((unsigned char)c);
+        input_sequence.push((unsigned char)c);
     }
 
     input.close();
@@ -48,8 +48,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
         output << vector[i].get_data();
     }
 
-    output << "_"; // separação entre última frequencia e numero de nos
-
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
@@ -58,8 +56,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     Code code;
 
-    for (unsigned int i = 0; i < input_sequence.get_size(); i++) {
-        unsigned char c = input_sequence.get(i);
+    for (ListNode* current = input_sequence.get_begin(); current != nullptr; current = current->get_next()) {
+        unsigned char c = current->get_data();
         CharCode val;
         for (unsigned int j = 0; j < (unsigned int)n; j++)
         {
@@ -74,7 +72,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     // quantos bits da árvore existem
-    output << (int)code.get_number_of_used_bits();
+    unsigned int u = code.get_number_of_used_bits();
+    output.write(reinterpret_cast<const char*>(&u), sizeof(u));
 
     output << code;
 

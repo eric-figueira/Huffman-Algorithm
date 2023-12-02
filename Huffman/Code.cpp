@@ -1,17 +1,19 @@
 #include "Code.h"
 
-void Code::set_bit(unsigned int pos, unsigned short int n)
+void Code::set_bit(unsigned short int n)
 {
     if (n == 0)
         bytes.push(unsigned char(0));
-    bytes.set(pos, bytes.get(pos) | (unsigned char(1) << (7 - n)));
+    ListNode* end = bytes.get_end();
+    end->set_data(end->get_data() | (unsigned char(1) << (7 - n)));
 }
 
-void Code::clear_bit(unsigned int pos, unsigned short int n)
+void Code::clear_bit(unsigned short int n)
 {
     if (n == 0)
         bytes.push(unsigned char(0));
-    bytes.set(pos, bytes.get(pos) & ~(unsigned char(1) << (7 - n)));
+    ListNode* end = bytes.get_end();
+    end->set_data(end->get_data() & ~(unsigned char(1) << (7 - n)));
 }
 
 Code::Code() : bytes(LinkedList()), number_of_used_bits(0) {};
@@ -28,23 +30,27 @@ unsigned int Code::get_number_of_used_bits() const
 
 void Code::add_bit(bool bit)
 {
-    unsigned int pos = (unsigned int)(number_of_used_bits / 8);
     unsigned int mod = number_of_used_bits % 8;
 
     if (bit)
-        set_bit(pos, mod);
+        set_bit(mod);
     else
-        clear_bit(pos, mod);
+        clear_bit(mod);
 
     number_of_used_bits++;
 }
 
 bool Code::get_bit(unsigned int n)
 {
-    unsigned int pos = (unsigned int)(n / 8);
+    ListNode* current = bytes.get_current();
     unsigned int mod = n % 8;
-
-    return bytes.get(pos) & (unsigned char(1) << (7 - mod));
+    if (current == nullptr)
+        current = bytes.get_begin();
+    else if (mod == 0)
+        current = current->get_next();
+    bytes.set_current(current);
+    bool ret = current->get_data() & (unsigned char(1) << (7 - mod));
+    return ret;
 }
 
 void Code::add_bits(bool* bits, unsigned int num_bits)
@@ -59,11 +65,6 @@ void Code::add_byte(unsigned char byte, unsigned int num_bits)
 {
     bytes.push(byte);
     number_of_used_bits += num_bits;
-}
-
-unsigned char Code::get_byte(unsigned int n)
-{
-    return bytes.get(n);
 }
 
 ofstream& operator<<(ofstream& os, const Code& code)
