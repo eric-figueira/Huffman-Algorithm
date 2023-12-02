@@ -22,7 +22,8 @@ void PriorityQueue::add(unsigned char byte_code)
 
     if (node.is_empty()) {
         vector[byte_code] = TreeNode(ByteFrequency(1, byte_code));
-        used_size++;
+        if (used_size < unsigned char(255))
+            used_size++;
     }
     else
         vector[byte_code].set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
@@ -32,19 +33,29 @@ void PriorityQueue::add_by_priority(TreeNode node)
 {
     if (used_size != 0) {
         unsigned char i = used_size - 1;
-        while (node.get_data().get_frequency() < vector[i].get_data().get_frequency())
+        while (i > 0 && node.get_data().get_frequency() < vector[i].get_data().get_frequency()) {
             i--;
-
+        }
+        
         unsigned char j;
-        for (j = used_size; j > i+1; j--)
-            vector[j] = vector[j - 1];
-
-        vector[i+1] = node;
+        if (i != 0) {
+            for (j = used_size; j > i + 1; j--)
+                vector[j] = vector[j - 1];
+            if (used_size < unsigned int(254))
+                vector[i + 1] = node;
+        }
+        else {
+            for (j = used_size; j > i; j--)
+                vector[j] = vector[j - 1];
+            if (used_size < unsigned int(254))
+                vector[i] = node;
+        }
     }
     else {
         vector[0] = node;
     }
-    used_size++;
+    if (used_size < unsigned int(255))
+        used_size++;
 }
 
 TreeNode PriorityQueue::dequeue()

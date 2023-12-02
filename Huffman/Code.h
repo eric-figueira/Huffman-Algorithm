@@ -13,8 +13,8 @@ class Code
     private:
         LinkedList bytes;
         unsigned int number_of_used_bits;
-        void set_bit(unsigned int pos, unsigned short int n);
-        void clear_bit(unsigned int pos, unsigned short int n);
+        void set_bit(unsigned short int n);
+        void clear_bit(unsigned short int n);
 
     public:
         Code();
@@ -28,7 +28,6 @@ class Code
         void add_bits(bool* bits, unsigned int num_bits);
 
         void add_byte(unsigned char byte, unsigned int num_bits);
-        unsigned char get_byte(unsigned int n);
 
         friend ofstream& operator<< (ofstream& os, const Code& code);
 };

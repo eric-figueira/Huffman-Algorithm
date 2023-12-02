@@ -37,14 +37,12 @@ void Decoder::decode(char* input_directory, char* output_directory)
         priorityQueue.add_by_priority(node);
     }
 
-    input.get(); // Ler a separação entre últma frequencia e numero de nos
-
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
 
     // quantos bits da árvore existem
-    int n_bits_from_tree;
-    input >> n_bits_from_tree;
+    unsigned int n_bits_from_tree;
+    input.read(reinterpret_cast<char*>(&n_bits_from_tree), sizeof(n_bits_from_tree));;
 
     // bits da árvore (0 para esc, 1 para dir)
     Code code = Code();
