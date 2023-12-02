@@ -10,11 +10,11 @@ using namespace std;
 class ByteFrequency
 {
     private:
-        int  frequency;
+        short int  frequency;
         unsigned char byte_code;
 
     public:
-        int  get_frequency() const;
+        short int  get_frequency() const;
         unsigned char get_byte_code() const;
 
         void set_frequency(int f);

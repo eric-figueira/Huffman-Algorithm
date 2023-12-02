@@ -16,8 +16,6 @@ class BinaryTree
         TreeNode* root, *current, *previous;
         unsigned int n_nodes;
 
-        int count_nodes(TreeNode* node);
-
     public:
         BinaryTree();
         ~BinaryTree();

@@ -22,8 +22,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
     char c;
     while (input.get(c))
     {
-        priorityQueue.add(c);
-        input_sequence.push(c);
+        priorityQueue.add((unsigned int)c);
+        input_sequence.push((unsigned int)c);
     }
 
     input.close();
@@ -46,12 +46,9 @@ void Encoder::encode(char* input_directory, char* output_directory)
     for (unsigned char i = 0; i < n; i++)
     {
         output << vector[i].get_data();
-        /*cout << (int)i << " ";
-        cout << vector[i].get_data().get_byte_code() << " ";
-        cout << vector[i].get_data().get_frequency() << "\n";*/
     }
 
-    output << "_"; // separação entre últma frequencia e numero de nos
+    output << "_"; // separação entre última frequencia e numero de nos
 
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(priorityQueue);
@@ -73,7 +70,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
             }
         }
         bool* cd = val.get_code();
-        cout << val.get_char() << " ";
         code.add_bits(cd, val.get_code_size());
     }
 

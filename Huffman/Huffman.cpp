@@ -38,7 +38,7 @@ void handle_compress_file()
 
 void handle_unzip_file()
 {
-    cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.txt.me\n";
+    cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.me\n";
     cout << "[RUN]: File Path: ";
     char path_to_file[150];
     cin >> path_to_file;

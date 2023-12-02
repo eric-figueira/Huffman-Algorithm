@@ -33,6 +33,8 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
 
         // Enfileirar o novo nó (de acordo com a prioridade)
         queue.add_by_priority(newNode);
+
+        n_nodes += 1;
     }
 
     // Quando a fila só tiver um nó
@@ -42,19 +44,9 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
 
         // Coloque esse nó como raiz da arvore
         root = new TreeNode(lastNode);
-        n_nodes = count_nodes(root);
+
+        n_nodes += 1;
     }
-}
-
-int BinaryTree::count_nodes(TreeNode* node) {
-    if (node == nullptr) {
-        return 0;
-    }
-
-    int leftCount = count_nodes(node->get_left());
-    int rightCount = count_nodes(node->get_right());
-
-    return 1 + leftCount + rightCount;
 }
 
 unsigned int BinaryTree::get_n_nodes() const { return n_nodes; }
@@ -77,18 +69,12 @@ int index = 0;
 void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size)
 {
     if (node != nullptr) {
-        //cout << node->get_data().get_frequency() << " ";
         if (node->get_left() == nullptr && node->get_right() == nullptr) {
             // Um código está pronto quando uma folha for atingida
             // Adicionar a relação char código no vetor codes e repetir o processo até que todas as folhas tenham sido percorridas
             codes[index] = CharCode(node->get_data().get_byte_code(), currentCode, size);
             index++;
         }
-        else {
-            //cout << node->get_left()->get_data().get_frequency() << " ";
-            //cout << node->get_right()->get_data().get_frequency();
-        }
-        //cout << "\n";
 
         // Percorrer a árvore para obter os códigos 
         // Acrescentar 0 (false) ao código, toda vez que for para a esquerda, ou 1 (true), toda vez que for para a direita

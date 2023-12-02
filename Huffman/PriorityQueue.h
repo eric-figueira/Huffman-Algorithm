@@ -16,7 +16,6 @@ class PriorityQueue
 
     public:
         PriorityQueue();
-        //~PriorityQueue();
 
         unsigned char get_used_size() const;
         TreeNode* get_vector() const;

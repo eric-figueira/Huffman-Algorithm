@@ -19,7 +19,6 @@ class LinkedList
     public:
         LinkedList();
         LinkedList(ListNode* begin, ListNode* end);
-        //~LinkedList();
 
         ListNode* get_begin() const;
         ListNode* get_end() const;
