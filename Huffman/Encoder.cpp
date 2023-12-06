@@ -27,8 +27,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
         input_sequence.push((byte) c);
     }
 
-    input.close();
-
     priorityQueue.order_vector();
 
     ofstream output(output_directory, ios::binary);
@@ -91,6 +89,4 @@ void Encoder::encode(char* input_directory, char* output_directory)
     output.write(reinterpret_cast<const char*>(&u), sizeof(u));
 
     output << code;
-
-    output.close();
 }

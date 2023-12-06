@@ -69,6 +69,4 @@ void Decoder::decode(char* input_directory, char* output_directory)
     LinkedList chars = binaryTree.generate_bytes_from_code(code);
 
     output << chars;
-
-    output.close();
 }
