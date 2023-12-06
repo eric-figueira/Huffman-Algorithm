@@ -21,8 +21,10 @@ void Encoder::encode(char* input_directory, char* output_directory)
     PriorityQueue priorityQueue;
     LinkedList input_sequence;
     char c;
-    while (input.get(c))
+
+    while (!input.eof())
     {
+        input.get(c);
         priorityQueue.add((byte) c);
         input_sequence.push((byte) c);
     }
