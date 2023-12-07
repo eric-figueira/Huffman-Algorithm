@@ -39,7 +39,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     // quantos caracteres distintos existem no arquivo
-    unsigned short int n = priorityQueue.get_used_size();
+    unsigned short n = priorityQueue.get_used_size();
     output << (byte)(n - 1);
     // output.write(reinterpret_cast<const char*>(&n), sizeof(n));
 
