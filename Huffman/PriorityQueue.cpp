@@ -26,7 +26,7 @@ void PriorityQueue::add(byte byte_code)
         used_size++;
     }
     else
-        vector[byte_code].set_data(ByteFrequency(node.get_data().get_frequency() + 1, node.get_data().get_byte_code()));
+        vector[byte_code].set_data(ByteFrequency(node.get_data().get_frequency() + 1, byte_code));
 }
 
 void PriorityQueue::add_by_priority(TreeNode node)
