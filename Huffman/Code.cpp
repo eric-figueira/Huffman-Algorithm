@@ -56,9 +56,9 @@ bool Code::get_bit(unsigned int n)
 
 void Code::add_bits(bool* bits, unsigned int num_bits)
 {
-    for (unsigned int i = 0; i < num_bits; i++)
+    for (unsigned int i = num_bits; i > 0; i--)
     {
-        add_bit(bits[i]);
+        add_bit(bits[i - 1]);
     }
 }
 
