@@ -50,24 +50,24 @@ void Encoder::encode(char* input_directory, char* output_directory)
         output << vector[i].get_data();
     }
 
-    BinaryTree binaryTree;
-    binaryTree.create_tree_from_priority_queue(priorityQueue);
-
     // bits da �rvore (0 para esc, 1 para dir)
-    CharCode* codes = binaryTree.visit_and_generate_codes();
+    CharCode* codes = new CharCode[n];
 
-    /*for (int i = 0; i < n; i++) 
-    {
-        cout << codes[i].get_char() << " ";
-        for (int j = 0; j < codes[i].get_code_size(); j++)
-        {
-            if (codes[i].get_code()[j])
-                cout << "1";
-            else
-                cout << "0";
-        }
-        cout << "\n";
-    }*/
+    BinaryTree binaryTree;
+    binaryTree.create_tree_from_priority_queue(priorityQueue, codes);
+
+    //for (int i = 0; i < n; i++) 
+    //{
+    //    cout << codes[i].get_char() << " ";
+    //    for (int j = 0; j < codes[i].get_code_size(); j++)
+    //    {
+    //        if (codes[i].get_code()[j])
+    //            cout << "1";
+    //        else
+    //            cout << "0";
+    //    }
+    //    cout << "\n";
+    //}
 
     Code code;
 
