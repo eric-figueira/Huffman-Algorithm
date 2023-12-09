@@ -91,4 +91,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
     output.write(reinterpret_cast<const char*>(&u), sizeof(u));
 
     output << code;
+
+    delete[] codes;
 }

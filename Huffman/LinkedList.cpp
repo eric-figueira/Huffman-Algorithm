@@ -17,6 +17,14 @@ LinkedList::LinkedList(ListNode* begin, ListNode* end) : begin(begin), end(end),
     }
 }
 
+LinkedList::~LinkedList()
+{
+    delete begin;
+    delete end;
+    delete current;
+    delete previous;
+}
+
 ListNode* LinkedList::get_begin() const
 {
     return begin;

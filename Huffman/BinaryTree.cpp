@@ -35,6 +35,9 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
         queue.add_by_priority(newNode);
 
         n_nodes += 1;
+
+        delete p_left;
+        delete p_right;
     }
 
     // Quando a fila só tiver um nó
@@ -89,6 +92,8 @@ void BinaryTree::visit_and_generate_codes_helper(TreeNode* node, bool* currentCo
             new_current_code[i] = currentCode[i];
         new_current_code[size] = true;
         visit_and_generate_codes_helper(node->get_right(), new_current_code, size);
+
+        delete[] new_current_code;
     }
 }
 

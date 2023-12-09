@@ -21,6 +21,7 @@ class ListNode
         ListNode();
         ListNode(byte data);
         ListNode(byte data, ListNode* next);
+        ~ListNode();
 };
 
 #endif

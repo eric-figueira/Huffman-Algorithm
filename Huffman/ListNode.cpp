@@ -15,6 +15,11 @@ ListNode::ListNode(byte data, ListNode* next) : data(data), next(next) {
     }
 }
 
+ListNode::~ListNode()
+{
+    delete next;
+}
+
 byte ListNode::get_data() const { return data; }
 
 void ListNode::set_data(byte new_data) { data = new_data; }
