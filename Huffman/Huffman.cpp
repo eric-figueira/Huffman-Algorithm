@@ -56,38 +56,36 @@ void handle_unzip_file()
 int main()
 {
     welcome_message();
+   
+    cout << "\n------------------------------------------------------\n";
+    cout << "1 - COMPRESS a file.\n";
+    cout << "2 - UNZIP a compressed file.\n";
+    cout << "3 - CLOSE the program.\n";
+    cout << "------------------------------------------------------\n";
 
     unsigned char selected_option;
-    do {
-        cout << "\n------------------------------------------------------\n";
-        cout << "1 - COMPRESS a file.\n";
-        cout << "2 - UNZIP a compressed file.\n";
-        cout << "3 - CLOSE the program.\n";
-        cout << "------------------------------------------------------\n";
+    cout << "Option: ";
+    cin >> selected_option;
+    cout << "------------------------------------------------------\n";
 
-        cout << "Option: ";
-        cin >> selected_option;
-        cout << "------------------------------------------------------\n";
+    switch (selected_option)
+    {
+    case '1':
+        handle_compress_file();
+        break;
 
-        switch (selected_option)
-        {
-        case '1':
-            handle_compress_file();
-            break;
+    case '2':
+        handle_unzip_file();
+        break;
 
-        case '2':
-            handle_unzip_file();
-            break;
+    case '3':
+        cout << "[INFO]: Closing program...\n";
+        break;
 
-        case '3':
-            cout << "[INFO]: Closing program...\n";
-            break;
-
-        default:
-            cout << "[ERROR]: Sorry, that is not a valid option!\n";
-            break;
-        }
-    } while (selected_option != '3');
+    default:
+        cout << "[ERROR]: Sorry, that is not a valid option!\n";
+        break;
+    }
 
     return 0;
 }
