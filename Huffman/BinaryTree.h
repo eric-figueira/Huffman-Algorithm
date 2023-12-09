@@ -18,7 +18,7 @@ class BinaryTree
 
     public:
         BinaryTree();
-        ~BinaryTree();
+        //~BinaryTree();
 
         unsigned int get_n_nodes() const;
 
