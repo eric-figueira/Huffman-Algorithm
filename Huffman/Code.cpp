@@ -24,7 +24,7 @@ LinkedList Code::get_bytes() const
     return bytes;
 }
 
-unsigned int Code::get_number_of_used_bits() const
+unsigned long long Code::get_number_of_used_bits() const
 {
     return number_of_used_bits;
 }
@@ -41,10 +41,10 @@ void Code::add_bit(bool bit)
     number_of_used_bits++;
 }
 
-bool Code::get_bit(unsigned int n)
+bool Code::get_bit(unsigned long long n)
 {
     ListNode* current = bytes.get_current();
-    unsigned int mod = n % 8;
+    unsigned long long mod = n % 8;
     if (current == nullptr)
         current = bytes.get_begin();
     else if (mod == 0)
@@ -54,7 +54,7 @@ bool Code::get_bit(unsigned int n)
     return ret;
 }
 
-void Code::add_bits(bool* bits, unsigned int num_bits)
+void Code::add_bits(bool* bits, unsigned long long num_bits)
 {
     for (unsigned int i = num_bits; i > 0; i--)
     {
@@ -62,9 +62,9 @@ void Code::add_bits(bool* bits, unsigned int num_bits)
     }
 }
 
-void Code::add_byte(byte byte, unsigned int num_bits)
+void Code::add_byte(byte b, byte num_bits)
 {
-    bytes.push(byte);
+    bytes.push(b);
     number_of_used_bits += num_bits;
 }
 

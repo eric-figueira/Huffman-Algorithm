@@ -14,7 +14,7 @@ class Code
 {
     private:
         LinkedList bytes;
-        unsigned int number_of_used_bits;
+        unsigned long long number_of_used_bits;
         void set_bit(unsigned short int n);
         void clear_bit(unsigned short int n);
 
@@ -22,14 +22,14 @@ class Code
         Code();
 
         LinkedList get_bytes() const;
-        unsigned int get_number_of_used_bits() const;
+        unsigned long long get_number_of_used_bits() const;
 
         void add_bit(bool bit);
-        bool get_bit(unsigned int n);
+        bool get_bit(unsigned long long n);
 
-        void add_bits(bool* bits, unsigned int num_bits);
+        void add_bits(bool* bits, unsigned long long num_bits);
 
-        void add_byte(byte byte, unsigned int num_bits);
+        void add_byte(byte b, byte num_bits);
         byte get_byte(unsigned int n);
 
         friend ofstream& operator<< (ofstream& os, const Code& code);

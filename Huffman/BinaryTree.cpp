@@ -7,12 +7,12 @@
 
 BinaryTree::BinaryTree() : root(nullptr), current(nullptr), previous(nullptr), n_nodes(0) {}
 
-BinaryTree::~BinaryTree()
-{
-    delete root;
-    delete current;
-    delete previous;
-}
+//BinaryTree::~BinaryTree()
+//{
+//    delete root;
+//    delete current;
+//    delete previous;
+//}
 
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes) {
     unsigned short int index = 0;
@@ -154,7 +154,7 @@ LinkedList BinaryTree::generate_bytes_from_code(Code code)
     LinkedList list = LinkedList();
 
     current = root;
-    for (unsigned int i = 0; i < code.get_number_of_used_bits() + 1; i++)
+    for (unsigned long long i = 0; i < code.get_number_of_used_bits(); i++)
     {
         if (current->get_right() == nullptr && current->get_left() == nullptr)
         {
