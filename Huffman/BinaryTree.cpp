@@ -14,7 +14,9 @@ BinaryTree::~BinaryTree()
     delete previous;
 }
 
-void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
+void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes) {
+    unsigned short int index = 0;
+
     // enquanto a fila tiver dois ou mais nodos:
     while (queue.get_used_size() >= 2) {
         // Desenfileirar um nó para se tornar a subárvore esquerda
@@ -24,12 +26,67 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue) {
 
         // Criar um novo nó, com as respectivas subárvores
         // Tornar a frequência do novo nó igual a soma das frequencias dos filhos esquerdo e direito
-
+        
         TreeNode* p_left = new TreeNode(l_node);
         TreeNode* p_right = new TreeNode(r_node);
 
         TreeNode newNode = TreeNode(ByteFrequency(l_node.get_data().get_frequency() + r_node.get_data().get_frequency(), 0),
             p_left, p_right);
+
+        // criando os códigos
+
+        // se o nó é uma folha, então criar um novo código no vetor de códigos e adicionar o valor correspondente à posição do nó
+        if (l_node.get_left() == nullptr && l_node.get_right() == nullptr)
+        {
+            codes[index] = CharCode(l_node.get_data().get_byte_code(), new bool[8], 0);
+            codes[index].push_to_code(false);
+            index++;
+            newNode.append_under(l_node.get_data().get_byte_code());
+        }
+
+        else {
+            // se não, percorrer os códigos dos nós que estão abaixo do nó atual, e, para cada um deles, encontrar a posição do 
+            // nó com aquele código no vetor de códigos e adicionar o valor correspondente à sua posição no mesmo
+            byte* under = l_node.get_under();
+            unsigned short int size = l_node.get_size();
+            unsigned short int i;
+            for (i = 0; i < size; i++) {
+                byte c = under[i];
+                unsigned short int j;
+                for (j = 0; j < index; j++)
+                {
+                    if (codes[j].get_char() == c)
+                        break;
+                }
+                codes[j].push_to_code(false);
+            }
+            newNode.append_under(l_node.get_under(), l_node.get_size());
+        }
+
+        if (r_node.get_left() == nullptr && r_node.get_right() == nullptr)
+        {
+            codes[index] = CharCode(r_node.get_data().get_byte_code(), new bool[8], 0);
+            codes[index].push_to_code(true);
+            index++;
+            newNode.append_under(r_node.get_data().get_byte_code());
+        }
+
+        else {
+            byte* under = r_node.get_under();
+            unsigned short int size = r_node.get_size();
+            unsigned short int i;
+            for (i = 0; i < size; i++) {
+                byte c = under[i];
+                unsigned short int j;
+                for (j = 0; j < index; j++)
+                {
+                    if (codes[j].get_char() == c)
+                        break;
+                }
+                codes[j].push_to_code(true);
+            }
+            newNode.append_under(r_node.get_under(), r_node.get_size());
+        }
 
         // Enfileirar o novo nó (de acordo com a prioridade)
         queue.add_by_priority(newNode);
