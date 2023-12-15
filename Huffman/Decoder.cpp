@@ -46,18 +46,18 @@ void Decoder::decode(char* input_directory, char* output_directory)
     binaryTree.create_tree_from_priority_queue(priorityQueue, codes);
 
     // quantos bits da �rvore existem
-    unsigned int n_bits_from_tree;
+    unsigned long long n_bits_from_tree;
     input.read(reinterpret_cast<char*>(&n_bits_from_tree), sizeof(n_bits_from_tree));;
 
     // bits da �rvore (0 para esc, 1 para dir)
     Code code = Code();
-    for (unsigned int i = 0; i < (unsigned int)(n_bits_from_tree / 8); i++)
+    for (unsigned long long i = 0; i < (unsigned long long)(n_bits_from_tree / 8); i++)
     {
         code.add_byte(input.get(), 8);
     }
 
     if (n_bits_from_tree % 8 != 0)
-        code.add_byte(input.get(), (unsigned int)(n_bits_from_tree % 8));
+        code.add_byte(input.get(), (unsigned long long)(n_bits_from_tree % 8));
 
     // salvando o arquivo descompactado
     ofstream output(output_directory, ios::binary);
