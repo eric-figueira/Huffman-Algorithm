@@ -75,7 +75,7 @@ byte Code::get_byte(unsigned int n)
 
 ofstream& operator<<(ofstream& os, const Code& code)
 {
-    LinkedList list = code.get_bytes();
+    LinkedList list(code.get_bytes());
     os << list;
     return os;
 }

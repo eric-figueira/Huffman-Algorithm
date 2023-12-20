@@ -15,10 +15,11 @@ class BinaryTree
     private:
         TreeNode* root, *current, *previous;
         unsigned int n_nodes;
+        void destructor(TreeNode* node);
 
     public:
         BinaryTree();
-        //~BinaryTree();
+        ~BinaryTree();
 
         unsigned int get_n_nodes() const;
 

@@ -41,7 +41,6 @@ void Encoder::encode(char* input_directory, char* output_directory)
     // quantos caracteres distintos existem no arquivo
     unsigned short n = priorityQueue.get_used_size();
     output << (byte)(n - 1);
-    // output.write(reinterpret_cast<const char*>(&n), sizeof(n));
 
     // caracteres e suas respectivas frequ�ncias
     TreeNode* vector = priorityQueue.get_vector();
@@ -71,7 +70,9 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     Code code;
 
-    for (ListNode* current = input_sequence.get_begin(); current != nullptr; current = current->get_next()) {
+    ListNode* current = new ListNode();
+
+    for (*current = *input_sequence.get_begin(); current != nullptr; current = current->get_next()) {
         byte c = current->get_data();
         CharCode val;
         for (unsigned short int j = 0; j < n; j++)
@@ -86,6 +87,8 @@ void Encoder::encode(char* input_directory, char* output_directory)
         code.add_bits(cd, val.get_code_size());
     }
 
+    delete current;
+    
     // quantos bits da �rvore existem
     unsigned long long u = code.get_number_of_used_bits();
     output.write(reinterpret_cast<const char*>(&u), sizeof(u));

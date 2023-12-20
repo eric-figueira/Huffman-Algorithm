@@ -7,12 +7,20 @@
 
 BinaryTree::BinaryTree() : root(nullptr), current(nullptr), previous(nullptr), n_nodes(0) {}
 
-//BinaryTree::~BinaryTree()
-//{
-//    delete root;
-//    delete current;
-//    delete previous;
-//}
+BinaryTree::~BinaryTree()
+{
+    destructor(root);
+}
+
+void BinaryTree::destructor(TreeNode* node)
+{
+    if (node != nullptr) {
+        destructor(node->get_left());
+        destructor(node->get_right());
+
+        delete node;
+    }
+}
 
 void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes) {
     unsigned short int index = 0;
@@ -100,7 +108,8 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* 
         TreeNode lastNode = queue.dequeue();
 
         // Coloque esse nó como raiz da arvore
-        root = new TreeNode(lastNode);
+        TreeNode* node = new TreeNode(lastNode);
+        root = node;
 
         n_nodes += 1;
     }
