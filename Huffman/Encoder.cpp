@@ -87,7 +87,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     // quantos bits da �rvore existem
-    unsigned long long u = code.get_number_of_used_bits();
+    unsigned int u = code.get_number_of_used_bits();
     output.write(reinterpret_cast<const char*>(&u), sizeof(u));
 
     output << code;
