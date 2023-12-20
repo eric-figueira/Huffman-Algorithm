@@ -35,7 +35,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
         input.read(reinterpret_cast<char*>(&frequency_value), sizeof(frequency_value));
         //input >> frequency_value;
 
-        TreeNode node(ByteFrequency(frequency_value, c));
+        TreeNode* node = new TreeNode(ByteFrequency(frequency_value, c));
 
         priorityQueue.add_by_priority(node);
     }

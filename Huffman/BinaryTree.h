@@ -15,7 +15,10 @@ class BinaryTree
     private:
         TreeNode* root, *current, *previous;
         unsigned int n_nodes;
+
         void destructor(TreeNode* node);
+        void create_tree_helper(TreeNode* node, CharCode* codes, TreeNode* newNode, unsigned short int index);
+        //void visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size);
 
     public:
         BinaryTree();
@@ -25,8 +28,8 @@ class BinaryTree
 
         void create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes);
 
-        CharCode* visit_and_generate_codes();
-        void visit_and_generate_codes_helper(TreeNode* node, bool* currentCode, unsigned int size);
+        //CharCode* visit_and_generate_codes();
+
         LinkedList generate_bytes_from_code(Code code);
 };
 

@@ -43,10 +43,10 @@ void Encoder::encode(char* input_directory, char* output_directory)
     output << (byte)(n - 1);
 
     // caracteres e suas respectivas frequ�ncias
-    TreeNode* vector = priorityQueue.get_vector();
+    TreeNode** vector = priorityQueue.get_vector();
     for (unsigned short int i = 0; i < n; i++)
     {
-        output << vector[i].get_data();
+        output << (*(vector[i])).get_data();
     }
 
     // bits da �rvore (0 para esc, 1 para dir)
@@ -88,6 +88,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     }
 
     delete current;
+    delete[] codes;
     
     // quantos bits da �rvore existem
     unsigned long long u = code.get_number_of_used_bits();

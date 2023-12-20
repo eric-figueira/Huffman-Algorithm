@@ -77,16 +77,6 @@ void LinkedList::set_current(ListNode* data) { current = data; }
 
 void LinkedList::set_previous(ListNode* data) { previous = data; }
 
-bool LinkedList::exists(byte data)
-{
-    for (current = begin; current != nullptr; previous = current, current = current->get_next()) {
-        if (current->get_data() == data) {
-            return true;
-        }
-    }
-    return false;
-}
-
 byte LinkedList::get(unsigned int pos)
 {
     current = begin;
@@ -105,34 +95,6 @@ void LinkedList::set(unsigned int pos, byte data)
     current->set_data(data);
 }
 
-void LinkedList::add(byte data)
-{
-    if (exists(data))
-    {
-        cerr << "[LinkedList]: byte already exists";
-        exit(-4);
-    }
-    else {
-        ListNode* p_new_data = new ListNode(data);
-        if (begin == nullptr)
-        {
-            begin = p_new_data;
-            end = begin;
-        }
-        else {
-            if (previous == nullptr)
-                begin = p_new_data;
-            else
-                previous->set_next(p_new_data);
-            p_new_data->set_next(current);
-            if (current == nullptr)
-                end = p_new_data;
-        }
-
-        size += 1;
-    }
-}
-
 void LinkedList::push(byte data)
 {
     ListNode* p_new_data = new ListNode(data);
@@ -147,25 +109,6 @@ void LinkedList::push(byte data)
     }
 
     size += 1;
-}
-
-void LinkedList::remove(byte data)
-{
-    if (!exists(data)) {
-        cerr << "[LinkedList]: byte does not exist";
-        exit(-4);
-    }
-    else {
-        if (previous == nullptr)
-            begin = current->get_next();
-        else
-            previous->set_next(current->get_next());
-        if (current == end)
-            end = previous;
-        current->set_next(nullptr);
-
-        size -= 1;
-    }
 }
 
 ofstream& operator<<(ofstream& os, const LinkedList& list)

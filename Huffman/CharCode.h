@@ -14,6 +14,9 @@ class CharCode {
     public:
         CharCode();
         CharCode(byte character, bool* code, unsigned int code_size);
+        ~CharCode();
+
+        CharCode& operator=(const CharCode& other);
 
         byte get_char() const;
         bool* get_code() const;

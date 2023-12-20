@@ -35,10 +35,8 @@ class LinkedList
         void set_current(ListNode* data);
         void set_previous(ListNode* data);
 
-        bool exists(byte data);
         byte get(unsigned int pos);
         void set(unsigned int pos, byte data);
-        void add(byte data);
         void push(byte data);
         void remove(byte data);
 
