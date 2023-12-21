@@ -22,14 +22,14 @@ void BinaryTree::destructor(TreeNode* node)
     }
 }
 
-void BinaryTree::create_tree_helper(TreeNode* node, CharCode* codes, TreeNode* newNode, unsigned short int index)
+void BinaryTree::create_codes(TreeNode* node, CharCode* codes, TreeNode* newNode, unsigned short int *index, bool val)
 {
     // se o nó é uma folha, então criar um novo código no vetor de códigos e adicionar o valor correspondente à posição do nó
     if ((*node).get_left() == nullptr && (*node).get_right() == nullptr)
     {
-        codes[index] = CharCode((*node).get_data().get_byte_code(), new bool[8], 0);
-        codes[index].push_to_code(false);
-        index++;
+        codes[*index] = CharCode((*node).get_data().get_byte_code(), new bool[8], 0);
+        codes[*index].push_to_code(val);
+        (*index)++;
         (*newNode).append_under((*node).get_data().get_byte_code());
     }
 
@@ -42,12 +42,12 @@ void BinaryTree::create_tree_helper(TreeNode* node, CharCode* codes, TreeNode* n
         for (i = 0; i < size; i++) {
             byte c = under[i];
             unsigned short int j;
-            for (j = 0; j < index; j++)
+            for (j = 0; j < *index; j++)
             {
                 if (codes[j].get_char() == c)
                     break;
             }
-            codes[j].push_to_code(false);
+            codes[j].push_to_code(val);
         }
         (*newNode).append_under((*node).get_under(), (*node).get_size());
     }
@@ -59,20 +59,23 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* 
     // enquanto a fila tiver dois ou mais nodos:
     while (queue.get_used_size() >= 2) {
         // Desenfileirar um nó para se tornar a subárvore esquerda
-        TreeNode l_node = queue.dequeue();
+        TreeNode* left = queue.dequeue();
         // Desenfileirar um nó para se tornar a subárvore direita
-        TreeNode r_node = queue.dequeue();
+        TreeNode* right = queue.dequeue();
 
         // Criar um novo nó, com as respectivas subárvores
         // Tornar a frequência do novo nó igual a soma das frequencias dos filhos esquerdo e direito
         
-        TreeNode* newNode = new TreeNode(ByteFrequency(l_node.get_data().get_frequency() + r_node.get_data().get_frequency(), 0),
-            &l_node, &r_node);
+        TreeNode* newNode = new TreeNode(ByteFrequency((*left).get_data().get_frequency() + (*right).get_data().get_frequency(), 0),
+            left, right);
 
         // criando os códigos
 
-        create_tree_helper(&l_node, codes, newNode, index);
-        create_tree_helper(&r_node, codes, newNode, index);
+        if (codes != nullptr)
+        {
+            create_codes(left, codes, newNode, &index, false);
+            create_codes(right, codes, newNode, &index, true);
+        }
 
         // Enfileirar o novo nó (de acordo com a prioridade)
         queue.add_by_priority(newNode);
@@ -83,10 +86,10 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* 
     // Quando a fila só tiver um nó
     if (queue.get_used_size() == 1) {
         // Desenfileire esse nó
-        TreeNode lastNode = queue.dequeue();
+        TreeNode* lastNode = queue.dequeue();
 
         // Coloque esse nó como raiz da arvore
-        root = &lastNode;
+        root = lastNode;
 
         n_nodes += 1;
     }
@@ -96,7 +99,7 @@ unsigned int BinaryTree::get_n_nodes() const { return n_nodes; }
 
 LinkedList BinaryTree::generate_bytes_from_code(Code code)
 {
-    LinkedList list = LinkedList();
+    LinkedList list;
 
     current = root;
     for (unsigned long long i = 0; i < code.get_number_of_used_bits(); i++)

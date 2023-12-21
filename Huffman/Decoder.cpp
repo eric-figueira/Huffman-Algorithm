@@ -40,10 +40,8 @@ void Decoder::decode(char* input_directory, char* output_directory)
         priorityQueue.add_by_priority(node);
     }
 
-    CharCode* codes = new CharCode[n_distinct_chars];
-
     BinaryTree binaryTree;
-    binaryTree.create_tree_from_priority_queue(priorityQueue, codes);
+    binaryTree.create_tree_from_priority_queue(priorityQueue);
 
     // quantos bits da �rvore existem
     unsigned long long n_bits_from_tree;

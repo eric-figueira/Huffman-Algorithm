@@ -38,7 +38,6 @@ class LinkedList
         byte get(unsigned int pos);
         void set(unsigned int pos, byte data);
         void push(byte data);
-        void remove(byte data);
 
         friend ofstream& operator<< (ofstream& os, const LinkedList& list);
 };

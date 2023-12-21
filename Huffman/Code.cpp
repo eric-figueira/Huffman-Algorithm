@@ -17,7 +17,7 @@ void Code::clear_bit(unsigned short int n)
     end->set_data(end->get_data() & ~(unsigned char(1) << (7 - n)));
 }
 
-Code::Code() : bytes(LinkedList()), number_of_used_bits(0) {};
+Code::Code() : bytes(), number_of_used_bits(0) {};
 
 LinkedList Code::get_bytes() const
 {

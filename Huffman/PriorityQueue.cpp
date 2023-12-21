@@ -8,7 +8,14 @@
 
 PriorityQueue::PriorityQueue() : used_size(0), vector(new TreeNode*[SIZE]) {
     for (unsigned short int i = 0; i < SIZE; i++)
-        vector[i] = new TreeNode();
+        vector[i] = nullptr;
+}
+
+PriorityQueue::~PriorityQueue()
+{
+    for (unsigned short int i = 0; i < SIZE; i++)
+        delete vector[i];
+    delete[] vector;
 }
 
 unsigned short int PriorityQueue::get_used_size() const { return used_size; }
@@ -47,15 +54,18 @@ void PriorityQueue::add_by_priority(TreeNode* node)
     used_size++;
 }
 
-TreeNode PriorityQueue::dequeue()
+TreeNode* PriorityQueue::dequeue()
 {
     if (!is_empty()) {
-        TreeNode info = *(vector[0]);
+        TreeNode* info = new TreeNode(*(vector[0]));
 
+        delete vector[0];
         for (unsigned short int i = 0; i < used_size; i++)
             vector[i] = vector[i + 1];
 
-        delete vector[used_size];
+        vector[used_size] = nullptr;
+        if (used_size == 1)
+            vector[0] = nullptr;
         used_size--;
 
         return info;
@@ -72,7 +82,7 @@ void PriorityQueue::order_vector()
         if (vector[j] != nullptr) {
             vector[i] = vector[j];
             if (i != j)
-                delete vector[j];
+                vector[j] = nullptr;
             i++;
         }
     }
@@ -82,10 +92,10 @@ void PriorityQueue::order_vector()
         for (unsigned short int b = a + 1; b < used_size; b++) {
             if ((*(vector[a])).get_data().get_frequency() > (*(vector[b])).get_data().get_frequency())
             {
-                TreeNode temp = (*vector[b]);
-                delete vector[b];
-                vector[b] = vector[a];
-                vector[a] = &temp;
+                TreeNode* temp = new TreeNode(*(vector[a]));
+                delete vector[a];
+                vector[a] = vector[b];
+                vector[b] = temp;
             }
         }
     }

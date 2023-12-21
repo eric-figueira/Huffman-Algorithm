@@ -3,7 +3,7 @@
 #include "CharCode.h"
 #include "Types.h"
 
-CharCode::CharCode() : character(0), code(nullptr), code_size(0) {}
+CharCode::CharCode() : character(0), code(new bool[8]), code_size(0) {}
 
 CharCode::CharCode(byte character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 
@@ -22,6 +22,9 @@ CharCode& CharCode::operator=(const CharCode& other)
 		code[i] = other.code[i];
 	}
 
+	character = other.character;
+	code_size = other.code_size;
+
 	return *this;
 }
 
@@ -33,9 +36,4 @@ unsigned int CharCode::get_code_size() const { return code_size; }
 
 void CharCode::push_to_code(bool v) {
 	code[code_size++] = v;
-}
-
-void CharCode::pop_from_code() {
-	code[code_size - 1];
-	code_size--;
 }

@@ -9,6 +9,7 @@ using namespace std;
 class TreeNode
 {
     private:
+        unsigned int SIZE = 256;
         TreeNode* left;
         TreeNode* right;
         ByteFrequency data;
@@ -16,6 +17,12 @@ class TreeNode
         unsigned short int size;
 
     public:
+        TreeNode();
+        TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r);
+        TreeNode(ByteFrequency d);
+        TreeNode(const TreeNode& other);
+        ~TreeNode();
+
         TreeNode* get_left()  const;
         TreeNode* get_right() const;
         ByteFrequency get_data() const;
@@ -26,10 +33,6 @@ class TreeNode
         void append_under(byte* under, unsigned short int size);
         void append_under(byte under);
         bool is_empty();
-
-        TreeNode(ByteFrequency d, TreeNode* l, TreeNode* r);
-        TreeNode(ByteFrequency d);
-        TreeNode();
 };
 
 #endif

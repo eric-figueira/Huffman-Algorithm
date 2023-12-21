@@ -17,6 +17,7 @@ class PriorityQueue
 
     public:
         PriorityQueue();
+        ~PriorityQueue();
 
         unsigned short int get_used_size() const;
         TreeNode** get_vector() const;
@@ -24,7 +25,7 @@ class PriorityQueue
 
         void add(byte pos);
         void add_by_priority(TreeNode* node);
-        TreeNode dequeue();
+        TreeNode* dequeue();
         void order_vector();
 };
 
