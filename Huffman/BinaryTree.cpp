@@ -53,15 +53,15 @@ void BinaryTree::create_codes(TreeNode* node, CharCode* codes, TreeNode* newNode
     }
 }
 
-void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* codes) {
+void BinaryTree::create_tree_from_priority_queue(PriorityQueue* queue, CharCode* codes) {
     unsigned short int index = 0;
 
     // enquanto a fila tiver dois ou mais nodos:
-    while (queue.get_used_size() >= 2) {
+    while ((*queue).get_used_size() >= 2) {
         // Desenfileirar um nó para se tornar a subárvore esquerda
-        TreeNode* left = queue.dequeue();
+        TreeNode* left = (*queue).dequeue();
         // Desenfileirar um nó para se tornar a subárvore direita
-        TreeNode* right = queue.dequeue();
+        TreeNode* right = (*queue).dequeue();
 
         // Criar um novo nó, com as respectivas subárvores
         // Tornar a frequência do novo nó igual a soma das frequencias dos filhos esquerdo e direito
@@ -78,15 +78,15 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue queue, CharCode* 
         }
 
         // Enfileirar o novo nó (de acordo com a prioridade)
-        queue.add_by_priority(newNode);
+        (*queue).add_by_priority(newNode);
 
         n_nodes += 1;
     }
 
     // Quando a fila só tiver um nó
-    if (queue.get_used_size() == 1) {
+    if ((*queue).get_used_size() == 1) {
         // Desenfileire esse nó
-        TreeNode* lastNode = queue.dequeue();
+        TreeNode* lastNode = (*queue).dequeue();
 
         // Coloque esse nó como raiz da arvore
         root = lastNode;

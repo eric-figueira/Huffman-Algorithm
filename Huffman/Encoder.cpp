@@ -53,7 +53,7 @@ void Encoder::encode(char* input_directory, char* output_directory)
     CharCode* codes = new CharCode[n];
 
     BinaryTree binaryTree;
-    binaryTree.create_tree_from_priority_queue(priorityQueue, codes);
+    binaryTree.create_tree_from_priority_queue(&priorityQueue, codes);
 
     //for (int i = 0; i < n; i++) 
     //{

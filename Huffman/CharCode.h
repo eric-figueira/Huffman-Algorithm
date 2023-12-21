@@ -10,6 +10,7 @@ class CharCode {
         byte character;
         bool* code;
         unsigned int code_size;
+        const unsigned int SIZE = 8;
 
     public:
         CharCode();

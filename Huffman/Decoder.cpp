@@ -41,7 +41,7 @@ void Decoder::decode(char* input_directory, char* output_directory)
     }
 
     BinaryTree binaryTree;
-    binaryTree.create_tree_from_priority_queue(priorityQueue);
+    binaryTree.create_tree_from_priority_queue(&priorityQueue);
 
     // quantos bits da �rvore existem
     unsigned long long n_bits_from_tree;

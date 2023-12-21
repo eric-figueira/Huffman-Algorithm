@@ -26,32 +26,45 @@ bool PriorityQueue::is_empty() const { return used_size == 0; }
 
 void PriorityQueue::add(byte byte_code)
 {
-    TreeNode* node = vector[byte_code];
+    if (used_size < SIZE)
+    {
+        TreeNode* node = vector[byte_code];
 
-    if (node == nullptr) {
-        vector[byte_code] = new TreeNode(ByteFrequency(1, byte_code));
-        used_size++;
+        if (node == nullptr) {
+            vector[byte_code] = new TreeNode(ByteFrequency(1, byte_code));
+            used_size++;
+        }
+        else
+            (*(vector[byte_code])).set_data(ByteFrequency((*node).get_data().get_frequency() + 1, byte_code));
     }
-    else
-        (*(vector[byte_code])).set_data(ByteFrequency((*node).get_data().get_frequency() + 1, byte_code));
+    else {
+        cerr << "[PriorityQueue]: Tried to enqueue in a full queue";
+        exit(-8);
+    }
 }
 
 void PriorityQueue::add_by_priority(TreeNode* node)
 {
-    if (used_size != 0) {
-        unsigned short int i = used_size - 1;
-        while (i > 0 && (*node).get_data().get_frequency() < (*(vector[i])).get_data().get_frequency()) {
-            i--;
+    if (used_size < SIZE) {
+        if (used_size != 0) {
+            unsigned short int i = used_size - 1;
+            while (i > 0 && (*node).get_data().get_frequency() < (*(vector[i])).get_data().get_frequency()) {
+                i--;
+            }
+
+            for (unsigned short int j = used_size; j > i + 1; j--)
+                vector[j] = vector[j - 1];
+            vector[i + 1] = node;
         }
-        
-        for (unsigned short int j = used_size; j > i + 1; j--)
-            vector[j] = vector[j - 1];
-        vector[i + 1] = node;
+        else {
+            vector[0] = node;
+        }
+        used_size++;
     }
     else {
-        vector[0] = node;
+        cerr << "[PriorityQueue]: Tried to enqueue in a full queue";
+        exit(-8);
     }
-    used_size++;
 }
 
 TreeNode* PriorityQueue::dequeue()
@@ -60,7 +73,7 @@ TreeNode* PriorityQueue::dequeue()
         TreeNode* info = new TreeNode(*(vector[0]));
 
         delete vector[0];
-        for (unsigned short int i = 0; i < used_size; i++)
+        for (unsigned short int i = 0; i < used_size - 1; i++)
             vector[i] = vector[i + 1];
 
         vector[used_size] = nullptr;
@@ -70,7 +83,7 @@ TreeNode* PriorityQueue::dequeue()
 
         return info;
     }
-    cerr << "[PriorityQueue]: Tried to deque from empty queue";
+    cerr << "[PriorityQueue]: Tried to dequeue from an empty queue";
     exit(-6);
 }
 
