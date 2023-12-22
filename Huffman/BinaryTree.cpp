@@ -47,7 +47,8 @@ void BinaryTree::create_codes(TreeNode* node, CharCode* codes, TreeNode* newNode
                 if (codes[j].get_char() == c)
                     break;
             }
-            codes[j].push_to_code(val);
+            if (j != *index)
+                codes[j].push_to_code(val);
         }
         (*newNode).append_under((*node).get_under(), (*node).get_size());
     }
@@ -80,6 +81,10 @@ void BinaryTree::create_tree_from_priority_queue(PriorityQueue* queue, CharCode*
         // Enfileirar o novo nó (de acordo com a prioridade)
         (*queue).add_by_priority(newNode);
 
+        if (n_nodes > 252)
+        {
+            cout << "a";
+        }
         n_nodes += 1;
     }
 

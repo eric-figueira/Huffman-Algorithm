@@ -26,21 +26,21 @@ bool PriorityQueue::is_empty() const { return used_size == 0; }
 
 void PriorityQueue::add(byte byte_code)
 {
-    if (used_size < SIZE)
-    {
-        TreeNode* node = vector[byte_code];
+    TreeNode* node = vector[byte_code];
 
-        if (node == nullptr) {
+    if (node == nullptr) {
+        if (used_size < SIZE)
+        {
             vector[byte_code] = new TreeNode(ByteFrequency(1, byte_code));
             used_size++;
         }
-        else
-            (*(vector[byte_code])).set_data(ByteFrequency((*node).get_data().get_frequency() + 1, byte_code));
+        else {
+            cerr << "[PriorityQueue]: Tried to enqueue in a full queue";
+            exit(-8);
+        }
     }
-    else {
-        cerr << "[PriorityQueue]: Tried to enqueue in a full queue";
-        exit(-8);
-    }
+    else
+        (*(vector[byte_code])).set_data(ByteFrequency((*node).get_data().get_frequency() + 1, byte_code));
 }
 
 void PriorityQueue::add_by_priority(TreeNode* node)

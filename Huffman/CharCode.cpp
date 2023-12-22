@@ -3,18 +3,20 @@
 #include "CharCode.h"
 #include "Types.h"
 
-CharCode::CharCode() : character(0), code(new bool[SIZE]), code_size(0) {}
+CharCode::CharCode() : character(0), code(nullptr), code_size(0) {}
 
 CharCode::CharCode(byte character, bool* code, unsigned int code_size) : character(character), code(code), code_size(code_size) {}
 
 CharCode::~CharCode()
 {
-	delete[] code;
+	if (code != nullptr)
+		delete[] code;
 }
 
 CharCode& CharCode::operator=(const CharCode& other)
 {
-	delete[] code;
+	if (code != nullptr)
+		delete[] code;
 	code = new bool[SIZE];
 
 	for (unsigned int i = 0; i < other.code_size; i++)
@@ -37,4 +39,9 @@ unsigned int CharCode::get_code_size() const { return code_size; }
 void CharCode::push_to_code(bool v) {
 	if (code_size < SIZE)
 		code[code_size++] = v;
+	else
+	{
+		cerr << "[CharCode]: Code size limit reached";
+		exit(-13);
+	}
 }
