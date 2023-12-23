@@ -52,8 +52,9 @@ void PriorityQueue::add_by_priority(TreeNode* node)
                 i--;
             }
 
-            for (unsigned short int j = used_size; j > i + 1; j--)
+            for (unsigned short int j = used_size; j > i + 1; j--) {
                 vector[j] = vector[j - 1];
+            }
             vector[i + 1] = node;
         }
         else {
@@ -72,14 +73,14 @@ TreeNode* PriorityQueue::dequeue()
     if (!is_empty()) {
         TreeNode* info = new TreeNode(*(vector[0]));
 
+        used_size--;
+
         delete vector[0];
-        for (unsigned short int i = 0; i < used_size - 1; i++)
+        for (unsigned short int i = 0; i < used_size; i++) {
             vector[i] = vector[i + 1];
+        }
 
         vector[used_size] = nullptr;
-        if (used_size == 1)
-            vector[0] = nullptr;
-        used_size--;
 
         return info;
     }
@@ -105,8 +106,9 @@ void PriorityQueue::order_vector()
         for (unsigned short int b = a + 1; b < used_size; b++) {
             if ((*(vector[a])).get_data().get_frequency() > (*(vector[b])).get_data().get_frequency())
             {
-                TreeNode* temp = new TreeNode(*(vector[a]));
-                delete vector[a];
+                /*TreeNode* temp = new TreeNode(*(vector[a]));
+                delete vector[a];*/
+                TreeNode* temp = vector[a];
                 vector[a] = vector[b];
                 vector[b] = temp;
             }

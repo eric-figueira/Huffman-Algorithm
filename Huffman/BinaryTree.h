@@ -27,7 +27,6 @@ class BinaryTree
         unsigned int get_n_nodes() const;
 
         void create_tree_from_priority_queue(PriorityQueue* queue, CharCode* codes = nullptr);
-
         //CharCode* visit_and_generate_codes();
 
         LinkedList generate_bytes_from_code(Code code);

@@ -55,18 +55,18 @@ void Encoder::encode(char* input_directory, char* output_directory)
     BinaryTree binaryTree;
     binaryTree.create_tree_from_priority_queue(&priorityQueue, codes);
 
-    //for (int i = 0; i < n; i++) 
-    //{
-    //    cout << codes[i].get_char() << " ";
-    //    for (int j = 0; j < codes[i].get_code_size(); j++)
-    //    {
-    //        if (codes[i].get_code()[j])
-    //            cout << "1";
-    //        else
-    //            cout << "0";
-    //    }
-    //    cout << "\n";
-    //}
+    for (int i = 0; i < n; i++) 
+    {
+        cout << codes[i].get_char() << " ";
+        for (int j = 0; j < codes[i].get_code_size(); j++)
+        {
+            if (codes[i].get_code()[j])
+                cout << "1";
+            else
+                cout << "0";
+        }
+        cout << "\n";
+    }
 
     Code code;
 
