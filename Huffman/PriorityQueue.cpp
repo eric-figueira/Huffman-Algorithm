@@ -106,8 +106,6 @@ void PriorityQueue::order_vector()
         for (unsigned short int b = a + 1; b < used_size; b++) {
             if ((*(vector[a])).get_data().get_frequency() > (*(vector[b])).get_data().get_frequency())
             {
-                /*TreeNode* temp = new TreeNode(*(vector[a]));
-                delete vector[a];*/
                 TreeNode* temp = vector[a];
                 vector[a] = vector[b];
                 vector[b] = temp;

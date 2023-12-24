@@ -27,7 +27,8 @@ void BinaryTree::create_codes(TreeNode* node, CharCode* codes, TreeNode* newNode
     // se o nó é uma folha, então criar um novo código no vetor de códigos e adicionar o valor correspondente à posição do nó
     if ((*node).get_left() == nullptr && (*node).get_right() == nullptr)
     {
-        codes[*index] = CharCode((*node).get_data().get_byte_code(), new bool[8], 0);
+        codes[*index] = CharCode((*node).get_data().get_byte_code(), new bool[256], 0);
+        codes[*index].push_to_code(val);
         (*index)++;
         (*newNode).append_under((*node).get_data().get_byte_code());
     }
