@@ -9,7 +9,7 @@
 #include "Types.h"
 
 
-void Encoder::encode(char* input_directory, char* output_directory)
+void Encoder::encode(string input_directory)
 {
     ifstream input(input_directory, ios::binary|ios::in);
     if (!input)
@@ -31,12 +31,28 @@ void Encoder::encode(char* input_directory, char* output_directory)
 
     priorityQueue.order_vector();
 
+    int pos = input_directory.find_last_of("/\\");
+    string path = input_directory.substr(0, pos + 1);
+
+    string file = input_directory.substr(pos + 1);
+    pos = file.find_last_of(".");
+    string n_file = file.substr(0, pos + 1) + "me";
+    string extension = file.substr(pos + 1);
+
+    string output_directory = path + n_file;
+
     ofstream output(output_directory, ios::binary|ios::out);
     if (!output)
     {
         cerr << "[Encoder]: Output file could not be created!";
         exit(-3);
     }
+
+    // quantos caracteres possui a extensão do arquivo
+    output << (unsigned char) extension.size();
+
+    // extensão do arquivo
+    output << extension;
 
     // quantos caracteres distintos existem no arquivo
     unsigned short n = priorityQueue.get_used_size();

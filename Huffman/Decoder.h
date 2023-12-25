@@ -7,7 +7,7 @@ using namespace std;
 class Decoder
 {
     public:
-        static void decode(char* input_directory, char* output_directory);
+        static void decode(string input_directory);
 };
 
 #endif

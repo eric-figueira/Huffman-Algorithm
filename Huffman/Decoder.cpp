@@ -8,7 +8,7 @@
 #include "Types.h"
 
 
-void Decoder::decode(char* input_directory, char* output_directory)
+void Decoder::decode(string input_directory)
 {
     ifstream input(input_directory, ios::binary);
     if (!input)
@@ -17,8 +17,15 @@ void Decoder::decode(char* input_directory, char* output_directory)
         exit(-2);
     }
 
+    // extensão do arquivo
+    string extension;
+    char extension_length;
+    input.get(extension_length);
+    for (char i = 0; i < extension_length; i++)
+        extension += input.get();
+
     PriorityQueue priorityQueue;
-    
+
     // quantos caracteres distintos existem no arquivo
     unsigned short int n_distinct_chars;
     n_distinct_chars = input.get() + 1;
@@ -56,6 +63,16 @@ void Decoder::decode(char* input_directory, char* output_directory)
 
     if (n_bits_from_tree % 8 != 0)
         code.add_byte(input.get(), (unsigned long long)(n_bits_from_tree % 8));
+
+    int pos = input_directory.find_last_of("/\\");
+    string path = input_directory.substr(0, pos + 1);
+
+    string file = input_directory.substr(pos + 1);
+    pos = file.find_last_of(".");
+    string n_file = file.substr(0, pos + 1);
+    n_file += extension;
+
+    string output_directory = path + n_file;
 
     // salvando o arquivo descompactado
     ofstream output(output_directory, ios::binary);

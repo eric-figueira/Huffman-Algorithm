@@ -23,15 +23,10 @@ void handle_compress_file()
 {
     cout << "[RUN]: To compress a file, provide the full path to that file. Example: C:\\Downloads\\MyFolder\\myfile.txt\n";
     cout << "[RUN]: File Path: ";
-    char path_to_file[150];
+    string path_to_file;
     cin >> path_to_file;
 
-    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged, as well as the name of the compressed file. Example: C:\\Downloads\\MyOtherFolder\\compressed.me\n";
-    cout << "[RUN]: Folder Path: ";
-    char output_folder_path[150];
-    cin >> output_folder_path;
-
-    Encoder::encode(path_to_file, output_folder_path);
+    Encoder::encode(path_to_file);
 
     cout << "\n\n[INFO]: Success! The file was successfully compressed!\n";
 }
@@ -40,15 +35,10 @@ void handle_unzip_file()
 {
     cout << "[RUN]: To unzip a file, provide the full path to the compressed file with .me extension. Example: C:\\Downloads\\MyFolder\\compressedfile.me\n";
     cout << "[RUN]: File Path: ";
-    char path_to_file[150];
+    string path_to_file;
     cin >> path_to_file;
 
-    cout << "\n[RUN]: Now, provide the path to the folder where the file must be discharged, as well as the name of the unzipped file. Example: C:\\Downloads\\MyOtherFolder\\unzziped.txt\n";
-    cout << "[RUN]: Folder Path: ";
-    char output_folder_path[150];
-    cin >> output_folder_path;
-
-    Decoder::decode(path_to_file, output_folder_path);
+    Decoder::decode(path_to_file);
 
     cout << "\n\n[INFO]: Success! The file was successfully unzipped!\n";
 }
